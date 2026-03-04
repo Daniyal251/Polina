@@ -39,4 +39,4 @@ You can also deploy these files to any static hosting service (GitHub Pages, Net
 - All content is currently in Russian, taken from the PDF invitation.
 - The RSVP form uses `mailto:`; to collect responses automatically, integrate with a server or third-party service.
 
-Enjoy the site, and congrats to Фёдор & Полин! 🎉
+Enjoy the site, and congrats to Фёдор & Полин! 
