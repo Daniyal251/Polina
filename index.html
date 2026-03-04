@@ -59,57 +59,123 @@
             font-family: 'Marck Script', cursive;
         }
         
-        /* Анимация руки с конвертом */
-        .hand-container {
-            position: fixed;
-            bottom: -100%;
-            left: 50%;
-            transform: translateX(-50%);
-            z-index: 9999;
-            transition: bottom 1.5s cubic-bezier(0.4, 0, 0.2, 1);
-            pointer-events: none;
-        }
-        
-        .hand-container.visible {
-            bottom: 5%;
-        }
-        
-        .hand-container img {
-            max-width: 100%;
-            width: 400px;
-            height: auto;
-        }
-        
-        @media (max-width: 640px) {
-            .hand-container img {
-                width: 280px;
-            }
-        }
-        
         /* Таймер */
         .countdown-digit {
             font-variant-numeric: tabular-nums;
         }
         
-        /* Навигация */
-        .main-nav {
-            transition: all 0.3s ease;
+        /* Декоративные элементы */
+        .pearl-necklace {
+            position: absolute;
+            top: 0;
+            left: 0;
+            z-index: 10;
+            pointer-events: none;
         }
         
-        .main-nav.scrolled {
-            background: rgba(255, 255, 255, 0.98);
-            backdrop-filter: blur(10px);
-            box-shadow: 0 2px 20px rgba(0,0,0,0.1);
+        .disco-ball-top {
+            position: absolute;
+            top: 20px;
+            right: 5%;
+            z-index: 10;
+            pointer-events: none;
         }
         
-        .main-nav.scrolled .nav-logo,
-        .main-nav.scrolled .nav-link {
-            color: #8B1538;
+        .disco-ball-program {
+            position: absolute;
+            bottom: 0;
+            left: -100px;
+            z-index: 5;
+            pointer-events: none;
         }
         
-        /* Мобильное меню */
-        .mobile-menu {
-            transition: opacity 0.3s ease, visibility 0.3s ease;
+        .vinyl-record {
+            position: absolute;
+            right: -50px;
+            top: 50%;
+            transform: translateY(-50%);
+            z-index: 5;
+            pointer-events: none;
+        }
+        
+        .clapperboard {
+            position: absolute;
+            bottom: 20px;
+            left: 150px;
+            z-index: 6;
+            pointer-events: none;
+        }
+        
+        .star-decoration {
+            position: absolute;
+            z-index: 8;
+            pointer-events: none;
+        }
+        
+        .paperclip {
+            position: absolute;
+            top: 20px;
+            right: 30px;
+            z-index: 5;
+            pointer-events: none;
+        }
+        
+        .envelope-decor {
+            position: absolute;
+            z-index: 7;
+            pointer-events: none;
+        }
+        
+        /* Календарь - таблица */
+        .calendar-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        
+        .calendar-table td {
+            border: 1px solid #ddd;
+            padding: 0;
+            text-align: center;
+            width: 33.33%;
+        }
+        
+        .calendar-table .header {
+            font-size: 0.7rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            padding: 12px 4px 8px;
+        }
+        
+        .calendar-table .month {
+            font-family: 'Marck Script', cursive;
+            font-size: 1.8rem;
+            padding: 8px 4px;
+        }
+        
+        .calendar-table .day {
+            font-family: 'Marck Script', cursive;
+            font-size: 4rem;
+            padding: 20px 4px 30px;
+        }
+        
+        .calendar-table .highlighted {
+            background-color: #5A0010;
+            color: white;
+        }
+        
+        /* Скроллбар */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        
+        ::-webkit-scrollbar-track {
+            background: #FDF8F3;
+        }
+        
+        ::-webkit-scrollbar-thumb {
+            background: #8B1538;
+            border-radius: 4px;
         }
         
         /* Форма */
@@ -119,7 +185,7 @@
         
         .form-input:focus {
             border-color: #8B1538;
-            box-shadow: 0 0 0 3px rgba(139, 21, 56, 0.1);
+            outline: none;
         }
         
         /* Сообщение об успехе */
@@ -138,172 +204,9 @@
                 transform: translateY(0);
             }
         }
-        
-        /* Декоративные элементы */
-        .pearl-necklace {
-            position: absolute;
-            top: 0;
-            left: 0;
-            z-index: 10;
-            pointer-events: none;
-        }
-        
-        .disco-ball-top {
-            position: absolute;
-            top: -20px;
-            right: 5%;
-            z-index: 10;
-            pointer-events: none;
-        }
-        
-        .disco-ball-program {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            z-index: 5;
-            pointer-events: none;
-        }
-        
-        .vinyl-record {
-            position: absolute;
-            right: 0;
-            top: 50%;
-            transform: translateY(-50%);
-            z-index: 5;
-            pointer-events: none;
-        }
-        
-        .clapperboard {
-            position: absolute;
-            bottom: 20px;
-            left: 100px;
-            z-index: 6;
-            pointer-events: none;
-        }
-        
-        .star-decoration {
-            position: absolute;
-            z-index: 8;
-            pointer-events: none;
-        }
-        
-        .paperclip {
-            position: absolute;
-            top: -30px;
-            right: 20px;
-            z-index: 5;
-            pointer-events: none;
-        }
-        
-        /* Календарь - таблица */
-        .calendar-table {
-            width: 100%;
-            border-collapse: collapse;
-        }
-        
-        .calendar-table td {
-            border: 1px solid #ddd;
-            padding: 0;
-            text-align: center;
-        }
-        
-        .calendar-table .header {
-            font-size: 0.75rem;
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 0.1em;
-            padding: 8px 4px;
-        }
-        
-        .calendar-table .month {
-            font-family: 'Marck Script', cursive;
-            font-size: 1.5rem;
-            padding: 8px 4px;
-        }
-        
-        .calendar-table .day {
-            font-family: 'Marck Script', cursive;
-            font-size: 3rem;
-            padding: 16px 4px;
-        }
-        
-        .calendar-table .highlighted {
-            background-color: #8B1538;
-            color: white;
-        }
-        
-        /* Скроллбар */
-        ::-webkit-scrollbar {
-            width: 8px;
-        }
-        
-        ::-webkit-scrollbar-track {
-            background: #FDF8F3;
-        }
-        
-        ::-webkit-scrollbar-thumb {
-            background: #8B1538;
-            border-radius: 4px;
-        }
-        
-        /* Декоративная линия */
-        .decorative-line {
-            position: relative;
-        }
-        
-        .decorative-line::after {
-            content: '';
-            position: absolute;
-            bottom: -20px;
-            left: 0;
-            right: 0;
-            height: 1px;
-            background: linear-gradient(90deg, transparent, #8B1538, transparent);
-        }
     </style>
 </head>
 <body class="text-gray-800">
-    <!-- Анимация руки с конвертом -->
-    <div class="hand-container" id="handAnimation">
-        <img src="images/IMG_7783.PNG" alt="Рука с приглашением">
-    </div>
-    
-    <!-- Навигация -->
-    <nav class="main-nav fixed top-0 left-0 right-0 z-50 py-5 bg-primary">
-        <div class="max-w-7xl mx-auto px-6 flex justify-between items-center">
-            <a href="#hero" class="nav-logo font-script text-3xl text-white">Ф & П</a>
-            
-            <ul class="hidden md:flex gap-8 items-center">
-                <li><a href="#about" class="nav-link text-sm font-medium uppercase tracking-wide text-white hover:text-gold transition">О нас</a></li>
-                <li><a href="#calendar" class="nav-link text-sm font-medium uppercase tracking-wide text-white hover:text-gold transition">Дата</a></li>
-                <li><a href="#program" class="nav-link text-sm font-medium uppercase tracking-wide text-white hover:text-gold transition">Программа</a></li>
-                <li><a href="#dresscode" class="nav-link text-sm font-medium uppercase tracking-wide text-white hover:text-gold transition">Дресс-код</a></li>
-                <li><a href="#details" class="nav-link text-sm font-medium uppercase tracking-wide text-white hover:text-gold transition">Пожелания</a></li>
-                <li><a href="#location" class="nav-link text-sm font-medium uppercase tracking-wide text-white hover:text-gold transition">Локация</a></li>
-                <li><a href="#rsvp" class="bg-gold text-white px-5 py-2 rounded text-sm font-medium uppercase tracking-wide hover:bg-gold-light transition">Анкета</a></li>
-            </ul>
-            
-            <button class="md:hidden nav-toggle flex flex-col gap-1.5 z-50" aria-label="Меню">
-                <span class="w-6 h-0.5 bg-white transition"></span>
-                <span class="w-6 h-0.5 bg-white transition"></span>
-                <span class="w-6 h-0.5 bg-white transition"></span>
-            </button>
-        </div>
-        
-        <!-- Мобильное меню -->
-        <div class="mobile-menu fixed inset-0 bg-primary opacity-0 invisible z-40">
-            <div class="flex flex-col items-center justify-center h-full gap-8">
-                <a href="#about" class="mobile-link text-2xl font-script text-white">О нас</a>
-                <a href="#calendar" class="mobile-link text-2xl font-script text-white">Дата</a>
-                <a href="#program" class="mobile-link text-2xl font-script text-white">Программа</a>
-                <a href="#dresscode" class="mobile-link text-2xl font-script text-white">Дресс-код</a>
-                <a href="#details" class="mobile-link text-2xl font-script text-white">Пожелания</a>
-                <a href="#location" class="mobile-link text-2xl font-script text-white">Локация</a>
-                <a href="#rsvp" class="mobile-link text-2xl font-script text-gold">Анкета гостя</a>
-                <button class="mobile-close absolute top-6 right-6 text-4xl text-white">&times;</button>
-            </div>
-        </div>
-    </nav>
 
     <!-- Hero секция -->
     <section id="hero" class="relative min-h-screen flex items-center justify-center overflow-hidden">
@@ -312,35 +215,45 @@
         <div class="absolute inset-0" style="background: repeating-linear-gradient(90deg, #2a0005 0px, #2a0005 50px, #1a0002 50px, #1a0002 100px);"></div>
         
         <!-- Декор: жемчужные нити слева -->
-        <img src="images/IMG_7786.PNG" alt="" class="pearl-necklace hidden md:block" style="top: -30px; left: -80px; width: 350px; height: auto;">
+        <img src="images/top_left.png" alt="" class="pearl-necklace hidden md:block" style="width: 200px; height: auto;">
         
         <!-- Декор: диско-шар справа сверху -->
-        <img src="images/IMG_7784.PNG" alt="" class="disco-ball-top hidden md:block" style="width: 180px; height: auto;">
+        <img src="images/IMG_7784.PNG" alt="" class="disco-ball-top hidden md:block" style="width: 150px; height: auto;">
         
         <!-- Декор: звёздочки -->
-        <img src="images/IMG_7785.PNG" alt="" class="star-decoration hidden md:block" style="top: 35%; left: 15%; width: 35px;">
-        <img src="images/IMG_7785.PNG" alt="" class="star-decoration hidden md:block" style="top: 55%; right: 18%; width: 25px;">
+        <img src="images/IMG_7785.PNG" alt="" class="star-decoration hidden md:block" style="top: 40%; left: 12%; width: 30px;">
+        <img src="images/IMG_7785.PNG" alt="" class="star-decoration hidden md:block" style="top: 60%; right: 15%; width: 25px;">
         
-        <!-- Рука с карточкой по центру -->
-        <div class="relative z-10 text-center px-6 py-20">
-            <img src="images/IMG_7783.PNG" alt="Рука с приглашением" class="max-w-sm mx-auto" data-aos="fade-up" data-aos-delay="500">
-            
-            <div class="mt-8" data-aos="fade-up" data-aos-delay="1000">
-                <p class="font-script text-4xl sm:text-5xl md:text-6xl text-white mb-4">Дорогой гость!</p>
+        <!-- Декор: конверт справа -->
+        <img src="images/IMG_7790.PNG" alt="" class="envelope-decor hidden md:block" style="top: 50%; right: 8%; width: 180px; transform: translateY(-50%) rotate(15deg);">
+        
+        <!-- Контент по центру -->
+        <div class="relative z-10 text-center px-6">
+            <!-- Рука с карточкой -->
+            <div class="relative inline-block" data-aos="fade-up" data-aos-duration="1500">
+                <!-- Рука держит карточку -->
+                <img src="images/Gemini_Generated_Image_wo2zrpwo2zrpwo2z.png" alt="Рука с приглашением" class="max-w-xs sm:max-w-sm mx-auto" style="max-height: 500px;">
                 
-                <p class="text-white/90 text-sm sm:text-base max-w-xl mx-auto mb-8 leading-relaxed">
-                    Если в твои руки попало это приглашение, значит ты будешь в первых рядах главной премьеры нашей жизни — рождение семьи!
-                </p>
-                
-                <div class="flex items-center justify-center gap-5 mb-8">
-                    <div class="w-12 sm:w-16 h-px bg-gold"></div>
-                    <p class="font-script text-4xl sm:text-5xl text-gold">10.08.2026</p>
-                    <div class="w-12 sm:w-16 h-px bg-gold"></div>
+                <!-- Текст на карточке (абсолютное позиционирование) -->
+                <div class="absolute top-[18%] left-1/2 -translate-x-1/2 w-[70%] text-center" style="top: 15%;">
+                    <p class="font-script text-3xl sm:text-4xl md:text-5xl text-primary leading-none">Фёдор</p>
+                    <p class="font-script text-2xl sm:text-3xl md:text-4xl text-primary my-1">&</p>
+                    <p class="font-script text-3xl sm:text-4xl md:text-5xl text-primary leading-none">Полин</p>
                 </div>
             </div>
             
-            <a href="#calendar" class="inline-flex flex-col items-center gap-2 text-white/70 hover:text-white transition">
-                <span class="text-xs tracking-[0.1em] uppercase">Узнать больше</span>
+            <!-- Дата под рукой -->
+            <div class="mt-8" data-aos="fade-up" data-aos-delay="500" data-aos-duration="1500">
+                <div class="flex items-center justify-center gap-4">
+                    <div class="w-12 sm:w-20 h-px bg-gold"></div>
+                    <p class="font-script text-3xl sm:text-4xl md:text-5xl text-gold">10.08.2026</p>
+                    <div class="w-12 sm:w-20 h-px bg-gold"></div>
+                </div>
+            </div>
+            
+            <!-- Стрелка вниз -->
+            <a href="#about" class="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 text-white/70 hover:text-white transition" data-aos="fade-in" data-aos-delay="1000">
+                <span class="text-xs tracking-[0.1em] uppercase">Листайте вниз</span>
                 <svg class="w-6 h-6 animate-bounce" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                     <path d="M12 5v14M5 12l7 7 7-7"/>
                 </svg>
@@ -362,17 +275,17 @@
             <div class="my-12" data-aos="fade-up">
                 <table class="calendar-table max-w-2xl mx-auto">
                     <tr>
-                        <td class="w-1/3">
+                        <td>
                             <div class="header text-gray-800">Воскресенье</div>
                             <div class="month text-gray-600">Август</div>
                             <div class="day text-gray-800">9</div>
                         </td>
-                        <td class="w-1/3 highlighted">
+                        <td class="highlighted">
                             <div class="header text-white">Понедельник</div>
                             <div class="month text-white">Август</div>
                             <div class="day text-white">10</div>
                         </td>
-                        <td class="w-1/3">
+                        <td>
                             <div class="header text-gray-800">Вторник</div>
                             <div class="month text-gray-600">Август</div>
                             <div class="day text-gray-800">11</div>
@@ -381,7 +294,7 @@
                 </table>
                 <!-- Стрелка вниз -->
                 <div class="text-center mt-4">
-                    <svg class="w-8 h-8 mx-auto text-primary" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <svg class="w-10 h-10 mx-auto text-primary" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                         <path d="M12 5v14M5 12l7 7 7-7"/>
                     </svg>
                 </div>
@@ -406,22 +319,17 @@
     <!-- Программа дня -->
     <section id="program" class="py-16 sm:py-20 md:py-32 bg-cream relative overflow-hidden">
         <!-- Декор: диско-шар слева -->
-        <img src="images/IMG_7784.PNG" alt="" class="disco-ball-program hidden md:block" style="width: 280px; height: auto;">
+        <img src="images/IMG_7784.PNG" alt="" class="disco-ball-program hidden md:block" style="width: 300px; height: auto;">
         
         <!-- Декор: виниловая пластинка справа -->
-        <img src="images/IMG_7809.PNG" alt="" class="vinyl-record hidden md:block" style="width: 220px; height: auto;">
+        <img src="images/IMG_7809.PNG" alt="" class="vinyl-record hidden md:block" style="width: 250px; height: auto;">
         
         <!-- Декор: хлопушка -->
-        <img src="images/IMG_7808.PNG" alt="" class="clapperboard hidden md:block" style="width: 120px; height: auto;">
+        <img src="images/IMG_7808.PNG" alt="" class="clapperboard hidden md:block" style="width: 100px; height: auto;">
         
         <!-- Декор: звёздочки -->
-        <img src="images/IMG_7785.PNG" alt="" class="star-decoration hidden md:block" style="bottom: 30px; left: 220px; width: 30px;">
-        <img src="images/IMG_7785.PNG" alt="" class="star-decoration hidden md:block" style="bottom: 20px; left: 280px; width: 20px;">
-        
-        <!-- Скрепка -->
-        <svg class="paperclip hidden md:block" width="40" height="80" viewBox="0 0 40 80" fill="none" stroke="#8B1538" stroke-width="2">
-            <path d="M20 10v50a10 10 0 0 0 20 0V20a14 14 0 0 0-28 0v40a18 18 0 0 0 36 0V20"/>
-        </svg>
+        <img src="images/IMG_7785.PNG" alt="" class="star-decoration hidden md:block" style="bottom: 40px; left: 250px; width: 25px;">
+        <img src="images/IMG_7785.PNG" alt="" class="star-decoration hidden md:block" style="bottom: 30px; left: 300px; width: 20px;">
         
         <div class="max-w-4xl mx-auto px-6 relative z-10">
             <div class="text-center mb-12" data-aos="fade-up">
@@ -429,7 +337,10 @@
             </div>
             
             <!-- Программа на кремовой карточке -->
-            <div class="bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAwIiBoZWlnaHQ9IjQwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48ZGVmcz48cGF0dGVybiBpZD0ibm9pc2UiIHdpZHRoPSIxMDAiIGhlaWdodD0iMTAwIiBwYXR0ZXJuVW5pdHM9InVzZXJTcGFjZU9uVXNlIj48ZmVUdXJidWxlbmNlIHR5cGU9ImZyYWN0YWxOb2lzZSIgYmFzZUZyZXF1ZW5jeT0iMC44IiBudW1PY3RhdmVzPSIzIiBzdGl0Y2hUaWxlPSJzdGl0Y2giLz48L2ZpbHRlcj48L2RlZnM+PHJlY3Qgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgZmlsdGVyPSJ1cmwoI25vaXNlKSIgb3BhY2l0eT0iMC4wNSIvPjwvc3ZnPg==')] bg-ivory p-8 sm:p-12 rounded shadow-xl" data-aos="fade-up">
+            <div class="relative bg-ivory p-8 sm:p-12 rounded shadow-xl" data-aos="fade-up">
+                <!-- Скрепка -->
+                <img src="images/IMG_7807.PNG" alt="" class="paperclip" style="width: 40px; height: auto;">
+                
                 <div class="space-y-6">
                     <div class="flex items-start gap-4">
                         <span class="font-script text-2xl sm:text-3xl text-primary flex-shrink-0 w-20">15:00</span>
@@ -454,18 +365,18 @@
 
     <!-- Дресс-код -->
     <section id="dresscode" class="py-16 sm:py-20 md:py-32 bg-white relative overflow-hidden">
-        <div class="max-w-5xl mx-auto px-6">
+        <div class="max-w-6xl mx-auto px-6">
             <div class="text-center mb-12" data-aos="fade-up">
                 <h2 class="font-script text-5xl sm:text-6xl text-primary mb-2">Дресс-код и стиль одежды</h2>
             </div>
             
-            <div class="text-center max-w-3xl mx-auto">
+            <div class="text-center max-w-4xl mx-auto">
                 <p class="text-gray-700 leading-relaxed mb-8" data-aos="fade-up">
                     Мы долго готовились к этому дню и будем благодарны вам, если при выборе нарядов вы учтете цветовую гамму нашего торжества.
                 </p>
                 
                 <!-- Цветовая палитра -->
-                <div class="flex flex-wrap justify-center gap-4 mb-8" data-aos="zoom-in">
+                <div class="flex flex-wrap justify-center gap-4 mb-12" data-aos="zoom-in">
                     <div class="w-16 h-16 rounded-full shadow-md" style="background: #000000;" title="Чёрный"></div>
                     <div class="w-16 h-16 rounded-full shadow-md" style="background: #8B1538;" title="Бордовый"></div>
                     <div class="w-16 h-16 rounded-full shadow-md" style="background: #D4A5A5;" title="Пыльная роза"></div>
@@ -478,11 +389,11 @@
                 </p>
                 
                 <!-- Примеры нарядов -->
-                <div class="grid grid-cols-2 md:grid-cols-4 gap-4" data-aos="fade-up">
-                    <img src="https://images.unsplash.com/photo-1595777457583-95e059d581b8?w=300&h=400&fit=crop" alt="Вечернее платье" class="w-full h-64 md:h-80 object-cover rounded shadow-lg">
-                    <img src="https://images.unsplash.com/photo-1566174053879-31528523f8ae?w=300&h=400&fit=crop" alt="Вечернее платье бордовое" class="w-full h-64 md:h-80 object-cover rounded shadow-lg">
-                    <img src="https://images.unsplash.com/photo-1507679799987-c73779587ccf?w=300&h=400&fit=crop" alt="Смокинг" class="w-full h-64 md:h-80 object-cover rounded shadow-lg">
-                    <img src="https://images.unsplash.com/photo-1594938298603-c8148c47e356?w=300&h=400&fit=crop" alt="Костюм" class="w-full h-64 md:h-80 object-cover rounded shadow-lg">
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-12" data-aos="fade-up">
+                    <img src="images/Gemini_Generated_Image_annj90annj90annj.png" alt="Вечернее платье" class="w-full h-80 md:h-96 object-cover rounded shadow-lg">
+                    <img src="images/Gemini_Generated_Image_dn1e5odn1e5odn1e.png" alt="Вечернее платье бордовое" class="w-full h-80 md:h-96 object-cover rounded shadow-lg">
+                    <img src="images/Gemini_Generated_Image_ug8pmaug8pmaug8p.png" alt="Смокинг" class="w-full h-80 md:h-96 object-cover rounded shadow-lg">
+                    <img src="images/Gemini_Generated_Image_uii3ouii3ouii3ou.png" alt="Костюм" class="w-full h-80 md:h-96 object-cover rounded shadow-lg">
                 </div>
             </div>
         </div>
@@ -491,7 +402,7 @@
     <!-- Пожелания -->
     <section id="details" class="py-16 sm:py-20 md:py-32 bg-cream relative overflow-hidden">
         <!-- Декор: жемчужные нити слева -->
-        <img src="images/IMG_7786.PNG" alt="" class="pearl-necklace hidden md:block" style="top: 0; left: -100px; width: 280px; height: auto;">
+        <img src="images/Gemini_Generated_Image_up6phwup6phwup6p.png" alt="" class="pearl-necklace hidden md:block" style="width: 180px; height: auto;">
         
         <div class="max-w-5xl mx-auto px-6 relative z-10">
             <div class="text-center mb-12" data-aos="fade-up">
@@ -588,7 +499,8 @@
             
             <div class="grid md:grid-cols-2 gap-8 items-start">
                 <div data-aos="fade-right">
-                    <img src="https://images.unsplash.com/photo-1519167758481-83f550bb49b3?w=600&h=400&fit=crop" alt="Urman House" class="w-full rounded-lg shadow-lg">
+                    <!-- Фото помещения -->
+                    <img src="images/Gemini_Generated_Image_vv6fejvv6fejvv6f.png" alt="Urman House" class="w-full rounded-lg shadow-lg">
                 </div>
                 <div data-aos="fade-left">
                     <h3 class="font-heading text-3xl font-semibold text-primary mb-4">Urman House</h3>
@@ -700,22 +612,6 @@
             offset: 100
         });
         
-        // Анимация руки с конвертом при загрузке
-        window.addEventListener('load', () => {
-            const handContainer = document.getElementById('handAnimation');
-            
-            setTimeout(() => {
-                handContainer.classList.add('visible');
-            }, 500);
-            
-            setTimeout(() => {
-                handContainer.classList.remove('visible');
-                setTimeout(() => {
-                    handContainer.style.display = 'none';
-                }, 1500);
-            }, 3500);
-        });
-        
         // Таймер обратного отсчёта
         function updateCountdown() {
             const weddingDate = new Date('2026-08-10T15:00:00');
@@ -737,41 +633,6 @@
         
         updateCountdown();
         setInterval(updateCountdown, 1000);
-        
-        // Мобильное меню
-        const navToggle = document.querySelector('.nav-toggle');
-        const mobileMenu = document.querySelector('.mobile-menu');
-        const mobileLinks = document.querySelectorAll('.mobile-link');
-        const mobileClose = document.querySelector('.mobile-close');
-        
-        function toggleMenu() {
-            mobileMenu.classList.toggle('opacity-0');
-            mobileMenu.classList.toggle('invisible');
-            navToggle.classList.toggle('active');
-        }
-        
-        navToggle.addEventListener('click', toggleMenu);
-        
-        if (mobileClose) {
-            mobileClose.addEventListener('click', toggleMenu);
-        }
-        
-        mobileLinks.forEach(link => {
-            link.addEventListener('click', () => {
-                mobileMenu.classList.add('opacity-0', 'invisible');
-                navToggle.classList.remove('active');
-            });
-        });
-        
-        // Навигация при скролле
-        const nav = document.querySelector('.main-nav');
-        window.addEventListener('scroll', () => {
-            if (window.scrollY > 100) {
-                nav.classList.add('scrolled');
-            } else {
-                nav.classList.remove('scrolled');
-            }
-        });
         
         // Плавная прокрутка
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
