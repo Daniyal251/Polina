@@ -4,20 +4,16 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Свадьба Фёдора и Полины | 10.08.2026</title>
-    <meta name="description" content="Приглашение на свадьбу Фёдора и Полины 10 августа 2026 года. Программа дня, дресс-код, площадка и вся информация о торжестве.">
+    <meta name="description" content="Приглашение на свадьбу Фёдора и Полины 10 августа 2026 года">
     
-    <!-- Open Graph для соцсетей -->
+    <!-- Open Graph -->
     <meta property="og:type" content="website">
     <meta property="og:title" content="Свадьба Фёдора и Полины | 10.08.2026">
     <meta property="og:description" content="Приглашение на свадьбу 10 августа 2026 года">
-    <meta property="og:image" content="images/invitation-og.jpg">
     
-    <!-- Favicon -->
-    <link rel="icon" type="image/png" href="images/favicon.png">
-
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Marck+Script&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400;1,600&family=Marck+Script&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
     
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
@@ -25,12 +21,14 @@
             theme: {
                 extend: {
                     colors: {
-                        wine: '#5A0010',      /* Главный бордовый цвет */
-                        cream: '#FDF8F3',     /* Светлый кремовый фон */
-                        gold: '#C9A962',      /* Акцентный золотой */
+                        wine: '#800020',
+                        wineDark: '#5A0010',
+                        cream: '#FCF9F5',
+                        gold: '#C9A962',
                     },
                     fontFamily: {
                         script: ['"Marck Script"', 'cursive'],
+                        serif: ['"Cormorant Garamond"', 'serif'],
                         body: ['Montserrat', 'sans-serif'],
                     }
                 }
@@ -41,383 +39,516 @@
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     
     <style>
-        body { background-color: #FDF8F3; font-family: 'Montserrat', sans-serif; overflow-x: hidden; scroll-behavior: smooth; }
-
-        /* Скрытие скроллбара для красоты */
-        ::-webkit-scrollbar { width: 6px; }
-        ::-webkit-scrollbar-track { background: #FDF8F3; }
-        ::-webkit-scrollbar-thumb { background: #5A0010; border-radius: 10px; }
-        
-        /* Вертикальные линии для пожеланий */
-        .wishes-container {
-            position: relative;
-        }
-        .wishes-line {
-            position: absolute;
-            left: 50%;
-            top: 50%;
-            transform: translate(-50%, -50%);
-            width: 2px;
-            height: 60px;
-            background: linear-gradient(to bottom, #5A0010, transparent);
-            z-index: 10;
-        }
-        .wishes-line-top {
-            top: 0;
-        }
-        .wishes-line-bottom {
-            top: 100%;
+        body { 
+            background-color: #FCF9F5; 
+            font-family: 'Montserrat', sans-serif; 
+            overflow-x: hidden; 
+            scroll-behavior: smooth; 
         }
         
-        /* Серебряный круг с градиентом */
+        ::-webkit-scrollbar { width: 4px; }
+        ::-webkit-scrollbar-track { background: #FCF9F5; }
+        ::-webkit-scrollbar-thumb { background: #800020; border-radius: 10px; }
+        
+        /* Анимация поднятия руки */
+        @keyframes slideUpHand {
+            0% { transform: translateY(100%); opacity: 0; }
+            100% { transform: translateY(0); opacity: 1; }
+        }
+        .animate-hand {
+            animation: slideUpHand 2s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+        }
+        
+        /* Плавное появление */
+        @keyframes fadeInUp {
+            0% { opacity: 0; transform: translateY(40px); }
+            100% { opacity: 1; transform: translateY(0); }
+        }
+        .animate-fade-up {
+            animation: fadeInUp 1s ease-out forwards;
+        }
+        
+        /* Пульсация для звёзд */
+        @keyframes softPulse {
+            0%, 100% { opacity: 0.6; transform: scale(1); }
+            50% { opacity: 1; transform: scale(1.1); }
+        }
+        .animate-star {
+            animation: softPulse 3s ease-in-out infinite;
+        }
+        
+        /* Акцент для радио/чекбоксов */
+        input[type="radio"], input[type="checkbox"] {
+            accent-color: #800020;
+            width: 1.2rem;
+            height: 1.2rem;
+            cursor: pointer;
+        }
+        
+        /* Плавные переходы */
+        .smooth-transition {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        /* Градиент для серебряного круга */
         .color-silver {
             background: radial-gradient(circle at 30% 30%, #ffffff 0%, #c0c0c0 50%, #808080 100%);
             box-shadow: inset -2px -2px 6px rgba(0,0,0,0.2), 2px 2px 6px rgba(0,0,0,0.3);
         }
         
-        /* Карточка программы дня */
-        .program-card {
-            background: linear-gradient(135deg, #F5F0E8 0%, #EFE8D8 100%);
-            box-shadow: 0 10px 40px rgba(0,0,0,0.15);
-            position: relative;
-        }
-        
-        /* Рукописный шрифт для времени */
-        .time-handwritten {
-            font-family: 'Marck Script', cursive;
-            font-size: 2.5rem;
-        }
-        @media (min-width: 768px) {
-            .time-handwritten {
-                font-size: 3.5rem;
-            }
-        }
-        
-        /* Рамка таймера */
-        .timer-frame {
-            border: 2px solid #5A0010;
-            border-radius: 8px;
-            background: rgba(255,255,255,0.5);
-        }
-        
-        /* Фон занавеса для Hero */
+        /* Фон занавес */
         .curtain-bg {
             background: 
-                repeating-linear-gradient(90deg, 
-                    rgba(74,0,8,0.9) 0px, 
-                    rgba(74,0,8,0.9) 3px, 
-                    rgba(58,0,6,0.95) 3px, 
-                    rgba(58,0,6,0.95) 6px
-                );
+                linear-gradient(180deg, rgba(26,0,5,0.95) 0%, rgba(90,0,16,0.9) 50%, rgba(42,0,5,0.95) 100%),
+                repeating-linear-gradient(90deg, rgba(74,0,8,0.8) 0px, rgba(74,0,8,0.8) 2px, rgba(58,0,6,0.9) 2px, rgba(58,0,6,0.9) 4px);
         }
     </style>
 </head>
-<body class="text-gray-800">
+<body class="text-gray-800 selection:bg-wine selection:text-white">
 
-    <!-- Hero секция -->
-    <section id="hero" class="relative w-full min-h-[100svh] flex items-center justify-center overflow-hidden" aria-label="Главный экран приглашения">
-        <!-- Фон занавес -->
-        <div class="absolute inset-0 curtain-bg"></div>
-        <div class="absolute inset-0 bg-gradient-to-b from-black/40 via-transparent to-black/40"></div>
+    <!-- 1. ГЛАВНЫЙ ЭКРАН -->
+    <section id="hero" class="relative w-full min-h-[100svh] flex flex-col items-center justify-center overflow-hidden">
+        <!-- Фон штора -->
+        <div class="absolute inset-0 curtain-bg z-0"></div>
         
-        <!-- Жемчуг слева -->
-        <img src="images/top_left.png" class="absolute top-0 left-0 w-40 md:w-56 z-10" alt="Жемчужные нити" loading="eager">
+        <!-- Декорации по углам -->
+        <img src="images/top_left.png" class="absolute top-0 left-0 w-32 md:w-56 z-10 opacity-90" alt="Жемчуг" loading="eager">
+        <img src="images/IMG_7784.PNG" class="absolute -top-10 -right-10 w-40 md:w-72 z-10 drop-shadow-2xl" alt="Диско-шар" loading="eager">
+        <img src="images/IMG_7790.PNG" class="absolute bottom-10 right-4 md:right-20 w-32 md:w-48 z-10 rotate-12 drop-shadow-xl" alt="Конверт" loading="eager">
         
-        <!-- Диско-шар справа сверху -->
-        <img src="images/IMG_7784.PNG" class="absolute top-4 right-4 md:right-8 w-28 md:w-44 z-10 drop-shadow-2xl" alt="Диско-шар" loading="eager">
+        <!-- Звёзды -->
+        <img src="images/IMG_7785.PNG" class="absolute top-1/4 -left-6 md:-left-12 w-8 md:w-12 z-10 animate-star" alt="" loading="eager">
+        <img src="images/IMG_7785.PNG" class="absolute bottom-1/3 -right-6 w-6 md:w-8 z-10 animate-star" alt="" loading="eager">
         
-        <!-- Конверт справа снизу -->
-        <img src="images/IMG_7790.PNG" class="absolute bottom-16 right-8 md:right-16 w-20 md:w-28 z-10 rotate-[12deg] drop-shadow-xl" alt="Конверт" loading="eager">
-        
-        <!-- Звёзды декоративные -->
-        <img src="images/IMG_7785.PNG" class="absolute top-1/4 left-4 md:left-8 w-5 md:w-7 z-10" alt="" loading="eager" aria-hidden="true">
-        <img src="images/IMG_7785.PNG" class="absolute bottom-1/4 right-1/4 w-4 md:w-6 z-10" alt="" loading="eager" aria-hidden="true">
-        
-        <!-- Рука с карточкой по центру -->
-        <div class="relative z-20" data-aos="fade-up" data-aos-duration="2000">
-            <div class="relative">
-                <img src="images/IMG_7783.PNG" class="w-[260px] md:w-[380px] lg:w-[450px] relative z-20 drop-shadow-2xl" alt="Рука в перчатке держит карточку" loading="eager">
+        <!-- Рука с карточкой (поднимается снизу) -->
+        <div class="relative z-20 mt-10">
+            <div class="relative inline-block w-[300px] md:w-[400px] animate-hand">
+                <img src="images/IMG_7783.PNG" class="w-full relative z-20 drop-shadow-2xl" alt="Рука">
                 
-                <!-- Имена на карточке -->
-                <div class="absolute top-[12%] left-[50%] transform -translate-x-1/2 w-[75%] flex flex-col items-center justify-center z-30 text-center">
-                    <span class="font-script text-[2.5rem] md:text-[3.5rem] lg:text-[4.5rem] leading-none" style="color: #800020;">Фёдор</span>
-                    <span class="font-script text-2xl md:text-3xl lg:text-4xl my-[-4px]" style="color: rgba(201,169,98,0.8);">&</span>
-                    <span class="font-script text-[2.5rem] md:text-[3.5rem] lg:text-[4.5rem] leading-none" style="color: #800020;">Полина</span>
+                <!-- Текст на карточке -->
+                <div class="absolute top-[26%] left-[8%] w-[84%] h-[24%] flex flex-col items-center justify-center z-30 transform -rotate-1">
+                    <span class="font-script text-4xl md:text-5xl text-[#8E2836] leading-none">Фёдор</span>
+                    <span class="font-script text-2xl md:text-3xl text-[#b88c69] my-0">&</span>
+                    <span class="font-script text-4xl md:text-5xl text-[#8E2836] leading-none">Полина</span>
                 </div>
             </div>
         </div>
-    </section>
-
-    <!-- Секция приветствия и календарь -->
-    <section class="py-20 px-4 max-w-4xl mx-auto text-center relative z-20 bg-cream -mt-10 rounded-t-[3rem] shadow-[0_-10px_30px_rgba(0,0,0,0.1)]" aria-label="Приветствие и дата свадьбы">
         
-        <h2 class="font-script text-6xl md:text-8xl text-wine mb-8" data-aos="fade-up">Дорогой гость!</h2>
-        <p class="text-lg md:text-xl font-light leading-relaxed text-gray-700 mb-16" data-aos="fade-up" data-aos-delay="100">
-            Если в твои руки попало это приглашение, значит ты будешь в первых рядах главной премьеры нашей жизни — рождение семьи!<br>
-            Мы официально женимся и очень хотим видеть тебя на нашей свадьбе.
+        <!-- Листайте вниз -->
+        <div class="absolute bottom-8 text-white/50 flex flex-col items-center z-20 font-light" data-aos="fade-in" data-aos-delay="2000">
+            <span class="text-[9px] tracking-[0.3em] uppercase mb-2">Листайте вниз</span>
+            <svg class="w-5 h-5 animate-bounce" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M19 14l-7 7m0 0l-7-7m7 7V3"></path>
+            </svg>
+        </div>
+    </section>
+
+    <!-- 2. ПРИГЛАШЕНИЕ И КАЛЕНДАРЬ -->
+    <section class="py-20 md:py-28 px-4 max-w-4xl mx-auto text-center relative z-20 bg-cream -mt-8 rounded-t-[3rem] shadow-[0_-10px_40px_rgba(0,0,0,0.08)]">
+        
+        <h2 class="font-script text-5xl md:text-7xl text-wine mb-6" data-aos="fade-up">Дорогой гость!</h2>
+        <p class="text-[15px] md:text-[16px] font-light leading-loose text-gray-700 mb-12 max-w-2xl mx-auto" data-aos="fade-up" data-aos-delay="100">
+            Если в твои руки попало это приглашение, значит ты будешь в первых рядах главной премьеры нашей жизни — рождение семьи! Мы официально женимся и очень хотим видеть тебя на нашей свадьбе.
         </p>
 
-        <!-- Календарь с линиями -->
-        <div class="my-12" data-aos="zoom-in">
-            <div class="flex justify-center border-t border-b border-gray-400">
-                <!-- Воскресенье 9 -->
-                <div class="flex-1 border-r border-gray-400 px-2 py-4">
-                    <div class="text-xs font-bold uppercase tracking-widest mb-2 text-gray-800">Воскресенье</div>
-                    <div class="font-script text-2xl md:text-3xl text-gray-600" style="font-style: italic;">Август</div>
-                    <div class="font-script text-5xl md:text-6xl text-gray-800 mt-2">9</div>
-                </div>
-                <!-- Понедельник 10 (выделен) -->
-                <div class="flex-1 border-r border-gray-400 px-2 py-4 bg-wine text-white">
-                    <div class="text-xs font-bold uppercase tracking-widest mb-2">Понедельник</div>
-                    <div class="font-script text-2xl md:text-3xl" style="font-style: italic;">Август</div>
-                    <div class="font-script text-6xl md:text-7xl mt-2">10</div>
-                </div>
-                <!-- Вторник 11 -->
-                <div class="flex-1 px-2 py-4">
-                    <div class="text-xs font-bold uppercase tracking-widest mb-2 text-gray-800">Вторник</div>
-                    <div class="font-script text-2xl md:text-3xl text-gray-600" style="font-style: italic;">Август</div>
-                    <div class="font-script text-5xl md:text-6xl text-gray-800 mt-2">11</div>
-                </div>
+        <!-- Календарь с анимацией -->
+        <div class="flex justify-center items-center gap-3 md:gap-10 py-8 my-10" data-aos="zoom-in" data-aos-delay="200">
+            <!-- Воскресенье 9 -->
+            <div class="text-center w-20 md:w-28" data-aos="fade-up" data-aos-delay="100">
+                <div class="text-[9px] md:text-[10px] font-medium uppercase tracking-[0.2em] mb-3 text-gray-400">Воскресенье</div>
+                <div class="font-script text-2xl md:text-3xl text-gray-500">Август</div>
+                <div class="font-serif italic text-3xl md:text-4xl text-gray-600 mt-2">9</div>
+            </div>
+            
+            <!-- Понедельник 10 (выделен) -->
+            <div class="text-center bg-gradient-to-b from-wine to-wineDark text-white w-28 md:w-36 py-6 rounded-2xl shadow-xl transform scale-105" data-aos="fade-up" data-aos-delay="200">
+                <div class="text-[9px] md:text-[10px] font-medium uppercase tracking-[0.2em] mb-3 text-white/80">Понедельник</div>
+                <div class="font-script text-2xl md:text-3xl">Август</div>
+                <div class="font-serif italic text-5xl md:text-6xl mt-2">10</div>
+            </div>
+            
+            <!-- Вторник 11 -->
+            <div class="text-center w-20 md:w-28" data-aos="fade-up" data-aos-delay="300">
+                <div class="text-[9px] md:text-[10px] font-medium uppercase tracking-[0.2em] mb-3 text-gray-400">Вторник</div>
+                <div class="font-script text-2xl md:text-3xl text-gray-500">Август</div>
+                <div class="font-serif italic text-3xl md:text-4xl text-gray-600 mt-2">11</div>
             </div>
         </div>
 
-        <div class="flex justify-center text-wine mt-8 mb-8 animate-bounce" aria-hidden="true">
-            <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"></path></svg>
+        <div class="flex justify-center text-wine mt-8 mb-8">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M19 14l-7 7m0 0l-7-7m7 7V3"></path>
+            </svg>
         </div>
 
-        <p class="text-lg md:text-xl font-light leading-relaxed text-gray-700 italic" data-aos="fade-up">
-            Словно в самом романтичном фильме мы будем отмечать торжество под звуки уходящего лета, теплого ветерка, шепчущего ноты августовской свежести, и природной свободы!
+        <p class="text-[14px] md:text-[15px] font-light leading-loose text-gray-600 max-w-2xl mx-auto italic" data-aos="fade-up">
+            Словно в самом романтичном фильме мы будем отмечать торжество под звуки уходящего лета, тёплого ветерка, шепчущего ноты августовской свежести, и природной свободы!
         </p>
 
-        <div class="font-script text-7xl md:text-9xl text-wine mt-24 mb-10" data-aos="zoom-in" style="color: #800020;">10.08.2026</div>
+        <!-- Крупная дата -->
+        <div class="font-serif italic text-5xl md:text-7xl text-wine mt-16 tracking-wide" data-aos="fade-up" data-aos-delay="300">10.08.2026</div>
     </section>
 
-    <!-- Программа дня -->
-    <section class="py-20 px-4 relative overflow-hidden bg-[#F5F0E8]" aria-label="Программа свадебного дня">
+    <!-- 3. ПРОГРАММА ДНЯ -->
+    <section class="py-20 md:py-28 px-4 bg-cream relative overflow-hidden">
         <div class="max-w-3xl mx-auto relative z-20">
-            <div class="text-center mb-16 relative">
-                <h2 class="font-script text-6xl md:text-8xl text-wine" style="color: #800020;">Программа дня</h2>
-                <img src="images/IMG_7807.PNG" class="absolute -top-8 -right-2 md:-right-6 w-10 md:w-14 opacity-80" alt="" loading="lazy" aria-hidden="true">
+            <div class="text-center mb-16 relative w-fit mx-auto">
+                <h2 class="font-script text-5xl md:text-7xl text-wine" data-aos="fade-up">Программа дня</h2>
+                <img src="images/IMG_7807.PNG" class="absolute -top-8 -right-6 md:-right-10 w-10 md:w-14 opacity-80" alt="Скрепка" data-aos="fade-in" data-aos-delay="300" loading="lazy">
             </div>
 
-            <!-- Карточка программы -->
-            <div class="program-card rounded-lg p-6 md:p-10" data-aos="fade-up">
-                <div class="space-y-8 pl-2 md:pl-6">
-                    <div class="flex gap-4 md:gap-8 items-start">
-                        <div class="time-handwritten flex-shrink-0 w-[70px] md:w-[90px]" style="color: #800020;">15:00</div>
-                        <div>
-                            <p class="text-gray-800 font-medium text-sm md:text-lg">Сбор гостей, интерактивы на велком-зоне, фуршет, новые знакомства.</p>
-                        </div>
-                    </div>
-                    <div class="flex gap-4 md:gap-8 items-start">
-                        <div class="time-handwritten flex-shrink-0 w-[70px] md:w-[90px]" style="color: #800020;">16:00</div>
-                        <div>
-                            <p class="text-gray-800 font-medium text-sm md:text-lg">Торжественная церемония, клятвы, фотосессия и много любви!</p>
-                        </div>
-                    </div>
-                    <div class="flex gap-4 md:gap-8 items-start">
-                        <div class="time-handwritten flex-shrink-0 w-[70px] md:w-[90px]" style="color: #800020;">17:00</div>
-                        <div>
-                            <p class="text-gray-800 font-medium text-sm md:text-lg">Банкетная часть, основная программа, вечеринка и after-party.</p>
-                        </div>
-                    </div>
-                    <div class="flex gap-4 md:gap-8 items-start">
-                        <div class="time-handwritten flex-shrink-0 w-[70px] md:w-[90px]" style="color: #800020;">23:00</div>
-                        <div>
-                            <p class="text-gray-800 font-medium text-sm md:text-lg">Завершение вечера, живой коридор и теплые слова.</p>
-                        </div>
+            <div class="space-y-10 max-w-xl mx-auto">
+                <div class="flex gap-6 md:gap-10 items-start" data-aos="fade-right">
+                    <div class="font-serif italic text-3xl md:text-4xl text-wine w-20 text-right shrink-0">15:00</div>
+                    <div class="pt-2">
+                        <p class="text-gray-700 font-light text-[14px] md:text-[15px] leading-relaxed">Сбор гостей, интерактивы на велком-зоне, фуршет, новые знакомства.</p>
                     </div>
                 </div>
                 
-                <!-- Декоративные элементы -->
-                <img src="images/IMG_7808.PNG" class="absolute -bottom-4 left-4 w-16 md:w-20 rotate-[-12deg] z-10 drop-shadow-lg" alt="" loading="lazy" aria-hidden="true">
-                <img src="images/IMG_7785.PNG" class="absolute -bottom-2 left-24 w-4 md:w-6 z-10" alt="" loading="lazy" aria-hidden="true">
-                <img src="images/IMG_7785.PNG" class="absolute -bottom-1 left-32 w-3 md:w-5 z-10" alt="" loading="lazy" aria-hidden="true">
+                <div class="flex gap-6 md:gap-10 items-start" data-aos="fade-left">
+                    <div class="font-serif italic text-3xl md:text-4xl text-wine w-20 text-right shrink-0">16:00</div>
+                    <div class="pt-2">
+                        <p class="text-gray-700 font-light text-[14px] md:text-[15px] leading-relaxed">Торжественная церемония, клятвы, фотосессия и много любви!</p>
+                    </div>
+                </div>
+                
+                <div class="flex gap-6 md:gap-10 items-start" data-aos="fade-right">
+                    <div class="font-serif italic text-3xl md:text-4xl text-wine w-20 text-right shrink-0">17:00</div>
+                    <div class="pt-2">
+                        <p class="text-gray-700 font-light text-[14px] md:text-[15px] leading-relaxed">Банкетная часть, основная программа, вечеринка и after-party.</p>
+                    </div>
+                </div>
+                
+                <div class="flex gap-6 md:gap-10 items-start" data-aos="fade-left">
+                    <div class="font-serif italic text-3xl md:text-4xl text-wine w-20 text-right shrink-0">23:00</div>
+                    <div class="pt-2">
+                        <p class="text-gray-700 font-light text-[14px] md:text-[15px] leading-relaxed">Завершение вечера, живой коридор и теплые слова.</p>
+                    </div>
+                </div>
             </div>
         </div>
 
-        <!-- Декорации секции -->
-        <img src="images/IMG_7784.PNG" class="absolute bottom-10 -left-20 w-48 md:w-72 opacity-80 z-10" alt="" loading="lazy" aria-hidden="true">
-        <img src="images/IMG_7809.PNG" class="absolute top-1/2 -right-16 w-40 md:w-56 transform -translate-y-1/2 z-10 drop-shadow-2xl" alt="" loading="lazy" aria-hidden="true">
+        <!-- Декор программы -->
+        <img src="images/IMG_7784.PNG" class="absolute bottom-0 -left-20 w-64 md:w-96 opacity-90 z-10" alt="Диско-шар" data-aos="fade-right" loading="lazy">
+        <img src="images/IMG_7809.PNG" class="absolute top-1/2 -right-20 w-48 md:w-72 transform -translate-y-1/2 z-10 drop-shadow-2xl" alt="Винил" data-aos="fade-left" loading="lazy">
+        <img src="images/IMG_7808.PNG" class="absolute bottom-10 right-4 md:right-32 w-24 md:w-32 rotate-[-15deg] z-10 drop-shadow-xl" alt="Хлопушка" data-aos="zoom-in" loading="lazy">
     </section>
 
-    <!-- Дресс-код -->
-    <section class="py-20 px-4 bg-cream text-center" aria-label="Дресс-код и стиль одежды">
-        <h2 class="font-script text-6xl md:text-8xl text-wine mb-8" data-aos="fade-up" style="color: #800020;">Дресс-код и стиль одежды</h2>
-        <p class="max-w-2xl mx-auto text-lg font-light text-gray-700 mb-12" data-aos="fade-up">
+    <!-- 4. ДРЕСС-КОД -->
+    <section class="py-20 md:py-28 px-4 bg-cream text-center">
+        <h2 class="font-script text-5xl md:text-7xl text-wine mb-6" data-aos="fade-up">Дресс-код и стиль одежды</h2>
+        <p class="max-w-2xl mx-auto text-[14px] md:text-[15px] font-light text-gray-600 leading-loose mb-10" data-aos="fade-up">
             Мы долго готовились к этому дню и будем благодарны вам, если при выборе нарядов вы учтете цветовую гамму нашего торжества.
         </p>
 
-        <!-- Цветовая палитра -->
-        <div class="flex justify-center gap-4 md:gap-8 mb-12" data-aos="zoom-in" role="list" aria-label="Цветовая палитра">
-            <div class="w-14 h-14 md:w-20 md:h-20 rounded-full shadow-md hover:scale-110 transition cursor-pointer" style="background: #000000;" role="listitem" aria-label="Чёрный"></div>
-            <div class="w-14 h-14 md:w-20 md:h-20 rounded-full shadow-md hover:scale-110 transition cursor-pointer" style="background: #800020;" role="listitem" aria-label="Бордовый"></div>
-            <div class="w-14 h-14 md:w-20 md:h-20 rounded-full shadow-md hover:scale-110 transition cursor-pointer" style="background: #D4A5A5;" role="listitem" aria-label="Пыльно-розовый"></div>
-            <div class="w-14 h-14 md:w-20 md:h-20 rounded-full shadow-md hover:scale-110 transition cursor-pointer" style="background: #C9A962;" role="listitem" aria-label="Золотой"></div>
-            <div class="w-14 h-14 md:w-20 md:h-20 rounded-full shadow-md hover:scale-110 transition cursor-pointer color-silver" role="listitem" aria-label="Серебряный"></div>
+        <!-- Кружки цветов с анимацией -->
+        <div class="flex justify-center gap-4 md:gap-6 mb-10" data-aos="zoom-in">
+            <div class="w-10 h-10 md:w-14 md:h-14 rounded-full bg-[#1a1a1a] shadow-md hover:scale-110 smooth-transition cursor-pointer" data-aos="fade-up" data-aos-delay="100"></div>
+            <div class="w-10 h-10 md:w-14 md:h-14 rounded-full bg-[#800020] shadow-md hover:scale-110 smooth-transition cursor-pointer" data-aos="fade-up" data-aos-delay="200"></div>
+            <div class="w-10 h-10 md:w-14 md:h-14 rounded-full bg-[#D4B5B5] shadow-md hover:scale-110 smooth-transition cursor-pointer" data-aos="fade-up" data-aos-delay="300"></div>
+            <div class="w-10 h-10 md:w-14 md:h-14 rounded-full bg-[#C2A888] shadow-md hover:scale-110 smooth-transition cursor-pointer" data-aos="fade-up" data-aos-delay="400"></div>
+            <div class="w-10 h-10 md:w-14 md:h-14 rounded-full color-silver shadow-md hover:scale-110 smooth-transition cursor-pointer" data-aos="fade-up" data-aos-delay="500"></div>
         </div>
 
-        <p class="text-lg text-gray-700 mb-12" data-aos="fade-up">Также нам будет приятно, если при выборе наряда вы будете придерживаться стиля <strong class="text-wine" style="color: #800020;">Black Tie</strong>.</p>
+        <p class="text-[14px] md:text-[15px] text-gray-600 font-light mb-12" data-aos="fade-up">
+            Также нам будет приятно, если при выборе наряда вы будете придерживаться стиля <strong class="text-wine font-medium">Black Tie</strong>.
+        </p>
 
-        <!-- Примеры нарядов -->
-        <div class="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-4xl mx-auto" data-aos="fade-up">
-            <img src="5278290665785726483.jpg" class="w-full aspect-[3/4] object-cover rounded shadow-md" alt="Чёрное вечернее платье" loading="lazy">
-            <img src="5278290665785726481.jpg" class="w-full aspect-[3/4] object-cover rounded shadow-md" alt="Бордовое вечернее платье" loading="lazy">
-            <img src="5278290665785726484.jpg" class="w-full aspect-[3/4] object-cover rounded shadow-md" alt="Смокинг для мужчин" loading="lazy">
-            <img src="5278290665785726485.jpg" class="w-full aspect-[3/4] object-cover rounded shadow-md" alt="Бежевый костюм для мужчин" loading="lazy">
+        <!-- Фотографии примеров -->
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-4 max-w-4xl mx-auto">
+            <img src="images/5278290665785726483.jpg" class="w-full aspect-[3/4] object-cover rounded-xl shadow-md hover:shadow-lg smooth-transition" alt="Пример наряда 1" data-aos="fade-up" data-aos-delay="100" loading="lazy">
+            <img src="images/5278290665785726481.jpg" class="w-full aspect-[3/4] object-cover rounded-xl shadow-md hover:shadow-lg smooth-transition" alt="Пример наряда 2" data-aos="fade-up" data-aos-delay="200" loading="lazy">
+            <img src="images/5278290665785726484.jpg" class="w-full aspect-[3/4] object-cover rounded-xl shadow-md hover:shadow-lg smooth-transition" alt="Пример наряда 3" data-aos="fade-up" data-aos-delay="300" loading="lazy">
+            <img src="images/5278290665785726485.jpg" class="w-full aspect-[3/4] object-cover rounded-xl shadow-md hover:shadow-lg smooth-transition" alt="Пример наряда 4" data-aos="fade-up" data-aos-delay="400" loading="lazy">
         </div>
     </section>
 
-    <!-- Пожелания -->
-    <section class="py-20 relative overflow-hidden bg-cream" aria-label="Пожелания гостям">
-        <h2 class="font-script text-6xl md:text-8xl text-wine text-center mb-16 relative z-20" data-aos="fade-up" style="color: #800020;">Пожелания</h2>
-
-        <img src="images/top_left.png" class="absolute left-0 top-0 h-full w-24 md:w-32 object-cover opacity-80 z-10" alt="" loading="lazy" aria-hidden="true">
-
-        <div class="max-w-4xl mx-auto space-y-4 relative z-20 px-4 md:px-0 wishes-container" data-aos="fade-up">
-            <!-- Вертикальная линия между заголовком и первым блоком -->
-            <div class="wishes-line wishes-line-top" style="top: -30px;"></div>
-            
-            <!-- Пожелание 1: Без Горько -->
-            <div class="bg-wine p-6 md:p-10 text-center shadow-xl w-full" data-aos="fade-left" data-aos-delay="0" style="background-color: #800020;">
-                <p class="text-white text-base md:text-lg font-light leading-relaxed">
+    <!-- 5. ПОЖЕЛАНИЯ -->
+    <section class="py-20 md:py-28 px-4 bg-cream relative overflow-hidden">
+        <img src="images/top_left.png" class="absolute left-0 top-0 h-full w-20 md:w-28 object-cover opacity-80 z-10" alt="Жемчуг" loading="lazy">
+        
+        <h2 class="font-script text-5xl md:text-7xl text-wine text-center mb-14 relative z-20" data-aos="fade-up">Пожелания</h2>
+        
+        <div class="max-w-3xl mx-auto space-y-6 relative z-20">
+            <div class="bg-gradient-to-r from-wine to-wineDark p-8 md:p-10 text-center rounded-2xl shadow-lg" data-aos="fade-up">
+                <p class="text-white/95 text-[14px] md:text-[15px] font-light leading-loose tracking-wide">
                     Будем благодарны, если вы воздержитесь от криков "Горько" на празднике, ведь поцелуй — это знак выражения чувств, он не может быть по заказу.
                 </p>
             </div>
             
-            <!-- Вертикальная линия 1-2 -->
-            <div class="wishes-line" style="top: 50%;"></div>
-            
-            <!-- Пожелание 2: Меню и аллергии -->
-            <div class="bg-wine p-6 md:p-10 text-center shadow-xl w-full" data-aos="fade-right" data-aos-delay="100" style="background-color: #800020;">
-                <p class="text-white text-base md:text-lg font-light leading-relaxed">
+            <div class="bg-gradient-to-r from-wine to-wineDark p-8 md:p-10 text-center rounded-2xl shadow-lg" data-aos="fade-up" data-aos-delay="100">
+                <p class="text-white/95 text-[14px] md:text-[15px] font-light leading-loose tracking-wide">
                     Меню будет разнообразное и вкусное, во избежание неприятных ситуаций, просим заранее уведомить нас о наличии аллергии на определенные продукты и ваши предпочтения.
                 </p>
             </div>
             
-            <!-- Вертикальная линия 2-3 -->
-            <div class="wishes-line" style="top: 100%;"></div>
-            
-            <!-- Пожелание 3: Подарки -->
-            <div class="bg-wine p-6 md:p-10 text-center shadow-xl w-full" data-aos="fade-left" data-aos-delay="200" style="background-color: #800020;">
-                <p class="text-white text-base md:text-lg font-light leading-relaxed">
+            <div class="bg-gradient-to-r from-wine to-wineDark p-8 md:p-10 text-center rounded-2xl shadow-lg" data-aos="fade-up" data-aos-delay="200">
+                <p class="text-white/95 text-[14px] md:text-[15px] font-light leading-loose tracking-wide">
                     Мы решили отказаться от материальных подарков в пользу денежных взносов. Это поможет нам реализовать наши совместные мечты: от путешествия до обустройства дома.
                 </p>
             </div>
         </div>
     </section>
 
-    <!-- Таймер и контакты -->
-    <section class="py-20 bg-cream text-center px-4 relative" aria-label="Таймер обратного отсчёта и контакты">
-        <h2 class="font-script text-5xl md:text-7xl text-wine mb-12" data-aos="fade-up" style="color: #800020;">До свадьбы осталось</h2>
-
-        <!-- Таймер в рамке -->
-        <div class="timer-frame inline-block p-6 md:p-8 mb-16" data-aos="zoom-in">
-            <div class="flex gap-4 md:gap-10">
-                <div>
-                    <div id="days" class="text-3xl md:text-5xl lg:text-6xl font-script" style="color: #800020;">00</div>
-                    <div class="text-[10px] md:text-xs uppercase tracking-widest mt-2 text-gray-500">дней</div>
-                </div>
-                <div>
-                    <div id="hours" class="text-3xl md:text-5xl lg:text-6xl font-script" style="color: #800020;">00</div>
-                    <div class="text-[10px] md:text-xs uppercase tracking-widest mt-2 text-gray-500">часов</div>
-                </div>
-                <div>
-                    <div id="minutes" class="text-3xl md:text-5xl lg:text-6xl font-script" style="color: #800020;">00</div>
-                    <div class="text-[10px] md:text-xs uppercase tracking-widest mt-2 text-gray-500">минут</div>
-                </div>
-                <div>
-                    <div id="seconds" class="text-3xl md:text-5xl lg:text-6xl font-script" style="color: #800020;">00</div>
-                    <div class="text-[10px] md:text-xs uppercase tracking-widest mt-2 text-gray-500">секунд</div>
-                </div>
-            </div>
+    <!-- 6. ТАЙМЕР И КОНТАКТЫ -->
+    <section class="py-20 md:py-28 bg-cream text-center px-4">
+        <h2 class="font-script text-5xl md:text-7xl text-wine mb-12" data-aos="fade-up">До свадьбы осталось</h2>
+        
+        <!-- Живой таймер -->
+        <div class="flex justify-center gap-4 md:gap-10 mb-20" data-aos="zoom-in">
+            <div><div id="days" class="text-4xl md:text-6xl font-serif italic text-wine">00</div><div class="text-[9px] uppercase tracking-[0.2em] mt-3 text-gray-400">дней</div></div>
+            <div><div id="hours" class="text-4xl md:text-6xl font-serif italic text-wine">00</div><div class="text-[9px] uppercase tracking-[0.2em] mt-3 text-gray-400">часов</div></div>
+            <div><div id="minutes" class="text-4xl md:text-6xl font-serif italic text-wine">00</div><div class="text-[9px] uppercase tracking-[0.2em] mt-3 text-gray-400">минут</div></div>
+            <div><div id="seconds" class="text-4xl md:text-6xl font-serif italic text-wine">00</div><div class="text-[9px] uppercase tracking-[0.2em] mt-3 text-gray-400">секунд</div></div>
         </div>
 
-        <h2 class="font-script text-5xl md:text-7xl text-wine mb-6" data-aos="fade-up" style="color: #800020;">Контакты</h2>
-        <p class="text-gray-700 mb-6" data-aos="fade-up">По всем вопросам, связанным с мероприятием, вы можете обратиться к нашему организатору</p>
-        <p class="font-semibold text-lg text-wine uppercase tracking-widest mb-2" data-aos="fade-up" style="color: #800020;">ДИНАРА</p>
-        <a href="tel:+79393658420" class="block text-xl md:text-2xl font-light mb-8 hover:text-wine transition" data-aos="fade-up" style="color: #800020;">+7 (939) 365-84-20</a>
-
-        <a href="https://wa.me/79393658420" target="_blank" rel="noopener" class="inline-block bg-wine text-white px-10 py-4 font-semibold tracking-widest hover:bg-[#3a000a] transition shadow-lg" data-aos="zoom-in" aria-label="Связаться в WhatsApp">
+        <h2 class="font-script text-5xl md:text-7xl text-wine mb-8" data-aos="fade-up">Контакты</h2>
+        <p class="text-[14px] md:text-[15px] text-gray-500 font-light mb-8 max-w-lg mx-auto" data-aos="fade-up">
+            По всем вопросам, связанным с мероприятием, вы можете обратиться к нашему организатору
+        </p>
+        
+        <p class="font-medium text-[13px] text-wine uppercase tracking-[0.2em] mb-2" data-aos="fade-up">Динара</p>
+        <a href="tel:+79393658420" class="block text-xl md:text-2xl font-light text-gray-700 mb-8 hover:text-wine smooth-transition" data-aos="fade-up">+7 (939) 365-84-20</a>
+        
+        <a href="https://wa.me/79393658420" target="_blank" rel="noopener" class="inline-block bg-gradient-to-r from-wine to-wineDark text-white px-10 py-4 text-[11px] font-semibold tracking-[0.2em] uppercase hover:shadow-lg smooth-transition rounded-full" data-aos="fade-up">
             СВЯЗАТЬСЯ
         </a>
-
-        <!-- Декоративные звёзды -->
-        <img src="images/IMG_7785.PNG" class="absolute top-20 left-8 w-6 md:w-8 z-10" alt="" loading="lazy" aria-hidden="true">
-        <img src="images/IMG_7785.PNG" class="absolute bottom-20 right-8 w-5 md:w-7 z-10" alt="" loading="lazy" aria-hidden="true">
-        <img src="images/IMG_7785.PNG" class="absolute bottom-32 right-20 w-4 md:w-6 z-10" alt="" loading="lazy" aria-hidden="true">
     </section>
 
-    <!-- Площадка торжества -->
-    <section class="py-20 bg-[#F5F0E8] px-4" aria-label="Место проведения свадьбы">
-        <h2 class="font-script text-6xl md:text-8xl text-wine text-center mb-12" data-aos="fade-up" style="color: #800020;">Площадка торжества</h2>
-
-        <div class="max-w-5xl mx-auto grid md:grid-cols-2 gap-8 items-center">
-            <div data-aos="fade-right">
-                <img src="5278290665785726478.jpg" alt="Urman House - место проведения свадьбы" class="w-full rounded shadow-xl object-cover aspect-video" loading="lazy" onerror="this.src='images/page_1_small.png'; this.style.objectFit='cover'; this.style.objectPosition='bottom';">
-            </div>
-
-            <div data-aos="fade-left">
-                <h3 class="text-3xl font-script text-wine mb-4" style="color: #800020;">Urman House</h3>
-                <p class="text-gray-700 mb-6 font-light">
-                    Вводите в Яндекс картах именно так, ближе к дате свадьбы мы скинем вам схему проезда.
-                </p>
-                <div class="w-full h-64 border-2 border-wine/20 rounded overflow-hidden shadow-inner">
-                    <iframe src="https://yandex.ru/map-widget/v1/?ll=55.971353%2C55.720632&z=10" class="w-full h-full border-0" allowfullscreen="true" loading="lazy" title="Карта места проведения"></iframe>
+    <!-- 7. ПЛОЩАДКА -->
+    <section class="py-20 md:py-28 bg-cream px-4">
+        <h2 class="font-script text-5xl md:text-7xl text-wine text-center mb-14" data-aos="fade-up">Площадка торжества</h2>
+        
+        <div class="max-w-4xl mx-auto flex flex-col items-center text-center">
+            <h3 class="text-3xl font-serif italic text-wine mb-4" data-aos="fade-up">Urman House</h3>
+            <p class="text-gray-500 mb-10 font-light text-[14px] md:text-[15px] max-w-lg leading-relaxed" data-aos="fade-up">
+                Вводите в Яндекс картах именно так, ближе к дате свадьбы мы скинем вам схему проезда.
+            </p>
+            
+            <div class="grid md:grid-cols-2 gap-6 w-full" data-aos="fade-up">
+                <img src="images/5278290665785726478.jpg" alt="Urman House" class="w-full h-[250px] md:h-[300px] object-cover bg-gray-100 shadow-sm rounded-2xl" loading="lazy">
+                <div class="w-full h-[250px] md:h-[300px] bg-gray-100 shadow-sm rounded-2xl overflow-hidden">
+                    <iframe src="https://yandex.ru/map-widget/v1/?ll=49.348703%2C55.862545&z=14&pt=49.348703,55.862545~pm2rdl" class="w-full h-full border-0" allowfullscreen="true" loading="lazy"></iframe>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Анкета гостя -->
-    <section class="py-20 bg-cream px-4" aria-label="Анкета для гостей">
-        <h2 class="font-script text-6xl md:text-8xl text-wine text-center mb-12" data-aos="fade-up" style="color: #800020;">Анкета гостя</h2>
-
-        <div class="max-w-2xl mx-auto bg-white p-8 md:p-12 shadow-2xl rounded" data-aos="fade-up">
-            <form id="rsvpForm" class="space-y-6" aria-label="Форма подтверждения присутствия">
-                <div>
-                    <label class="block text-sm font-medium text-gray-700 mb-2" for="name">Имя и Фамилия</label>
-                    <input type="text" id="name" name="name" required class="w-full border-b border-gray-300 py-2 focus:outline-none focus:border-wine transition" placeholder="Иван Иванов">
+    <!-- 8. ПОДТВЕРЖДЕНИЕ УЧАСТИЯ (полная анкета) -->
+    <section class="py-20 md:py-28 px-4 bg-gradient-to-b from-cream to-white">
+        <h2 class="font-script text-5xl md:text-7xl text-wine text-center mb-4" data-aos="fade-up">Подтверждение участия</h2>
+        <p class="text-center text-gray-500 font-light mb-14" data-aos="fade-up">Пожалуйста, заполните форму до 1 августа 2026</p>
+        
+        <div class="max-w-3xl mx-auto bg-white p-6 md:p-12 shadow-2xl rounded-3xl border border-gray-100" data-aos="fade-up">
+            <form id="rsvpForm" class="space-y-8">
+                
+                <!-- 1. ФИО -->
+                <div data-aos="fade-right">
+                    <label class="block text-[12px] font-semibold text-wine mb-2">1. Ваше ФИО</label>
+                    <input type="text" id="q1" required class="w-full border-b-2 border-gray-200 py-3 bg-transparent text-gray-800 text-[14px] focus:outline-none focus:border-wine smooth-transition" placeholder="Иванов Иван Иванович">
                 </div>
-
-                <div>
-                    <label class="block text-sm font-medium text-gray-700 mb-4">Сможете ли вы присутствовать?</label>
-                    <div class="flex flex-col sm:flex-row gap-4 sm:gap-6">
-                        <label class="flex items-center gap-2 cursor-pointer">
-                            <input type="radio" name="attendance" value="Да, я приду" required class="accent-wine w-4 h-4">
-                            <span>Да, я приду</span>
+                
+                <!-- 2. Присутствие -->
+                <div data-aos="fade-left">
+                    <label class="block text-[12px] font-semibold text-wine mb-3">2. Планируете ли вы присутствовать на торжестве?</label>
+                    <div class="flex flex-col gap-3 text-gray-700 text-[14px]">
+                        <label class="flex items-center gap-3 cursor-pointer hover:bg-gray-50 p-2 rounded-lg smooth-transition">
+                            <input type="radio" name="q2" value="Буду с удовольствием!" required> 
+                            <span>Буду с удовольствием!</span>
                         </label>
-                        <label class="flex items-center gap-2 cursor-pointer">
-                            <input type="radio" name="attendance" value="К сожалению, не смогу" required class="accent-wine w-4 h-4">
+                        <label class="flex items-center gap-3 cursor-pointer hover:bg-gray-50 p-2 rounded-lg smooth-transition">
+                            <input type="radio" name="q2" value="К сожалению, не смогу" required> 
                             <span>К сожалению, не смогу</span>
                         </label>
                     </div>
                 </div>
 
-                <div>
-                    <label class="block text-sm font-medium text-gray-700 mb-2" for="diet">Пищевые аллергии / предпочтения</label>
-                    <textarea id="diet" name="diet" rows="2" class="w-full border-b border-gray-300 py-2 focus:outline-none focus:border-wine transition" placeholder="Например: не ем рыбу..."></textarea>
+                <!-- 3. Трансфер -->
+                <div data-aos="fade-right">
+                    <label class="block text-[12px] font-semibold text-wine mb-3">3. Понадобится ли вам трансфер?</label>
+                    <div class="grid sm:grid-cols-2 gap-3 text-gray-700 text-[14px]">
+                        <label class="flex items-center gap-3 cursor-pointer hover:bg-gray-50 p-3 rounded-lg smooth-transition">
+                            <input type="radio" name="q3" value="Только до площадки" required> 
+                            <span>Только до площадки</span>
+                        </label>
+                        <label class="flex items-center gap-3 cursor-pointer hover:bg-gray-50 p-3 rounded-lg smooth-transition">
+                            <input type="radio" name="q3" value="Только до дома" required> 
+                            <span>Только до дома</span>
+                        </label>
+                        <label class="flex items-center gap-3 cursor-pointer hover:bg-gray-50 p-3 rounded-lg smooth-transition">
+                            <input type="radio" name="q3" value="В обе стороны" required> 
+                            <span>В обе стороны</span>
+                        </label>
+                        <label class="flex items-center gap-3 cursor-pointer hover:bg-gray-50 p-3 rounded-lg smooth-transition">
+                            <input type="radio" name="q3" value="Трансфер не нужен" required> 
+                            <span>Трансфер не нужен</span>
+                        </label>
+                    </div>
                 </div>
 
-                <button type="submit" class="w-full bg-wine text-white py-4 mt-4 font-semibold tracking-widest hover:bg-[#3a000a] transition">
-                    ОТПРАВИТЬ АНКЕТУ
+                <!-- 4. Аллергия -->
+                <div data-aos="fade-left">
+                    <label class="block text-[12px] font-semibold text-wine mb-2">4. Есть ли у вас аллергия на какие-то продукты?</label>
+                    <input type="text" id="q4" class="w-full border-b-2 border-gray-200 py-3 bg-transparent text-gray-800 text-[14px] focus:outline-none focus:border-wine smooth-transition" placeholder="Напишите здесь или оставьте пустым">
+                </div>
+
+                <!-- 5. Горячее -->
+                <div data-aos="fade-right">
+                    <label class="block text-[12px] font-semibold text-wine mb-3">5. Что больше предпочитаете?</label>
+                    <div class="grid sm:grid-cols-2 gap-3 text-gray-700 text-[14px]">
+                        <label class="flex items-center gap-3 cursor-pointer hover:bg-gray-50 p-3 rounded-lg smooth-transition">
+                            <input type="checkbox" name="q5" value="Морепродукты, рыба"> 
+                            <span>Морепродукты, рыба</span>
+                        </label>
+                        <label class="flex items-center gap-3 cursor-pointer hover:bg-gray-50 p-3 rounded-lg smooth-transition">
+                            <input type="checkbox" name="q5" value="Курица, индейка"> 
+                            <span>Курица, индейка</span>
+                        </label>
+                        <label class="flex items-center gap-3 cursor-pointer hover:bg-gray-50 p-3 rounded-lg smooth-transition">
+                            <input type="checkbox" name="q5" value="Говядина"> 
+                            <span>Говядина</span>
+                        </label>
+                        <label class="flex items-center gap-3 cursor-pointer hover:bg-gray-50 p-3 rounded-lg smooth-transition">
+                            <input type="checkbox" name="q5" value="Свинина"> 
+                            <span>Свинина</span>
+                        </label>
+                    </div>
+                </div>
+
+                <!-- 6. Алкоголь -->
+                <div data-aos="fade-left">
+                    <label class="block text-[12px] font-semibold text-wine mb-3">6. Что предпочитаете из алкоголя?</label>
+                    <div class="grid sm:grid-cols-2 gap-3 text-gray-700 text-[14px]">
+                        <label class="flex items-center gap-3 cursor-pointer hover:bg-gray-50 p-3 rounded-lg smooth-transition">
+                            <input type="checkbox" name="q6" value="Вино"> 
+                            <span>Вино</span>
+                        </label>
+                        <label class="flex items-center gap-3 cursor-pointer hover:bg-gray-50 p-3 rounded-lg smooth-transition">
+                            <input type="checkbox" name="q6" value="Коньяк"> 
+                            <span>Коньяк</span>
+                        </label>
+                        <label class="flex items-center gap-3 cursor-pointer hover:bg-gray-50 p-3 rounded-lg smooth-transition">
+                            <input type="checkbox" name="q6" value="Водка"> 
+                            <span>Водка</span>
+                        </label>
+                        <label class="flex items-center gap-3 cursor-pointer hover:bg-gray-50 p-3 rounded-lg smooth-transition">
+                            <input type="checkbox" name="q6" value="Виски"> 
+                            <span>Виски</span>
+                        </label>
+                        <label class="flex items-center gap-3 cursor-pointer hover:bg-gray-50 p-3 rounded-lg smooth-transition">
+                            <input type="checkbox" name="q6" value="Ром"> 
+                            <span>Ром</span>
+                        </label>
+                        <label class="flex items-center gap-3 cursor-pointer hover:bg-gray-50 p-3 rounded-lg smooth-transition">
+                            <input type="checkbox" name="q6" value="Я не пью"> 
+                            <span>Я не пью</span>
+                        </label>
+                    </div>
+                </div>
+
+                <!-- 7. Безалкогольные -->
+                <div data-aos="fade-right">
+                    <label class="block text-[12px] font-semibold text-wine mb-3">7. Что предпочитаете из безалкогольных напитков?</label>
+                    <div class="grid sm:grid-cols-2 gap-3 text-gray-700 text-[14px]">
+                        <label class="flex items-center gap-3 cursor-pointer hover:bg-gray-50 p-3 rounded-lg smooth-transition">
+                            <input type="checkbox" name="q7" value="Чай"> 
+                            <span>Чай</span>
+                        </label>
+                        <label class="flex items-center gap-3 cursor-pointer hover:bg-gray-50 p-3 rounded-lg smooth-transition">
+                            <input type="checkbox" name="q7" value="Соки"> 
+                            <span>Соки</span>
+                        </label>
+                        <label class="flex items-center gap-3 cursor-pointer hover:bg-gray-50 p-3 rounded-lg smooth-transition">
+                            <input type="checkbox" name="q7" value="Кола"> 
+                            <span>Кола</span>
+                        </label>
+                        <label class="flex items-center gap-3 cursor-pointer hover:bg-gray-50 p-3 rounded-lg smooth-transition">
+                            <input type="checkbox" name="q7" value="Энергетики"> 
+                            <span>Энергетики</span>
+                        </label>
+                        <label class="flex items-center gap-3 cursor-pointer hover:bg-gray-50 p-3 rounded-lg smooth-transition">
+                            <input type="checkbox" name="q7" value="Холодные чаи (Rich, Lipton)"> 
+                            <span>Холодные чаи (Rich, Lipton)</span>
+                        </label>
+                    </div>
+                </div>
+
+                <!-- 8. Сладкое -->
+                <div data-aos="fade-left">
+                    <label class="block text-[12px] font-semibold text-wine mb-3">8. Кушаете ли вы сладкое?</label>
+                    <div class="flex flex-col gap-3 text-gray-700 text-[14px]">
+                        <label class="flex items-center gap-3 cursor-pointer hover:bg-gray-50 p-2 rounded-lg smooth-transition">
+                            <input type="radio" name="q8" value="Да, с удовольствием" required> 
+                            <span>Да, с удовольствием</span>
+                        </label>
+                        <label class="flex items-center gap-3 cursor-pointer hover:bg-gray-50 p-2 rounded-lg smooth-transition">
+                            <input type="radio" name="q8" value="Нет" required> 
+                            <span>Нет</span>
+                        </label>
+                        <label class="flex items-center gap-3 cursor-pointer hover:bg-gray-50 p-2 rounded-lg smooth-transition">
+                            <input type="radio" name="q8" value="Нет, но торт я попробую" required> 
+                            <span>Нет, но торт я попробую</span>
+                        </label>
+                    </div>
+                </div>
+
+                <!-- 9. Ягоды -->
+                <div data-aos="fade-right">
+                    <label class="block text-[12px] font-semibold text-wine mb-3">9. Какие ягоды больше предпочитаете?</label>
+                    <div class="grid sm:grid-cols-2 gap-3 text-gray-700 text-[14px]">
+                        <label class="flex items-center gap-3 cursor-pointer hover:bg-gray-50 p-3 rounded-lg smooth-transition">
+                            <input type="checkbox" name="q9" value="Клубника"> 
+                            <span>Клубника</span>
+                        </label>
+                        <label class="flex items-center gap-3 cursor-pointer hover:bg-gray-50 p-3 rounded-lg smooth-transition">
+                            <input type="checkbox" name="q9" value="Малина"> 
+                            <span>Малина</span>
+                        </label>
+                        <label class="flex items-center gap-3 cursor-pointer hover:bg-gray-50 p-3 rounded-lg smooth-transition">
+                            <input type="checkbox" name="q9" value="Голубика"> 
+                            <span>Голубика</span>
+                        </label>
+                        <label class="flex items-center gap-3 cursor-pointer hover:bg-gray-50 p-3 rounded-lg smooth-transition">
+                            <input type="checkbox" name="q9" value="Вишня/черешня"> 
+                            <span>Вишня/черешня</span>
+                        </label>
+                    </div>
+                </div>
+
+                <!-- 10. Дыня или арбуз -->
+                <div data-aos="fade-left">
+                    <label class="block text-[12px] font-semibold text-wine mb-3">10. Дыня или арбуз?</label>
+                    <div class="flex gap-6 text-gray-700 text-[14px]">
+                        <label class="flex items-center gap-3 cursor-pointer hover:bg-gray-50 p-3 rounded-lg smooth-transition flex-1">
+                            <input type="radio" name="q10" value="Дыня" required> 
+                            <span>Дыня</span>
+                        </label>
+                        <label class="flex items-center gap-3 cursor-pointer hover:bg-gray-50 p-3 rounded-lg smooth-transition flex-1">
+                            <input type="radio" name="q10" value="Арбуз" required> 
+                            <span>Арбуз</span>
+                        </label>
+                    </div>
+                </div>
+
+                <button type="submit" class="w-full bg-gradient-to-r from-wine to-wineDark text-white py-5 mt-8 text-[12px] font-semibold tracking-[0.2em] uppercase hover:shadow-xl smooth-transition rounded-full transform hover:-translate-y-1">
+                    ПОДТВЕРДИТЬ УЧАСТИЕ
                 </button>
             </form>
         </div>
     </section>
 
-    <!-- Footer -->
-    <footer class="bg-[#1a1a1a] py-8 text-center text-white/50" role="contentinfo">
-        <p class="font-script text-3xl mb-2 text-white/80">Фёдор & Полина</p>
-        <p class="text-xs tracking-widest">10 АВГУСТА 2026</p>
+    <!-- FOOTER -->
+    <footer class="bg-[#1a1a1a] py-12 text-center text-white/60">
+        <p class="font-script text-4xl mb-4 text-white/90">Фёдор & Полина</p>
+        <p class="text-[10px] tracking-[0.3em] uppercase">10 АВГУСТА 2026</p>
     </footer>
 
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script>
         // Инициализация анимаций
-        AOS.init({ duration: 1000, once: true });
+        AOS.init({ duration: 1000, once: true, offset: 100 });
 
-        // Скрипт живого таймера
+        // Живой таймер
         function updateTimer() {
             const weddingDate = new Date("Aug 10, 2026 15:00:00").getTime();
             const now = new Date().getTime();
@@ -433,14 +564,43 @@
         setInterval(updateTimer, 1000);
         updateTimer();
 
-        // Скрипт отправки формы в WhatsApp
+        // Сбор данных чекбоксов
+        function getCheckedValues(name) {
+            const checkboxes = document.querySelectorAll(`input[name="${name}"]:checked`);
+            let values = [];
+            checkboxes.forEach((cb) => {
+                values.push(cb.value);
+            });
+            return values.length > 0 ? values.join(', ') : 'Ничего не выбрано';
+        }
+
+        // Отправка полной формы в WhatsApp
         document.getElementById('rsvpForm').addEventListener('submit', function(e) {
             e.preventDefault();
-            const name = document.getElementById('name').value;
-            const attendance = document.querySelector('input[name="attendance"]:checked').value;
-            const diet = document.getElementById('diet').value || 'Нет';
-
-            const text = `Привет! Это анкета на свадьбу Фёдора и Полины.%0A%0AИмя: ${name}%0AПрисутствие: ${attendance}%0AАллергии: ${diet}`;
+            
+            const q1 = document.getElementById('q1').value;
+            const q2 = document.querySelector('input[name="q2"]:checked')?.value || '-';
+            const q3 = document.querySelector('input[name="q3"]:checked')?.value || '-';
+            const q4 = document.getElementById('q4').value || 'Нет аллергии';
+            const q5 = getCheckedValues('q5');
+            const q6 = getCheckedValues('q6');
+            const q7 = getCheckedValues('q7');
+            const q8 = document.querySelector('input[name="q8"]:checked')?.value || '-';
+            const q9 = getCheckedValues('q9');
+            const q10 = document.querySelector('input[name="q10"]:checked')?.value || '-';
+            
+            const text = `🎊 Подтверждение участия на свадьбу Фёдора и Полины%0A%0A` + 
+                         `1. ФИО: ${q1}%0A` +
+                         `2. Присутствие: ${q2}%0A` +
+                         `3. Трансфер: ${q3}%0A` +
+                         `4. Аллергия: ${q4}%0A` +
+                         `5. Горячее: ${q5}%0A` +
+                         `6. Алкоголь: ${q6}%0A` +
+                         `7. Безалкогольные: ${q7}%0A` +
+                         `8. Сладкое: ${q8}%0A` +
+                         `9. Ягоды: ${q9}%0A` +
+                         `10. Дыня/Арбуз: ${q10}`;
+                         
             window.open(`https://wa.me/79393658420?text=${text}`, '_blank');
         });
     </script>
