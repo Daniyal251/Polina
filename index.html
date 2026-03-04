@@ -61,6 +61,25 @@
             animation: slideUpHand 2s cubic-bezier(0.25, 1, 0.5, 1) forwards;
         }
         
+        /* Анимация штор */
+        @keyframes openCurtainLeft {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-100%); }
+        }
+        @keyframes openCurtainRight {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(100%); }
+        }
+        
+        .curtain-left {
+            animation: openCurtainLeft 1.5s ease-in-out forwards;
+            animation-delay: 1s;
+        }
+        .curtain-right {
+            animation: openCurtainRight 1.5s ease-in-out forwards;
+            animation-delay: 1s;
+        }
+        
         /* Пульсация звёзд */
         @keyframes softPulse {
             0%, 100% { opacity: 0.6; transform: scale(1); }
@@ -100,6 +119,22 @@
             backdrop-filter: blur(10px);
             background: rgba(255,255,255,0.9);
         }
+        
+        /* Таймер */
+        .timer-glass {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        
+        /* Бегущая строка */
+        @keyframes marquee {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+        .animate-marquee {
+            animation: marquee 30s linear infinite;
+        }
     </style>
 </head>
 <body class="text-gray-800 selection:bg-wine selection:text-white">
@@ -110,6 +145,7 @@
             <div class="flex items-center justify-between">
                 <a href="#" class="font-script text-xl md:text-2xl text-wine">Фёдор & Полина</a>
                 <div class="hidden md:flex items-center gap-6 text-sm">
+                    <a href="#timer-section" class="hover:text-wine smooth-transition">До свадьбы</a>
                     <a href="#about" class="hover:text-wine smooth-transition">О свадьбе</a>
                     <a href="#program" class="hover:text-wine smooth-transition">Программа</a>
                     <a href="#dresscode" class="hover:text-wine smooth-transition">Дресс-код</a>
@@ -118,7 +154,6 @@
                     <a href="#contacts" class="hover:text-wine smooth-transition">Контакты</a>
                     <a href="#rsvp" class="bg-wine text-white px-5 py-2 rounded-full hover:bg-wineDark smooth-transition">Подтвердить участие</a>
                 </div>
-                <!-- Мобильное меню -->
                 <button id="mobileMenuBtn" class="md:hidden p-2">
                     <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
@@ -128,8 +163,14 @@
         </div>
     </nav>
 
-    <!-- ГЛАВНЫЙ ЭКРАН -->
+    <!-- ГЛАВНЫЙ ЭКРАН С ЭФФЕКТОМ ШТОР -->
     <section id="hero" class="relative w-full min-h-[100svh] flex flex-col items-center justify-center overflow-hidden pt-16">
+        
+        <!-- ШТОРЫ - закрывают экран при загрузке -->
+        <div class="curtain-left absolute top-0 left-0 w-1/2 h-full bg-gradient-to-r from-[#1a0005] to-[#5A0010] z-50"></div>
+        <div class="curtain-right absolute top-0 right-0 w-1/2 h-full bg-gradient-to-l from-[#1a0005] to-[#5A0010] z-50"></div>
+        
+        <!-- Фон занавес -->
         <div class="absolute inset-0 curtain-bg z-0"></div>
         
         <!-- Декорации -->
@@ -139,27 +180,34 @@
         <img src="images/IMG_7785.PNG" class="absolute top-1/4 left-4 sm:left-8 w-5 sm:w-8 md:w-12 z-10 animate-star" alt="" loading="eager">
         <img src="images/IMG_7785.PNG" class="absolute bottom-1/3 right-8 sm:right-12 w-4 sm:w-6 md:w-8 z-10 animate-star" alt="" loading="eager">
         
+        <!-- Контент -->
         <div class="relative z-20 text-center px-3 max-w-4xl mx-auto w-full">
-            <div data-aos="fade-down" data-aos-duration="1200">
-                <p class="text-[9px] sm:text-[11px] md:text-[12px] uppercase tracking-[0.35em] text-white/70 mb-3 sm:mb-4">Приглашение на свадьбу</p>
+            <!-- ПРИГЛАШЕНИЕ НА СВАДЬБУ -->
+            <div data-aos="fade-down" data-aos-duration="1200" data-aos-delay="2000">
+                <p class="text-[10px] sm:text-[12px] md:text-[14px] uppercase tracking-[0.3em] text-white/90 mb-2">Приглашение на свадьбу</p>
+                <h1 class="font-script text-4xl sm:text-5xl md:text-6xl text-white mb-4">Фёдора и Полины</h1>
             </div>
             
-            <div class="my-4 sm:my-6" data-aos="fade-up" data-aos-duration="1500" data-aos-delay="200">
+            <!-- Рука с карточкой -->
+            <div class="my-4 sm:my-6" data-aos="fade-up" data-aos-duration="1500" data-aos-delay="2500">
                 <div class="relative inline-block w-[220px] sm:w-[280px] md:w-[360px] animate-hand">
                     <img src="images/IMG_7783.PNG" class="w-full relative z-20 drop-shadow-2xl" alt="Рука">
-                    <div class="absolute top-[22%] left-[50%] transform -translate-x-1/2 -translate-y-1/2 w-[85%] h-[30%] flex flex-col items-center justify-center z-30">
-                        <span class="font-script text-[1.8rem] sm:text-3xl md:text-5xl text-[#8E2836] leading-none text-center">Фёдор</span>
-                        <span class="font-script text-lg sm:text-2xl md:text-3xl text-[#b88c69] my-[-2px]">&</span>
-                        <span class="font-script text-[1.8rem] sm:text-3xl md:text-5xl text-[#8E2836] leading-none text-center">Полина</span>
+                    <!-- Имена ПО ЦЕНТРУ визитки -->
+                    <div class="absolute top-[25%] left-[50%] transform -translate-x-1/2 -translate-y-1/2 w-[80%] h-[28%] flex flex-col items-center justify-center z-30">
+                        <span class="font-script text-[1.9rem] sm:text-4xl md:text-6xl text-[#8E2836] leading-none text-center drop-shadow-sm">Фёдор</span>
+                        <span class="font-script text-2xl sm:text-3xl md:text-4xl text-[#b88c69] my-[-4px]">&</span>
+                        <span class="font-script text-[1.9rem] sm:text-4xl md:text-6xl text-[#8E2836] leading-none text-center drop-shadow-sm">Полина</span>
                     </div>
                 </div>
             </div>
             
-            <div data-aos="fade-up" data-aos-delay="600">
+            <!-- Дата -->
+            <div data-aos="fade-up" data-aos-delay="3000">
                 <p class="font-serif italic text-3xl sm:text-4xl md:text-6xl text-white/90 mt-3 sm:mt-4 tracking-wide">10 августа 2026</p>
             </div>
             
-            <div class="mt-6 sm:mt-8 flex flex-col sm:flex-row gap-4 justify-center" data-aos="zoom-in" data-aos-delay="800">
+            <!-- Кнопки -->
+            <div class="mt-6 sm:mt-8 flex flex-col sm:flex-row gap-4 justify-center" data-aos="zoom-in" data-aos-delay="3200">
                 <a href="#rsvp" class="inline-block bg-gradient-to-r from-wine to-wineDark text-white px-8 sm:px-10 py-3 sm:py-4 text-[10px] sm:text-[11px] md:text-[12px] font-semibold tracking-[0.2em] uppercase hover:shadow-2xl smooth-transition rounded-full transform hover:-translate-y-1 hover:scale-105">
                     Подтвердить участие
                 </a>
@@ -169,11 +217,51 @@
             </div>
         </div>
         
-        <div class="absolute bottom-4 sm:bottom-6 text-white/50 flex flex-col items-center z-20 font-light" data-aos="fade-in" data-aos-delay="2000">
+        <!-- Листайте вниз -->
+        <div class="absolute bottom-4 sm:bottom-6 text-white/50 flex flex-col items-center z-20 font-light" data-aos="fade-in" data-aos-delay="4000">
             <span class="text-[7px] sm:text-[8px] tracking-[0.25em] uppercase mb-2">Листайте вниз</span>
             <svg class="w-4 h-4 sm:w-5 sm:h-5 animate-bounce" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M19 14l-7 7m0 0l-7-7m7 7V3"></path>
             </svg>
+        </div>
+    </section>
+
+    <!-- СЧЁТЧИК ДО СВАДЬБЫ -->
+    <section id="timer-section" class="py-16 sm:py-20 bg-gradient-to-r from-wine via-wineDark to-wine relative overflow-hidden">
+        <div class="absolute top-4 left-0 right-0 overflow-hidden opacity-10">
+            <div class="flex whitespace-nowrap animate-marquee">
+                <span class="text-6xl md:text-8xl font-script text-white/20 mx-8">Фёдор & Полина</span>
+                <span class="text-6xl md:text-8xl font-script text-white/20 mx-8">•</span>
+                <span class="text-6xl md:text-8xl font-script text-white/20 mx-8">10.08.2026</span>
+                <span class="text-6xl md:text-8xl font-script text-white/20 mx-8">•</span>
+                <span class="text-6xl md:text-8xl font-script text-white/20 mx-8">Фёдор & Полина</span>
+                <span class="text-6xl md:text-8xl font-script text-white/20 mx-8">•</span>
+                <span class="text-6xl md:text-8xl font-script text-white/20 mx-8">10.08.2026</span>
+                <span class="text-6xl md:text-8xl font-script text-white/20 mx-8">•</span>
+            </div>
+        </div>
+        
+        <div class="max-w-4xl mx-auto text-center relative z-10 px-4">
+            <h2 class="font-script text-4xl sm:text-5xl md:text-6xl text-white mb-8" data-aos="fade-up">До свадьбы осталось</h2>
+            
+            <div class="flex justify-center gap-2 sm:gap-4 md:gap-6" data-aos="zoom-in">
+                <div class="timer-glass rounded-2xl px-3 sm:px-6 md:px-8 py-4 sm:py-6">
+                    <div id="days" class="text-2xl sm:text-4xl md:text-5xl font-serif italic text-white">00</div>
+                    <div class="text-[7px] sm:text-[9px] md:text-[10px] uppercase tracking-[0.15em] mt-2 text-white/70">дней</div>
+                </div>
+                <div class="timer-glass rounded-2xl px-3 sm:px-6 md:px-8 py-4 sm:py-6">
+                    <div id="hours" class="text-2xl sm:text-4xl md:text-5xl font-serif italic text-white">00</div>
+                    <div class="text-[7px] sm:text-[9px] md:text-[10px] uppercase tracking-[0.15em] mt-2 text-white/70">часов</div>
+                </div>
+                <div class="timer-glass rounded-2xl px-3 sm:px-6 md:px-8 py-4 sm:py-6">
+                    <div id="minutes" class="text-2xl sm:text-4xl md:text-5xl font-serif italic text-white">00</div>
+                    <div class="text-[7px] sm:text-[9px] md:text-[10px] uppercase tracking-[0.15em] mt-2 text-white/70">минут</div>
+                </div>
+                <div class="timer-glass rounded-2xl px-3 sm:px-6 md:px-8 py-4 sm:py-6">
+                    <div id="seconds" class="text-2xl sm:text-4xl md:text-5xl font-serif italic text-white">00</div>
+                    <div class="text-[7px] sm:text-[9px] md:text-[10px] uppercase tracking-[0.15em] mt-2 text-white/70">секунд</div>
+                </div>
+            </div>
         </div>
     </section>
 
@@ -275,12 +363,10 @@
     </section>
 
     <!-- ПОЖЕЛАНИЯ -->
-    <section id="wishes" class="py-16 sm:py-20 md:py-28 px-4 bg-cream relative overflow-hidden">
-        <img src="images/top_left.png" class="absolute left-0 top-0 h-full w-16 sm:w-20 md:w-28 object-cover opacity-80 z-10" alt="Жемчуг" loading="lazy">
+    <section id="wishes" class="py-16 sm:py-20 md:py-28 px-4 bg-cream">
+        <h2 class="font-script text-4xl sm:text-5xl md:text-7xl text-wine text-center mb-10 sm:mb-14" data-aos="fade-up">Пожелания</h2>
         
-        <h2 class="font-script text-4xl sm:text-5xl md:text-7xl text-wine text-center mb-10 sm:mb-14 relative z-20" data-aos="fade-up">Пожелания</h2>
-        
-        <div class="max-w-3xl mx-auto space-y-4 sm:space-y-6 relative z-20">
+        <div class="max-w-3xl mx-auto space-y-4 sm:space-y-6">
             <div class="bg-gradient-to-r from-wine to-wineDark p-6 sm:p-8 md:p-10 text-center rounded-2xl shadow-lg" data-aos="fade-up">
                 <p class="text-white/95 text-[13px] sm:text-[14px] md:text-[15px] font-light leading-loose tracking-wide">
                     Будем благодарны, если вы воздержитесь от криков "Горько" на празднике, ведь поцелуй — это знак выражения чувств, он не может быть по заказу.
@@ -388,7 +474,13 @@
                         </div>
                     </div>
 
-                    <!-- Дополнительные вопросы (появляются если человек будет) -->
+                    <!-- 2.1 Кто будет с вами -->
+                    <div id="plusOneSection" data-aos="fade-up" class="hidden-section">
+                        <label class="block text-[10px] sm:text-[11px] font-semibold text-wine uppercase tracking-wider mb-2">Кто будет с вами?</label>
+                        <input type="text" id="q2plus" class="w-full border-2 border-gray-200 rounded-xl px-3 sm:px-4 py-3 sm:py-4 text-gray-800 text-[13px] sm:text-[14px] focus:outline-none focus:border-wine focus:ring-4 focus:ring-wine/10 smooth-transition" placeholder="Например: Иванова Мария (жена)">
+                    </div>
+
+                    <!-- Дополнительные вопросы -->
                     <div id="additionalQuestions" class="hidden-section space-y-6 sm:space-y-8">
                         
                         <!-- 3. Трансфер -->
@@ -581,14 +673,41 @@
         // Показ дополнительных вопросов
         function toggleAdditionalQuestions(show) {
             const additional = document.getElementById('additionalQuestions');
+            const plusOne = document.getElementById('plusOneSection');
+            
             if (show) {
-                additional.classList.remove('hidden-section');
-                setTimeout(() => additional.classList.add('visible'), 10);
+                plusOne.classList.remove('hidden-section');
+                setTimeout(() => plusOne.classList.add('visible'), 10);
+                
+                setTimeout(() => {
+                    additional.classList.remove('hidden-section');
+                    setTimeout(() => additional.classList.add('visible'), 10);
+                }, 300);
             } else {
+                plusOne.classList.remove('visible');
                 additional.classList.remove('visible');
-                setTimeout(() => additional.classList.add('hidden-section'), 500);
+                setTimeout(() => {
+                    plusOne.classList.add('hidden-section');
+                    additional.classList.add('hidden-section');
+                }, 500);
             }
         }
+
+        // Таймер
+        function updateTimer() {
+            const weddingDate = new Date("Aug 10, 2026 15:00:00").getTime();
+            const now = new Date().getTime();
+            const distance = weddingDate - now;
+
+            if (distance > 0) {
+                document.getElementById("days").innerText = Math.floor(distance / (1000 * 60 * 60 * 24)).toString().padStart(2, '0');
+                document.getElementById("hours").innerText = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)).toString().padStart(2, '0');
+                document.getElementById("minutes").innerText = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60)).toString().padStart(2, '0');
+                document.getElementById("seconds").innerText = Math.floor((distance % (1000 * 60)) / 1000).toString().padStart(2, '0');
+            }
+        }
+        setInterval(updateTimer, 1000);
+        updateTimer();
 
         // Отправка формы
         document.getElementById('rsvpForm').addEventListener('submit', function(e) {
@@ -596,10 +715,15 @@
             
             const q1 = document.getElementById('q1').value;
             const q2 = document.querySelector('input[name="q2"]:checked')?.value || '-';
+            const q2plus = document.getElementById('q2plus')?.value || '';
             
             let text = `🎊 Подтверждение участия на свадьбу Фёдора и Полины%0A%0A` + 
                        `1. ФИО: ${q1}%0A` +
                        `2. Присутствие: ${q2}%0A`;
+            
+            if (q2plus) {
+                text += `   +1: ${q2plus}%0A`;
+            }
             
             if (q2.includes('Буду')) {
                 const q3 = document.querySelector('input[name="q3"]:checked')?.value || '-';
@@ -623,11 +747,6 @@
             }
             
             window.open(`https://wa.me/79393658420?text=${text}`, '_blank');
-        });
-
-        // Мобильное меню
-        document.getElementById('mobileMenuBtn').addEventListener('click', function() {
-            alert('Меню в разработке');
         });
     </script>
 </body>
