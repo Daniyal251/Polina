@@ -17,15 +17,14 @@
             theme: {
                 extend: {
                     colors: {
-                        primary: '#5A0010',
-                        'primary-dark': '#3d000b',
-                        'primary-light': '#7a0016',
+                        primary: '#8B1538',
+                        'primary-dark': '#5A0010',
+                        'primary-light': '#A52050',
                         gold: '#C9A962',
                         'gold-light': '#d4b97a',
                         black: '#1a1a1a',
                         ivory: '#F5F0E8',
                         cream: '#FDF8F3',
-                        brown: '#8B7355',
                     },
                     fontFamily: {
                         heading: ['Cormorant Garamond', 'Georgia', 'serif'],
@@ -87,22 +86,6 @@
             }
         }
         
-        /* Пульсация даты */
-        @keyframes pulse-glow {
-            0%, 100% { 
-                transform: scale(1);
-                box-shadow: 0 0 0 0 rgba(90, 0, 16, 0.7);
-            }
-            50% { 
-                transform: scale(1.1);
-                box-shadow: 0 0 20px 10px rgba(90, 0, 16, 0);
-            }
-        }
-        
-        .date-pulse {
-            animation: pulse-glow 2s infinite;
-        }
-        
         /* Таймер */
         .countdown-digit {
             font-variant-numeric: tabular-nums;
@@ -121,7 +104,7 @@
         
         .main-nav.scrolled .nav-logo,
         .main-nav.scrolled .nav-link {
-            color: #5A0010;
+            color: #8B1538;
         }
         
         /* Мобильное меню */
@@ -135,8 +118,8 @@
         }
         
         .form-input:focus {
-            border-color: #5A0010;
-            box-shadow: 0 0 0 3px rgba(90, 0, 16, 0.1);
+            border-color: #8B1538;
+            box-shadow: 0 0 0 3px rgba(139, 21, 56, 0.1);
         }
         
         /* Сообщение об успехе */
@@ -183,7 +166,7 @@
         
         .vinyl-record {
             position: absolute;
-            right: 5%;
+            right: 0;
             top: 50%;
             transform: translateY(-50%);
             z-index: 5;
@@ -192,9 +175,9 @@
         
         .clapperboard {
             position: absolute;
-            bottom: 0;
-            right: 10%;
-            z-index: 5;
+            bottom: 20px;
+            left: 100px;
+            z-index: 6;
             pointer-events: none;
         }
         
@@ -202,6 +185,51 @@
             position: absolute;
             z-index: 8;
             pointer-events: none;
+        }
+        
+        .paperclip {
+            position: absolute;
+            top: -30px;
+            right: 20px;
+            z-index: 5;
+            pointer-events: none;
+        }
+        
+        /* Календарь - таблица */
+        .calendar-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        
+        .calendar-table td {
+            border: 1px solid #ddd;
+            padding: 0;
+            text-align: center;
+        }
+        
+        .calendar-table .header {
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            padding: 8px 4px;
+        }
+        
+        .calendar-table .month {
+            font-family: 'Marck Script', cursive;
+            font-size: 1.5rem;
+            padding: 8px 4px;
+        }
+        
+        .calendar-table .day {
+            font-family: 'Marck Script', cursive;
+            font-size: 3rem;
+            padding: 16px 4px;
+        }
+        
+        .calendar-table .highlighted {
+            background-color: #8B1538;
+            color: white;
         }
         
         /* Скроллбар */
@@ -214,8 +242,23 @@
         }
         
         ::-webkit-scrollbar-thumb {
-            background: #5A0010;
+            background: #8B1538;
             border-radius: 4px;
+        }
+        
+        /* Декоративная линия */
+        .decorative-line {
+            position: relative;
+        }
+        
+        .decorative-line::after {
+            content: '';
+            position: absolute;
+            bottom: -20px;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, #8B1538, transparent);
         }
     </style>
 </head>
@@ -263,54 +306,40 @@
     </nav>
 
     <!-- Hero секция -->
-    <section id="hero" class="relative min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-b from-primary to-primary-dark">
+    <section id="hero" class="relative min-h-screen flex items-center justify-center overflow-hidden">
+        <!-- Фон: тёмно-красная штора -->
+        <div class="absolute inset-0 bg-gradient-to-b from-black via-primary-dark to-black"></div>
+        <div class="absolute inset-0" style="background: repeating-linear-gradient(90deg, #2a0005 0px, #2a0005 50px, #1a0002 50px, #1a0002 100px);"></div>
+        
         <!-- Декор: жемчужные нити слева -->
-        <img src="images/IMG_7786.PNG" alt="" class="pearl-necklace hidden md:block" style="top: -50px; left: -50px; width: 300px; height: auto;">
+        <img src="images/IMG_7786.PNG" alt="" class="pearl-necklace hidden md:block" style="top: -30px; left: -80px; width: 350px; height: auto;">
         
         <!-- Декор: диско-шар справа сверху -->
-        <img src="images/IMG_7784.PNG" alt="" class="disco-ball-top hidden md:block" style="width: 200px; height: auto;">
+        <img src="images/IMG_7784.PNG" alt="" class="disco-ball-top hidden md:block" style="width: 180px; height: auto;">
         
         <!-- Декор: звёздочки -->
-        <img src="images/IMG_7785.PNG" alt="" class="star-decoration hidden md:block" style="top: 20%; left: 15%; width: 40px;">
-        <img src="images/IMG_7785.PNG" alt="" class="star-decoration hidden md:block" style="top: 30%; right: 20%; width: 50px;">
-        <img src="images/IMG_7785.PNG" alt="" class="star-decoration hidden md:block" style="bottom: 25%; left: 10%; width: 35px;">
+        <img src="images/IMG_7785.PNG" alt="" class="star-decoration hidden md:block" style="top: 35%; left: 15%; width: 35px;">
+        <img src="images/IMG_7785.PNG" alt="" class="star-decoration hidden md:block" style="top: 55%; right: 18%; width: 25px;">
         
+        <!-- Рука с карточкой по центру -->
         <div class="relative z-10 text-center px-6 py-20">
-            <p class="font-script text-3xl sm:text-4xl md:text-5xl text-white mb-6" data-aos="fade-down" data-aos-delay="2000">Дорогой гость!</p>
+            <img src="images/IMG_7783.PNG" alt="Рука с приглашением" class="max-w-sm mx-auto" data-aos="fade-up" data-aos-delay="500">
             
-            <h1 class="mb-8">
-                <span class="block font-script text-5xl sm:text-6xl md:text-7xl lg:text-8xl text-white leading-tight" data-aos="fade-up" data-aos-delay="2200">Фёдор</span>
-                <span class="block font-script text-4xl sm:text-5xl lg:text-6xl text-gold my-3" data-aos="zoom-in" data-aos-delay="2400">&</span>
-                <span class="block font-script text-5xl sm:text-6xl md:text-7xl lg:text-8xl text-white leading-tight" data-aos="fade-up" data-aos-delay="2600">Полин</span>
-            </h1>
-            
-            <div class="flex items-center justify-center gap-5 mb-8" data-aos="fade-in" data-aos-delay="2800">
-                <div class="w-12 sm:w-16 h-px bg-gold"></div>
-                <p class="font-script text-3xl sm:text-4xl md:text-5xl text-white">10.08.2026</p>
-                <div class="w-12 sm:w-16 h-px bg-gold"></div>
-            </div>
-            
-            <!-- Таймер -->
-            <div class="flex flex-wrap justify-center gap-4 sm:gap-6 md:gap-10 mb-12" data-aos="fade-up" data-aos-delay="3000">
-                <div class="text-center">
-                    <span class="countdown-digit block font-heading text-3xl sm:text-4xl md:text-5xl font-semibold text-gold" id="days">00</span>
-                    <span class="text-xs font-light tracking-[0.1em] uppercase text-white/80 mt-2 block">дней</span>
-                </div>
-                <div class="text-center">
-                    <span class="countdown-digit block font-heading text-3xl sm:text-4xl md:text-5xl font-semibold text-gold" id="hours">00</span>
-                    <span class="text-xs font-light tracking-[0.1em] uppercase text-white/80 mt-2 block">часов</span>
-                </div>
-                <div class="text-center">
-                    <span class="countdown-digit block font-heading text-3xl sm:text-4xl md:text-5xl font-semibold text-gold" id="minutes">00</span>
-                    <span class="text-xs font-light tracking-[0.1em] uppercase text-white/80 mt-2 block">минут</span>
-                </div>
-                <div class="text-center">
-                    <span class="countdown-digit block font-heading text-3xl sm:text-4xl md:text-5xl font-semibold text-gold" id="seconds">00</span>
-                    <span class="text-xs font-light tracking-[0.1em] uppercase text-white/80 mt-2 block">секунд</span>
+            <div class="mt-8" data-aos="fade-up" data-aos-delay="1000">
+                <p class="font-script text-4xl sm:text-5xl md:text-6xl text-white mb-4">Дорогой гость!</p>
+                
+                <p class="text-white/90 text-sm sm:text-base max-w-xl mx-auto mb-8 leading-relaxed">
+                    Если в твои руки попало это приглашение, значит ты будешь в первых рядах главной премьеры нашей жизни — рождение семьи!
+                </p>
+                
+                <div class="flex items-center justify-center gap-5 mb-8">
+                    <div class="w-12 sm:w-16 h-px bg-gold"></div>
+                    <p class="font-script text-4xl sm:text-5xl text-gold">10.08.2026</p>
+                    <div class="w-12 sm:w-16 h-px bg-gold"></div>
                 </div>
             </div>
             
-            <a href="#about" class="inline-flex flex-col items-center gap-2 text-white/70 hover:text-white transition">
+            <a href="#calendar" class="inline-flex flex-col items-center gap-2 text-white/70 hover:text-white transition">
                 <span class="text-xs tracking-[0.1em] uppercase">Узнать больше</span>
                 <svg class="w-6 h-6 animate-bounce" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                     <path d="M12 5v14M5 12l7 7 7-7"/>
@@ -320,148 +349,103 @@
     </section>
 
     <!-- О нас / Приглашение -->
-    <section id="about" class="py-16 sm:py-20 md:py-32 bg-cream relative overflow-hidden">
-        <!-- Декор: жемчужные нити -->
-        <img src="images/IMG_7786.PNG" alt="" class="pearl-necklace hidden md:block" style="top: 0; left: -100px; width: 250px; height: auto;">
-        
-        <div class="max-w-7xl mx-auto px-6 relative z-10">
-            <div class="text-center mb-12 md:mb-16" data-aos="fade-up">
-                <span class="font-script text-2xl sm:text-3xl text-primary block mb-3">Приглашение</span>
-                <h2 class="font-script text-4xl sm:text-5xl md:text-6xl text-primary">Дорогой гость!</h2>
+    <section id="about" class="py-16 sm:py-20 md:py-32 bg-white relative overflow-hidden">
+        <div class="max-w-4xl mx-auto px-6 relative z-10">
+            <div class="text-center mb-12" data-aos="fade-up">
+                <h2 class="font-script text-5xl sm:text-6xl md:text-7xl text-primary mb-6">Дорогой гость!</h2>
+                <p class="text-gray-700 leading-relaxed max-w-2xl mx-auto">
+                    Если в твои руки попало это приглашение, значит ты будешь в первых рядах главной премьеры нашей жизни — рождение семьи! Мы официально женимся и очень хотим видеть тебя на нашей свадьбе.
+                </p>
             </div>
             
-            <div class="grid md:grid-cols-2 gap-8 md:gap-12 items-center">
-                <div data-aos="fade-right">
-                    <p class="text-lg sm:text-xl leading-relaxed mb-6 text-gray-800">
-                        Если в твои руки попало это приглашение, значит ты будешь в первых рядах главной премьеры нашей жизни — <em class="font-script text-2xl text-primary">рождение семьи!</em>
-                    </p>
-                    <p class="mb-6 text-gray-600 leading-relaxed">
-                        Мы официально женимся и очень хотим видеть тебя на нашей свадьбе.
-                    </p>
-                    <div class="bg-ivory border-l-4 border-primary p-6 sm:p-8 mt-8">
-                        <p class="font-script text-2xl sm:text-3xl leading-relaxed text-primary m-0">
-                            Словно в самом романтичном фильме мы будем отмечать торжество под звуки уходящего лета, тёплого ветерка, шепчущего ноты августовской свежести и природной свободы.
-                        </p>
-                    </div>
+            <!-- Календарь -->
+            <div class="my-12" data-aos="fade-up">
+                <table class="calendar-table max-w-2xl mx-auto">
+                    <tr>
+                        <td class="w-1/3">
+                            <div class="header text-gray-800">Воскресенье</div>
+                            <div class="month text-gray-600">Август</div>
+                            <div class="day text-gray-800">9</div>
+                        </td>
+                        <td class="w-1/3 highlighted">
+                            <div class="header text-white">Понедельник</div>
+                            <div class="month text-white">Август</div>
+                            <div class="day text-white">10</div>
+                        </td>
+                        <td class="w-1/3">
+                            <div class="header text-gray-800">Вторник</div>
+                            <div class="month text-gray-600">Август</div>
+                            <div class="day text-gray-800">11</div>
+                        </td>
+                    </tr>
+                </table>
+                <!-- Стрелка вниз -->
+                <div class="text-center mt-4">
+                    <svg class="w-8 h-8 mx-auto text-primary" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M12 5v14M5 12l7 7 7-7"/>
+                    </svg>
                 </div>
-                <div class="flex justify-center" data-aos="fade-left">
-                    <div class="relative bg-white p-4 shadow-xl">
-                        <div class="absolute -top-3 -left-3 right-6 bottom-6 border-2 border-primary -z-10"></div>
-                        <img src="images/card_crop.png" alt="Фёдор и Полин" class="max-w-full sm:max-w-md w-full">
-                    </div>
-                </div>
+            </div>
+            
+            <!-- Текст о свадьбе -->
+            <div class="text-center mt-12" data-aos="fade-up">
+                <p class="text-gray-700 leading-relaxed max-w-2xl mx-auto">
+                    Словно в самом романтичном фильме мы будем отмечать торжество под звуки уходящего лета, тёплого ветерка, шепчущего ноты августовской свежести, и природной свободы!
+                </p>
             </div>
         </div>
     </section>
 
-    <!-- Календарь -->
-    <section id="calendar" class="py-16 sm:py-20 md:py-32 bg-white relative overflow-hidden">
-        <div class="max-w-7xl mx-auto px-6">
-            <div class="text-center mb-12 md:mb-16" data-aos="fade-up">
-                <span class="font-script text-2xl sm:text-3xl text-primary block mb-3">Дата</span>
-                <h2 class="font-script text-4xl sm:text-5xl md:text-6xl text-primary">Август 2026</h2>
-            </div>
-            
-            <div class="flex justify-center" data-aos="zoom-in">
-                <div class="grid grid-cols-3 gap-4 sm:gap-8 w-full max-w-3xl">
-                    <!-- Воскресенье 9 -->
-                    <div class="text-center">
-                        <p class="font-script text-xl sm:text-2xl text-primary mb-2">Воскресенье</p>
-                        <p class="font-script text-3xl sm:text-4xl text-gray-600">Август</p>
-                        <div class="w-16 h-16 sm:w-20 sm:h-20 mx-auto mt-4 flex items-center justify-center rounded-full bg-gray-100">
-                            <span class="font-heading text-3xl sm:text-4xl font-semibold text-gray-700">9</span>
-                        </div>
-                    </div>
-                    
-                    <!-- Понедельник 10 -->
-                    <div class="text-center">
-                        <p class="font-script text-xl sm:text-2xl text-white mb-2">Понедельник</p>
-                        <p class="font-script text-3xl sm:text-4xl text-white">Август</p>
-                        <div class="w-20 h-20 sm:w-24 sm:h-24 mx-auto mt-4 flex items-center justify-center rounded-full bg-primary date-pulse">
-                            <span class="font-heading text-4xl sm:text-5xl font-semibold text-white">10</span>
-                        </div>
-                        <div class="hidden sm:block w-1 h-12 bg-primary mx-auto mt-2"></div>
-                        <svg class="w-6 h-6 text-primary mx-auto mt-1" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <path d="M12 5v14M5 12l7 7 7-7"/>
-                        </svg>
-                    </div>
-                    
-                    <!-- Вторник 11 -->
-                    <div class="text-center">
-                        <p class="font-script text-xl sm:text-2xl text-primary mb-2">Вторник</p>
-                        <p class="font-script text-3xl sm:text-4xl text-gray-600">Август</p>
-                        <div class="w-16 h-16 sm:w-20 sm:h-20 mx-auto mt-4 flex items-center justify-center rounded-full bg-gray-100">
-                            <span class="font-heading text-3xl sm:text-4xl font-semibold text-gray-700">11</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
+    <!-- Дата крупно -->
+    <section class="py-12 bg-cream">
+        <div class="text-center">
+            <p class="font-script text-5xl sm:text-6xl md:text-7xl text-primary" data-aos="fade-up">10.08.2026</p>
         </div>
     </section>
 
     <!-- Программа дня -->
     <section id="program" class="py-16 sm:py-20 md:py-32 bg-cream relative overflow-hidden">
-        <!-- Декор: диско-шар слева внизу -->
-        <img src="images/IMG_7784.PNG" alt="" class="disco-ball-program hidden md:block" style="width: 250px; height: auto; bottom: -50px; left: -80px;">
+        <!-- Декор: диско-шар слева -->
+        <img src="images/IMG_7784.PNG" alt="" class="disco-ball-program hidden md:block" style="width: 280px; height: auto;">
         
         <!-- Декор: виниловая пластинка справа -->
-        <img src="images/IMG_7809.PNG" alt="" class="vinyl-record hidden md:block" style="width: 200px; height: auto;">
+        <img src="images/IMG_7809.PNG" alt="" class="vinyl-record hidden md:block" style="width: 220px; height: auto;">
         
-        <!-- Декор: хлопушка внизу -->
-        <img src="images/IMG_7808.PNG" alt="" class="clapperboard hidden md:block" style="width: 150px; height: auto;">
+        <!-- Декор: хлопушка -->
+        <img src="images/IMG_7808.PNG" alt="" class="clapperboard hidden md:block" style="width: 120px; height: auto;">
         
         <!-- Декор: звёздочки -->
-        <img src="images/IMG_7785.PNG" alt="" class="star-decoration hidden md:block" style="bottom: 10%; left: 5%; width: 30px;">
-        <img src="images/IMG_7785.PNG" alt="" class="star-decoration hidden md:block" style="bottom: 5%; right: 25%; width: 40px;">
+        <img src="images/IMG_7785.PNG" alt="" class="star-decoration hidden md:block" style="bottom: 30px; left: 220px; width: 30px;">
+        <img src="images/IMG_7785.PNG" alt="" class="star-decoration hidden md:block" style="bottom: 20px; left: 280px; width: 20px;">
         
-        <div class="max-w-7xl mx-auto px-6 relative z-10">
-            <div class="text-center mb-12 md:mb-16" data-aos="fade-up">
-                <span class="font-script text-2xl sm:text-3xl text-primary block mb-3">Расписание</span>
-                <h2 class="font-script text-4xl sm:text-5xl md:text-6xl text-primary">Программа дня</h2>
+        <!-- Скрепка -->
+        <svg class="paperclip hidden md:block" width="40" height="80" viewBox="0 0 40 80" fill="none" stroke="#8B1538" stroke-width="2">
+            <path d="M20 10v50a10 10 0 0 0 20 0V20a14 14 0 0 0-28 0v40a18 18 0 0 0 36 0V20"/>
+        </svg>
+        
+        <div class="max-w-4xl mx-auto px-6 relative z-10">
+            <div class="text-center mb-12" data-aos="fade-up">
+                <h2 class="font-script text-5xl sm:text-6xl text-primary mb-2">Программа дня</h2>
             </div>
             
-            <div class="max-w-3xl mx-auto space-y-6">
-                <!-- 15:00 -->
-                <div class="flex items-start gap-4 sm:gap-6" data-aos="fade-right">
-                    <div class="flex-shrink-0 w-20 sm:w-24 h-20 sm:h-24 bg-primary rounded-full flex items-center justify-center">
-                        <span class="font-heading text-xl sm:text-2xl font-semibold text-white">15:00</span>
+            <!-- Программа на кремовой карточке -->
+            <div class="bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAwIiBoZWlnaHQ9IjQwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48ZGVmcz48cGF0dGVybiBpZD0ibm9pc2UiIHdpZHRoPSIxMDAiIGhlaWdodD0iMTAwIiBwYXR0ZXJuVW5pdHM9InVzZXJTcGFjZU9uVXNlIj48ZmVUdXJidWxlbmNlIHR5cGU9ImZyYWN0YWxOb2lzZSIgYmFzZUZyZXF1ZW5jeT0iMC44IiBudW1PY3RhdmVzPSIzIiBzdGl0Y2hUaWxlPSJzdGl0Y2giLz48L2ZpbHRlcj48L2RlZnM+PHJlY3Qgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgZmlsdGVyPSJ1cmwoI25vaXNlKSIgb3BhY2l0eT0iMC4wNSIvPjwvc3ZnPg==')] bg-ivory p-8 sm:p-12 rounded shadow-xl" data-aos="fade-up">
+                <div class="space-y-6">
+                    <div class="flex items-start gap-4">
+                        <span class="font-script text-2xl sm:text-3xl text-primary flex-shrink-0 w-20">15:00</span>
+                        <p class="text-gray-700 text-sm sm:text-base pt-1">Сбор гостей, интерактивы на велком-зоне, фуршет, новые знакомства</p>
                     </div>
-                    <div class="flex-1 bg-white p-6 rounded-lg shadow-lg">
-                        <h3 class="font-script text-2xl sm:text-3xl text-primary mb-2">Сбор гостей</h3>
-                        <p class="text-gray-600 text-sm sm:text-base">Интерактивы на Welcome-зоне, фуршет, новые знакомства</p>
+                    <div class="flex items-start gap-4">
+                        <span class="font-script text-2xl sm:text-3xl text-primary flex-shrink-0 w-20">16:00</span>
+                        <p class="text-gray-700 text-sm sm:text-base pt-1">Торжественная церемония, клятвы, фотосессия и много любви!</p>
                     </div>
-                </div>
-                
-                <!-- 16:00 -->
-                <div class="flex items-start gap-4 sm:gap-6" data-aos="fade-left">
-                    <div class="flex-shrink-0 w-20 sm:w-24 h-20 sm:h-24 bg-primary rounded-full flex items-center justify-center">
-                        <span class="font-heading text-xl sm:text-2xl font-semibold text-white">16:00</span>
+                    <div class="flex items-start gap-4">
+                        <span class="font-script text-2xl sm:text-3xl text-primary flex-shrink-0 w-20">17:00</span>
+                        <p class="text-gray-700 text-sm sm:text-base pt-1">Банкетная часть, основная программа, вечеринка и after-party</p>
                     </div>
-                    <div class="flex-1 bg-white p-6 rounded-lg shadow-lg">
-                        <h3 class="font-script text-2xl sm:text-3xl text-primary mb-2">Торжественная церемония</h3>
-                        <p class="text-gray-600 text-sm sm:text-base">Клятвы, обмен кольцами, фотосессия и много любви</p>
-                    </div>
-                </div>
-                
-                <!-- 17:00 -->
-                <div class="flex items-start gap-4 sm:gap-6" data-aos="fade-right">
-                    <div class="flex-shrink-0 w-20 sm:w-24 h-20 sm:h-24 bg-primary rounded-full flex items-center justify-center">
-                        <span class="font-heading text-xl sm:text-2xl font-semibold text-white">17:00</span>
-                    </div>
-                    <div class="flex-1 bg-white p-6 rounded-lg shadow-lg">
-                        <h3 class="font-script text-2xl sm:text-3xl text-primary mb-2">Банкет</h3>
-                        <p class="text-gray-600 text-sm sm:text-base">Банкетная часть, основная программа, вечеринка и after-party</p>
-                    </div>
-                </div>
-                
-                <!-- 23:00 -->
-                <div class="flex items-start gap-4 sm:gap-6" data-aos="fade-left">
-                    <div class="flex-shrink-0 w-20 sm:w-24 h-20 sm:h-24 bg-primary rounded-full flex items-center justify-center">
-                        <span class="font-heading text-xl sm:text-2xl font-semibold text-white">23:00</span>
-                    </div>
-                    <div class="flex-1 bg-white p-6 rounded-lg shadow-lg">
-                        <h3 class="font-script text-2xl sm:text-3xl text-primary mb-2">Завершение вечера</h3>
-                        <p class="text-gray-600 text-sm sm:text-base">Живой коридор и тёплые слова на прощание</p>
+                    <div class="flex items-start gap-4">
+                        <span class="font-script text-2xl sm:text-3xl text-primary flex-shrink-0 w-20">23:00</span>
+                        <p class="text-gray-700 text-sm sm:text-base pt-1">Завершение вечера, живой коридор и теплые слова</p>
                     </div>
                 </div>
             </div>
@@ -470,33 +454,36 @@
 
     <!-- Дресс-код -->
     <section id="dresscode" class="py-16 sm:py-20 md:py-32 bg-white relative overflow-hidden">
-        <div class="max-w-7xl mx-auto px-6">
-            <div class="text-center mb-12 md:mb-16" data-aos="fade-up">
-                <span class="font-script text-2xl sm:text-3xl text-primary block mb-3">Стиль</span>
-                <h2 class="font-script text-4xl sm:text-5xl md:text-6xl text-primary">Дресс-код и стиль одежды</h2>
+        <div class="max-w-5xl mx-auto px-6">
+            <div class="text-center mb-12" data-aos="fade-up">
+                <h2 class="font-script text-5xl sm:text-6xl text-primary mb-2">Дресс-код и стиль одежды</h2>
             </div>
             
-            <div class="max-w-3xl mx-auto text-center">
-                <div class="inline-block bg-primary px-8 sm:px-10 py-3 sm:py-4 mb-6 sm:mb-8" data-aos="zoom-in">
-                    <span class="font-script text-2xl sm:text-3xl text-white tracking-wide">Black Tie</span>
-                </div>
-                
-                <p class="text-base sm:text-lg leading-relaxed text-gray-700 mb-8 sm:mb-12" data-aos="fade-up">
-                    Мы долго готовились к этому дню и будем благодарны вам, если при выборе нарядов вы учтёте цветовую гамму нашего торжества.
+            <div class="text-center max-w-3xl mx-auto">
+                <p class="text-gray-700 leading-relaxed mb-8" data-aos="fade-up">
+                    Мы долго готовились к этому дню и будем благодарны вам, если при выборе нарядов вы учтете цветовую гамму нашего торжества.
                 </p>
                 
                 <!-- Цветовая палитра -->
-                <div class="flex flex-wrap justify-center gap-3 sm:gap-4 mb-8 sm:mb-12" data-aos="zoom-in" data-aos-delay="200">
-                    <div class="w-12 h-12 sm:w-16 sm:h-16 rounded-full shadow-md" style="background: #5A0010;" title="Бордовый"></div>
-                    <div class="w-12 h-12 sm:w-16 sm:h-16 rounded-full shadow-md" style="background: #1a1a1a;" title="Чёрный"></div>
-                    <div class="w-12 h-12 sm:w-16 sm:h-16 rounded-full shadow-md" style="background: #C9A962;" title="Золотой"></div>
-                    <div class="w-12 h-12 sm:w-16 sm:h-16 rounded-full shadow-md" style="background: #F5F0E8;" title="Айвори"></div>
-                    <div class="w-12 h-12 sm:w-16 sm:h-16 rounded-full shadow-md" style="background: #8B7355;" title="Шоколадный"></div>
+                <div class="flex flex-wrap justify-center gap-4 mb-8" data-aos="zoom-in">
+                    <div class="w-16 h-16 rounded-full shadow-md" style="background: #000000;" title="Чёрный"></div>
+                    <div class="w-16 h-16 rounded-full shadow-md" style="background: #8B1538;" title="Бордовый"></div>
+                    <div class="w-16 h-16 rounded-full shadow-md" style="background: #D4A5A5;" title="Пыльная роза"></div>
+                    <div class="w-16 h-16 rounded-full shadow-md" style="background: #C9A962;" title="Золотой"></div>
+                    <div class="w-16 h-16 rounded-full shadow-md" style="background: #E8E8E8;" title="Серебряный"></div>
                 </div>
                 
-                <p class="text-gray-600 leading-relaxed" data-aos="fade-up">
-                    Также нам будет приятно, если при выборе наряда вы будете придерживаться стиля <strong class="text-primary">Black Tie</strong> — элегантные вечерние платья для дам и смокинги или тёмные костюмы для мужчин.
+                <p class="text-gray-700 leading-relaxed mb-12" data-aos="fade-up">
+                    Также нам будет приятно, если при выборе наряда вы будете придерживаться стиля <strong class="text-primary">Black Tie</strong>.
                 </p>
+                
+                <!-- Примеры нарядов -->
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-4" data-aos="fade-up">
+                    <img src="https://images.unsplash.com/photo-1595777457583-95e059d581b8?w=300&h=400&fit=crop" alt="Вечернее платье" class="w-full h-64 md:h-80 object-cover rounded shadow-lg">
+                    <img src="https://images.unsplash.com/photo-1566174053879-31528523f8ae?w=300&h=400&fit=crop" alt="Вечернее платье бордовое" class="w-full h-64 md:h-80 object-cover rounded shadow-lg">
+                    <img src="https://images.unsplash.com/photo-1507679799987-c73779587ccf?w=300&h=400&fit=crop" alt="Смокинг" class="w-full h-64 md:h-80 object-cover rounded shadow-lg">
+                    <img src="https://images.unsplash.com/photo-1594938298603-c8148c47e356?w=300&h=400&fit=crop" alt="Костюм" class="w-full h-64 md:h-80 object-cover rounded shadow-lg">
+                </div>
             </div>
         </div>
     </section>
@@ -504,35 +491,31 @@
     <!-- Пожелания -->
     <section id="details" class="py-16 sm:py-20 md:py-32 bg-cream relative overflow-hidden">
         <!-- Декор: жемчужные нити слева -->
-        <img src="images/IMG_7786.PNG" alt="" class="pearl-necklace hidden md:block" style="top: 50px; left: -80px; width: 200px; height: auto;">
+        <img src="images/IMG_7786.PNG" alt="" class="pearl-necklace hidden md:block" style="top: 0; left: -100px; width: 280px; height: auto;">
         
-        <div class="max-w-7xl mx-auto px-6 relative z-10">
-            <div class="text-center mb-12 md:mb-16" data-aos="fade-up">
-                <span class="font-script text-2xl sm:text-3xl text-primary block mb-3">Важно</span>
-                <h2 class="font-script text-4xl sm:text-5xl md:text-6xl text-primary">Пожелания</h2>
+        <div class="max-w-5xl mx-auto px-6 relative z-10">
+            <div class="text-center mb-12" data-aos="fade-up">
+                <h2 class="font-script text-5xl sm:text-6xl text-primary mb-8">Пожелания</h2>
             </div>
             
-            <div class="max-w-5xl mx-auto space-y-4 sm:space-y-6">
+            <div class="space-y-6">
                 <!-- Без Горько -->
-                <div class="bg-primary text-white p-6 sm:p-8 md:p-10 rounded-lg text-center" data-aos="fade-up" data-aos-delay="0">
-                    <h3 class="font-script text-2xl sm:text-3xl mb-3 sm:mb-4">Без «Горько»</h3>
-                    <p class="text-white/90 text-sm sm:text-base leading-relaxed max-w-3xl mx-auto">
+                <div class="bg-primary text-white p-6 sm:p-8 rounded text-center" data-aos="fade-up">
+                    <p class="leading-relaxed">
                         Будем благодарны, если вы воздержитесь от криков «Горько» на празднике, ведь поцелуй — это знак выражения чувств, он не может быть по заказу.
                     </p>
                 </div>
                 
                 <!-- Меню -->
-                <div class="bg-primary text-white p-6 sm:p-8 md:p-10 rounded-lg text-center" data-aos="fade-up" data-aos-delay="100">
-                    <h3 class="font-script text-2xl sm:text-3xl mb-3 sm:mb-4">Меню</h3>
-                    <p class="text-white/90 text-sm sm:text-base leading-relaxed max-w-3xl mx-auto">
-                        Меню будет разнообразное и вкусное. Во избежание неприятных ситуаций, просим заранее уведомить нас о наличии аллергии на определённые продукты.
+                <div class="bg-primary text-white p-6 sm:p-8 rounded text-center" data-aos="fade-up" data-aos-delay="100">
+                    <p class="leading-relaxed">
+                        Меню будет разнообразное и вкусное, во избежание неприятных ситуаций, просим заранее уведомить нас о наличии аллергии на определенные продукты и ваши предпочтения.
                     </p>
                 </div>
                 
                 <!-- Подарки -->
-                <div class="bg-primary text-white p-6 sm:p-8 md:p-10 rounded-lg text-center" data-aos="fade-up" data-aos-delay="200">
-                    <h3 class="font-script text-2xl sm:text-3xl mb-3 sm:mb-4">Подарки</h3>
-                    <p class="text-white/90 text-sm sm:text-base leading-relaxed max-w-3xl mx-auto">
+                <div class="bg-primary text-white p-6 sm:p-8 rounded text-center" data-aos="fade-up" data-aos-delay="200">
+                    <p class="leading-relaxed">
                         Мы решили отказаться от материальных подарков в пользу денежных взносов. Это поможет нам реализовать наши совместные мечты: от путешествия до обустройства дома.
                     </p>
                 </div>
@@ -540,90 +523,91 @@
         </div>
     </section>
 
-    <!-- Таймер (отдельный блок) -->
-    <section class="py-16 sm:py-20 md:py-32 bg-gradient-to-b from-primary to-primary-dark relative overflow-hidden">
-        <!-- Декор: звёздочки -->
-        <img src="images/IMG_7785.PNG" alt="" class="star-decoration hidden md:block" style="top: 10%; left: 10%; width: 40px;">
-        <img src="images/IMG_7785.PNG" alt="" class="star-decoration hidden md:block" style="top: 20%; right: 15%; width: 50px;">
-        <img src="images/IMG_7785.PNG" alt="" class="star-decoration hidden md:block" style="bottom: 15%; left: 20%; width: 35px;">
-        
-        <div class="max-w-7xl mx-auto px-6 text-center relative z-10">
-            <h2 class="font-script text-4xl sm:text-5xl md:text-6xl text-white mb-8 sm:mb-12" data-aos="fade-up">До свадьбы осталось</h2>
+    <!-- Таймер -->
+    <section class="py-16 sm:py-20 bg-white relative overflow-hidden">
+        <div class="max-w-4xl mx-auto px-6 text-center">
+            <!-- Декор: звёздочка -->
+            <img src="images/IMG_7785.PNG" alt="" class="star-decoration hidden md:block" style="top: -20px; left: 5%; width: 50px;">
             
-            <div class="flex flex-wrap justify-center gap-6 sm:gap-10 md:gap-16" data-aos="zoom-in">
-                <div class="text-center">
-                    <span class="countdown-digit block font-heading text-5xl sm:text-6xl md:text-7xl font-semibold text-gold" id="days2">00</span>
-                    <span class="text-xs sm:text-sm md:text-base font-light tracking-[0.15em] uppercase text-white/80 mt-3 sm:mt-4 block">дней</span>
-                </div>
-                <div class="text-center">
-                    <span class="countdown-digit block font-heading text-5xl sm:text-6xl md:text-7xl font-semibold text-gold" id="hours2">00</span>
-                    <span class="text-xs sm:text-sm md:text-base font-light tracking-[0.15em] uppercase text-white/80 mt-3 sm:mt-4 block">часов</span>
-                </div>
-                <div class="text-center">
-                    <span class="countdown-digit block font-heading text-5xl sm:text-6xl md:text-7xl font-semibold text-gold" id="minutes2">00</span>
-                    <span class="text-xs sm:text-sm md:text-base font-light tracking-[0.15em] uppercase text-white/80 mt-3 sm:mt-4 block">минут</span>
-                </div>
-                <div class="text-center">
-                    <span class="countdown-digit block font-heading text-5xl sm:text-6xl md:text-7xl font-semibold text-gold" id="seconds2">00</span>
-                    <span class="text-xs sm:text-sm md:text-base font-light tracking-[0.15em] uppercase text-white/80 mt-3 sm:mt-4 block">секунд</span>
+            <h2 class="font-script text-5xl sm:text-6xl text-primary mb-8" data-aos="fade-up">До свадьбы осталось</h2>
+            
+            <div class="border-2 border-primary p-8" data-aos="zoom-in">
+                <div class="flex flex-wrap justify-center gap-6 sm:gap-10 md:gap-16">
+                    <div class="text-center">
+                        <span class="countdown-digit block font-heading text-5xl sm:text-6xl font-semibold text-primary" id="days">00</span>
+                        <span class="text-xs sm:text-sm uppercase tracking-widest text-gray-600 mt-2 block">дней</span>
+                    </div>
+                    <div class="text-center">
+                        <span class="countdown-digit block font-heading text-5xl sm:text-6xl font-semibold text-primary" id="hours">00</span>
+                        <span class="text-xs sm:text-sm uppercase tracking-widest text-gray-600 mt-2 block">часов</span>
+                    </div>
+                    <div class="text-center">
+                        <span class="countdown-digit block font-heading text-5xl sm:text-6xl font-semibold text-primary" id="minutes">00</span>
+                        <span class="text-xs sm:text-sm uppercase tracking-widest text-gray-600 mt-2 block">минут</span>
+                    </div>
+                    <div class="text-center">
+                        <span class="countdown-digit block font-heading text-5xl sm:text-6xl font-semibold text-primary" id="seconds">00</span>
+                        <span class="text-xs sm:text-sm uppercase tracking-widest text-gray-600 mt-2 block">секунд</span>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Локация и контакты -->
-    <section id="location" class="py-16 sm:py-20 md:py-32 bg-white relative overflow-hidden">
-        <div class="max-w-7xl mx-auto px-6">
-            <div class="text-center mb-12 md:mb-16" data-aos="fade-up">
-                <span class="font-script text-2xl sm:text-3xl text-primary block mb-3">Место</span>
-                <h2 class="font-script text-4xl sm:text-5xl md:text-6xl text-primary">Локация</h2>
+    <!-- Контакты -->
+    <section class="py-16 sm:py-20 bg-cream relative overflow-hidden">
+        <!-- Декор: звёздочки -->
+        <img src="images/IMG_7785.PNG" alt="" class="star-decoration hidden md:block" style="top: 20%; right: 5%; width: 40px;">
+        <img src="images/IMG_7785.PNG" alt="" class="star-decoration hidden md:block" style="bottom: 30%; right: 2%; width: 50px;">
+        <img src="images/IMG_7785.PNG" alt="" class="star-decoration hidden md:block" style="bottom: 20%; right: 8%; width: 30px;">
+        
+        <div class="max-w-4xl mx-auto px-6 text-center">
+            <h2 class="font-script text-5xl sm:text-6xl text-primary mb-6" data-aos="fade-up">Контакты</h2>
+            
+            <p class="text-gray-700 mb-8" data-aos="fade-up">
+                По всем вопросам, связанным с мероприятием, вы можете обратиться к нашему организатору
+            </p>
+            
+            <div class="mb-8" data-aos="fade-up">
+                <p class="font-medium text-lg text-primary">ДИНАРА</p>
+                <a href="tel:+79393658420" class="text-gray-700 hover:text-primary transition">+7 (939) 365-84-20</a>
             </div>
             
-            <div class="grid lg:grid-cols-2 gap-8 lg:gap-12 items-start">
-                <div class="space-y-6 sm:space-y-8" data-aos="fade-right">
-                    <!-- Площадка -->
-                    <div class="bg-ivory p-6 sm:p-8 rounded-lg">
-                        <h3 class="font-script text-3xl sm:text-4xl text-primary mb-3">Urman House</h3>
-                        <p class="text-gray-600 text-sm sm:text-base">Вводите в Яндекс.Картах именно так, ближе к дате свадьбы мы скинем вам схему проезда.</p>
-                    </div>
+            <a href="https://wa.me/79393658420?text=Здравствуйте!%20У%20меня%20вопрос%20по%20свадьбе%20Фёдора%20и%20Полин" target="_blank" rel="noopener" class="inline-block bg-primary text-white px-10 py-4 rounded font-medium uppercase tracking-wide hover:bg-primary-light transition" data-aos="zoom-in">
+                Связаться
+            </a>
+        </div>
+    </section>
+
+    <!-- Площадка -->
+    <section id="location" class="py-16 sm:py-20 md:py-32 bg-white relative overflow-hidden">
+        <div class="max-w-6xl mx-auto px-6">
+            <div class="text-center mb-12" data-aos="fade-up">
+                <h2 class="font-script text-5xl sm:text-6xl text-primary mb-2">Площадка торжества</h2>
+            </div>
+            
+            <div class="grid md:grid-cols-2 gap-8 items-start">
+                <div data-aos="fade-right">
+                    <img src="https://images.unsplash.com/photo-1519167758481-83f550bb49b3?w=600&h=400&fit=crop" alt="Urman House" class="w-full rounded-lg shadow-lg">
+                </div>
+                <div data-aos="fade-left">
+                    <h3 class="font-heading text-3xl font-semibold text-primary mb-4">Urman House</h3>
+                    <p class="text-gray-700 mb-6">
+                        Вводите в Яндекс картах именно так, ближе к дате свадьбы мы скинем вам схему проезда.
+                    </p>
                     
-                    <!-- Контакты -->
-                    <div class="bg-ivory p-6 sm:p-8 rounded-lg">
-                        <h4 class="font-script text-2xl sm:text-3xl text-primary mb-4 sm:mb-6">Контакты организатора</h4>
-                        <div class="space-y-3 sm:space-y-4">
-                            <p class="text-base sm:text-lg">
-                                <span class="text-gray-600">Организатор:</span>
-                                <span class="font-medium text-primary ml-2">Динара</span>
-                            </p>
-                            <a href="tel:+79393658420" class="block text-lg sm:text-xl font-medium text-primary hover:text-primary-light transition">+7 (939) 365-84-20</a>
-                            
-                            <!-- Кнопки связи -->
-                            <div class="flex flex-wrap gap-3 sm:gap-4 mt-4 sm:mt-6">
-                                <a href="https://wa.me/79393658420?text=Здравствуйте!%20У%20меня%20вопрос%20по%20свадьбе%20Фёдора%20и%20Полин" target="_blank" rel="noopener" class="contact-btn whatsapp text-white px-5 sm:px-6 py-2.5 sm:py-3 rounded-lg font-medium flex items-center gap-2 text-sm sm:text-base">
-                                    <svg class="w-5 h-5" viewBox="0 0 24 24" fill="currentColor">
-                                        <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/>
-                                    </svg>
-                                    WhatsApp
-                                </a>
-                                <a href="https://t.me/+79393658420" target="_blank" rel="noopener" class="contact-btn telegram text-white px-5 sm:px-6 py-2.5 sm:py-3 rounded-lg font-medium flex items-center gap-2 text-sm sm:text-base">
-                                    <svg class="w-5 h-5" viewBox="0 0 24 24" fill="currentColor">
-                                        <path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/>
-                                    </svg>
-                                    Telegram
-                                </a>
-                            </div>
+                    <!-- Место для карты -->
+                    <div class="border-2 border-primary rounded-lg p-8 text-center bg-cream">
+                        <p class="text-primary font-medium">Место для карты</p>
+                        <div class="mt-4">
+                            <iframe 
+                                src="https://yandex.ru/map-widget/v1/?ll=55.971353%2C55.720632&z=10"
+                                class="w-full h-64 border-0 rounded"
+                                frameborder="0"
+                                allowfullscreen="true">
+                            </iframe>
                         </div>
                     </div>
-                </div>
-                
-                <!-- Яндекс Карта -->
-                <div class="h-96 sm:h-[500px]" data-aos="fade-left">
-                    <iframe 
-                        src="https://yandex.ru/map-widget/v1/?ll=55.971353%2C55.720632&z=10"
-                        class="w-full h-full border-0 rounded-lg"
-                        frameborder="0"
-                        allowfullscreen="true">
-                    </iframe>
                 </div>
             </div>
         </div>
@@ -632,9 +616,8 @@
     <!-- Анкета гостя (RSVP) -->
     <section id="rsvp" class="py-16 sm:py-20 md:py-32 bg-cream relative overflow-hidden">
         <div class="max-w-3xl mx-auto px-6">
-            <div class="text-center mb-12 md:mb-16" data-aos="fade-up">
-                <span class="font-script text-2xl sm:text-3xl text-primary block mb-3">RSVP</span>
-                <h2 class="font-script text-4xl sm:text-5xl md:text-6xl text-primary">Анкета гостя</h2>
+            <div class="text-center mb-12" data-aos="fade-up">
+                <h2 class="font-script text-5xl sm:text-6xl text-primary mb-2">Анкета гостя</h2>
             </div>
             
             <div class="bg-white p-6 sm:p-8 md:p-12 rounded-lg shadow-lg" data-aos="fade-up">
@@ -697,19 +680,6 @@
         </div>
     </section>
 
-    <!-- CTA секция -->
-    <section class="py-16 sm:py-20 bg-gradient-to-b from-primary to-primary-dark">
-        <div class="max-w-4xl mx-auto px-6 text-center">
-            <h2 class="font-script text-4xl sm:text-5xl md:text-6xl text-white mb-4 sm:mb-6" data-aos="fade-up">Ждём тебя!</h2>
-            <p class="text-base sm:text-lg text-white/90 mb-6 sm:mb-8" data-aos="fade-up" data-aos-delay="100">
-                Пожалуйста, заполни анкету гостя до 1 июля 2026 года, чтобы мы могли всё подготовить.
-            </p>
-            <a href="#rsvp" class="inline-block bg-gold text-white px-8 sm:px-10 py-3 sm:py-4 rounded-lg font-medium uppercase tracking-wide hover:bg-gold-light transition transform hover:-translate-y-1" data-aos="zoom-in">
-                Заполнить анкету
-            </a>
-        </div>
-    </section>
-
     <!-- Футер -->
     <footer class="bg-black py-8 sm:py-12">
         <div class="max-w-7xl mx-auto px-6 text-center">
@@ -734,12 +704,10 @@
         window.addEventListener('load', () => {
             const handContainer = document.getElementById('handAnimation');
             
-            // Показываем руку
             setTimeout(() => {
                 handContainer.classList.add('visible');
             }, 500);
             
-            // Убираем руку через 3 секунды
             setTimeout(() => {
                 handContainer.classList.remove('visible');
                 setTimeout(() => {
@@ -760,16 +728,10 @@
                 const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
                 const seconds = Math.floor((diff % (1000 * 60)) / 1000);
                 
-                // Обновляем оба таймера
                 document.getElementById('days').textContent = days.toString().padStart(2, '0');
                 document.getElementById('hours').textContent = hours.toString().padStart(2, '0');
                 document.getElementById('minutes').textContent = minutes.toString().padStart(2, '0');
                 document.getElementById('seconds').textContent = seconds.toString().padStart(2, '0');
-                
-                document.getElementById('days2').textContent = days.toString().padStart(2, '0');
-                document.getElementById('hours2').textContent = hours.toString().padStart(2, '0');
-                document.getElementById('minutes2').textContent = minutes.toString().padStart(2, '0');
-                document.getElementById('seconds2').textContent = seconds.toString().padStart(2, '0');
             }
         }
         
@@ -837,18 +799,14 @@
             const attendance = formData.get('attendance');
             const allergies = formData.get('allergies') || 'Нет';
             
-            // Формируем сообщение для WhatsApp
             const message = `Здравствуйте! Анкета гостя на свадьбу Фёдора и Полин.%0A%0A👤 Имя: ${name}%0A✅ Присутствие: ${attendance === 'yes' ? 'Да, приду' : 'Не смогу'}%0A🍽 Алергии/предпочтения: ${allergies}`;
             
-            // Открываем WhatsApp с предзаполненным сообщением
             window.open(`https://wa.me/79393658420?text=${message}`, '_blank');
             
-            // Показываем сообщение об успехе
             rsvpForm.style.display = 'none';
             successMessage.style.display = 'block';
         });
         
-        // Сброс формы
         function resetForm() {
             rsvpForm.reset();
             rsvpForm.style.display = 'block';
