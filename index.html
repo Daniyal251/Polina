@@ -62,85 +62,49 @@
             transform: translateX(-50%);
             z-index: 9999;
             transition: bottom 1.5s cubic-bezier(0.4, 0, 0.2, 1);
+            pointer-events: none;
         }
         
         .hand-container.visible {
-            bottom: 0;
+            bottom: 5%;
         }
         
         .hand-container img {
-            max-width: 400px;
-            width: 80vw;
+            max-width: 100%;
+            width: 400px;
             height: auto;
         }
         
-        /* Hero секция с затемнением */
-        .hero {
-            position: relative;
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            background: linear-gradient(135deg, #2D4739 0%, #1a2f24 100%);
-            overflow: hidden;
-        }
-        
-        .hero::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: url('images/page_1.png') center/cover no-repeat;
-            opacity: 0.15;
-        }
-        
-        /* Таймлайн */
-        .timeline-line::before {
-            content: '';
-            position: absolute;
-            left: 50%;
-            top: 0;
-            bottom: 0;
-            width: 1px;
-            background: linear-gradient(to bottom, #C9A962, #2D4739, #C9A962);
-            transform: translateX(-50%);
-        }
-        
-        @media (max-width: 768px) {
-            .timeline-line::before {
-                left: 20px;
+        @media (max-width: 640px) {
+            .hand-container img {
+                width: 280px;
             }
         }
         
-        /* Календарь */
-        .calendar-day {
-            transition: all 0.3s ease;
+        /* Пульсация даты */
+        @keyframes pulse-glow {
+            0%, 100% { 
+                transform: scale(1);
+                box-shadow: 0 0 0 0 rgba(201, 169, 98, 0.7);
+            }
+            50% { 
+                transform: scale(1.1);
+                box-shadow: 0 0 20px 10px rgba(201, 169, 98, 0);
+            }
         }
         
-        .calendar-day:hover {
-            transform: scale(1.1);
+        .date-pulse {
+            animation: pulse-glow 2s infinite;
         }
         
-        .calendar-day.highlighted {
-            background: #C9A962;
-            color: white;
-            animation: pulse 2s infinite;
-        }
-        
-        @keyframes pulse {
-            0%, 100% { transform: scale(1); }
-            50% { transform: scale(1.05); }
-        }
-        
-        /* Цветовые кружочки дресс-кода */
+        /* Цветовые кружочки */
         .color-swatch {
-            transition: all 0.3s ease;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
         
         .color-swatch:hover {
             transform: scale(1.15);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
         }
         
         /* Таймер */
@@ -151,8 +115,8 @@
         /* Плавное появление секций */
         .reveal-section {
             opacity: 0;
-            transform: translateY(50px);
-            transition: all 0.8s ease;
+            transform: translateY(30px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
         }
         
         .reveal-section.visible {
@@ -166,7 +130,7 @@
         }
         
         .main-nav.scrolled {
-            background: rgba(255, 255, 255, 0.95);
+            background: rgba(255, 255, 255, 0.98);
             backdrop-filter: blur(10px);
             box-shadow: 0 2px 20px rgba(0,0,0,0.1);
         }
@@ -174,6 +138,11 @@
         .main-nav.scrolled .nav-logo,
         .main-nav.scrolled .nav-link {
             color: #2D4739;
+        }
+        
+        /* Мобильное меню */
+        .mobile-menu {
+            transition: opacity 0.3s ease, visibility 0.3s ease;
         }
         
         /* Карта */
@@ -185,14 +154,20 @@
             overflow: hidden;
         }
         
-        /* Кнопка связи */
+        /* Кнопки связи */
         .contact-btn {
-            background: linear-gradient(135deg, #25D366 0%, #128C7E 100%);
             transition: all 0.3s ease;
         }
         
         .contact-btn:hover {
             transform: translateY(-3px);
+        }
+        
+        .contact-btn.whatsapp {
+            background: linear-gradient(135deg, #25D366 0%, #128C7E 100%);
+        }
+        
+        .contact-btn.whatsapp:hover {
             box-shadow: 0 10px 30px rgba(37, 211, 102, 0.4);
         }
         
@@ -204,7 +179,7 @@
             box-shadow: 0 10px 30px rgba(0, 136, 204, 0.4);
         }
         
-        /* Форма RSVP */
+        /* Форма */
         .form-input {
             transition: all 0.3s ease;
         }
@@ -262,12 +237,12 @@
             <a href="#hero" class="nav-logo font-heading text-2xl font-semibold text-white tracking-widest">Ф & П</a>
             
             <ul class="hidden md:flex gap-8 items-center">
-                <li><a href="#about" class="nav-link text-sm font-medium text-white uppercase tracking-wide hover:text-gold transition">О нас</a></li>
-                <li><a href="#calendar" class="nav-link text-sm font-medium text-white uppercase tracking-wide hover:text-gold transition">Календарь</a></li>
-                <li><a href="#program" class="nav-link text-sm font-medium text-white uppercase tracking-wide hover:text-gold transition">Программа</a></li>
-                <li><a href="#dresscode" class="nav-link text-sm font-medium text-white uppercase tracking-wide hover:text-gold transition">Дресс-код</a></li>
-                <li><a href="#details" class="nav-link text-sm font-medium text-white uppercase tracking-wide hover:text-gold transition">Детали</a></li>
-                <li><a href="#location" class="nav-link text-sm font-medium text-white uppercase tracking-wide hover:text-gold transition">Локация</a></li>
+                <li><a href="#about" class="nav-link text-sm font-medium uppercase tracking-wide hover:text-gold transition">О нас</a></li>
+                <li><a href="#calendar" class="nav-link text-sm font-medium uppercase tracking-wide hover:text-gold transition">Календарь</a></li>
+                <li><a href="#program" class="nav-link text-sm font-medium uppercase tracking-wide hover:text-gold transition">Программа</a></li>
+                <li><a href="#dresscode" class="nav-link text-sm font-medium uppercase tracking-wide hover:text-gold transition">Дресс-код</a></li>
+                <li><a href="#details" class="nav-link text-sm font-medium uppercase tracking-wide hover:text-gold transition">Детали</a></li>
+                <li><a href="#location" class="nav-link text-sm font-medium uppercase tracking-wide hover:text-gold transition">Локация</a></li>
                 <li><a href="#rsvp" class="bg-gold text-white px-5 py-2 rounded text-sm font-medium uppercase tracking-wide hover:bg-gold-light transition">Анкета</a></li>
             </ul>
             
@@ -279,7 +254,7 @@
         </div>
         
         <!-- Мобильное меню -->
-        <div class="mobile-menu fixed inset-0 bg-white opacity-0 invisible transition-all duration-300 z-40">
+        <div class="mobile-menu fixed inset-0 bg-white opacity-0 invisible z-40">
             <div class="flex flex-col items-center justify-center h-full gap-8">
                 <a href="#about" class="mobile-link text-2xl font-heading text-primary">О нас</a>
                 <a href="#calendar" class="mobile-link text-2xl font-heading text-primary">Календарь</a>
@@ -288,48 +263,51 @@
                 <a href="#details" class="mobile-link text-2xl font-heading text-primary">Детали</a>
                 <a href="#location" class="mobile-link text-2xl font-heading text-primary">Локация</a>
                 <a href="#rsvp" class="mobile-link text-2xl font-heading text-gold">Анкета гостя</a>
+                <button class="mobile-close absolute top-6 right-6 text-4xl text-primary">&times;</button>
             </div>
         </div>
     </nav>
 
     <!-- Hero секция -->
-    <section id="hero" class="hero">
-        <div class="relative z-10 text-center px-6">
-            <p class="hero-subtitle text-sm font-light tracking-[0.3em] uppercase text-white/90 mb-6" data-aos="fade-down" data-aos-delay="2000">Дорогой гость!</p>
+    <section id="hero" class="relative min-h-screen flex items-center justify-center bg-gradient-to-br from-primary to-primary-light overflow-hidden">
+        <div class="absolute inset-0 bg-[url('images/page_1.png')] bg-cover bg-center opacity-15"></div>
+        
+        <div class="relative z-10 text-center px-6 py-20">
+            <p class="text-sm font-light tracking-[0.3em] uppercase text-white/90 mb-6" data-aos="fade-down" data-aos-delay="2000">Дорогой гость!</p>
             
-            <h1 class="hero-title mb-8">
-                <span class="block font-heading text-[13vw] md:text-7xl lg:text-8xl font-normal italic leading-tight text-white" data-aos="fade-up" data-aos-delay="2200">Фёдор</span>
-                <span class="block font-heading text-[8vw] md:text-4xl lg:text-5xl text-gold my-3" data-aos="zoom-in" data-aos-delay="2400">&</span>
-                <span class="block font-heading text-[13vw] md:text-7xl lg:text-8xl font-normal italic leading-tight text-white" data-aos="fade-up" data-aos-delay="2600">Полин</span>
+            <h1 class="mb-8">
+                <span class="block font-heading text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-normal italic leading-tight text-white" data-aos="fade-up" data-aos-delay="2200">Фёдор</span>
+                <span class="block font-heading text-3xl sm:text-4xl lg:text-5xl text-gold my-3" data-aos="zoom-in" data-aos-delay="2400">&</span>
+                <span class="block font-heading text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-normal italic leading-tight text-white" data-aos="fade-up" data-aos-delay="2600">Полин</span>
             </h1>
             
-            <div class="hero-date flex items-center justify-center gap-5 mb-12" data-aos="fade-in" data-aos-delay="2800">
-                <div class="w-16 h-px bg-gold"></div>
-                <p class="text-lg font-light tracking-[0.15em] uppercase text-white">10 августа 2026</p>
-                <div class="w-16 h-px bg-gold"></div>
+            <div class="flex items-center justify-center gap-5 mb-8" data-aos="fade-in" data-aos-delay="2800">
+                <div class="w-12 sm:w-16 h-px bg-gold"></div>
+                <p class="text-base sm:text-lg font-light tracking-[0.15em] uppercase text-white">10 августа 2026</p>
+                <div class="w-12 sm:w-16 h-px bg-gold"></div>
             </div>
             
             <!-- Таймер -->
-            <div class="hero-countdown flex justify-center gap-6 md:gap-10 mb-16" data-aos="fade-up" data-aos-delay="3000">
+            <div class="flex flex-wrap justify-center gap-4 sm:gap-6 md:gap-10 mb-12" data-aos="fade-up" data-aos-delay="3000">
                 <div class="text-center">
-                    <span class="countdown-digit block font-heading text-4xl md:text-6xl font-semibold text-gold" id="days">00</span>
+                    <span class="countdown-digit block font-heading text-3xl sm:text-4xl md:text-6xl font-semibold text-gold" id="days">00</span>
                     <span class="text-xs font-light tracking-[0.1em] uppercase text-white/80 mt-2 block">дней</span>
                 </div>
                 <div class="text-center">
-                    <span class="countdown-digit block font-heading text-4xl md:text-6xl font-semibold text-gold" id="hours">00</span>
+                    <span class="countdown-digit block font-heading text-3xl sm:text-4xl md:text-6xl font-semibold text-gold" id="hours">00</span>
                     <span class="text-xs font-light tracking-[0.1em] uppercase text-white/80 mt-2 block">часов</span>
                 </div>
                 <div class="text-center">
-                    <span class="countdown-digit block font-heading text-4xl md:text-6xl font-semibold text-gold" id="minutes">00</span>
+                    <span class="countdown-digit block font-heading text-3xl sm:text-4xl md:text-6xl font-semibold text-gold" id="minutes">00</span>
                     <span class="text-xs font-light tracking-[0.1em] uppercase text-white/80 mt-2 block">минут</span>
                 </div>
                 <div class="text-center">
-                    <span class="countdown-digit block font-heading text-4xl md:text-6xl font-semibold text-gold" id="seconds">00</span>
+                    <span class="countdown-digit block font-heading text-3xl sm:text-4xl md:text-6xl font-semibold text-gold" id="seconds">00</span>
                     <span class="text-xs font-light tracking-[0.1em] uppercase text-white/80 mt-2 block">секунд</span>
                 </div>
             </div>
             
-            <a href="#about" class="scroll-down inline-flex flex-col items-center gap-2 text-white/70 hover:text-white transition group">
+            <a href="#about" class="inline-flex flex-col items-center gap-2 text-white/70 hover:text-white transition">
                 <span class="text-xs tracking-[0.1em] uppercase">Узнать больше</span>
                 <svg class="w-6 h-6 animate-bounce" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                     <path d="M12 5v14M5 12l7 7 7-7"/>
@@ -339,31 +317,31 @@
     </section>
 
     <!-- О нас / Приглашение -->
-    <section id="about" class="section py-20 md:py-32 bg-cream reveal-section">
+    <section id="about" class="py-16 sm:py-20 md:py-32 bg-cream">
         <div class="max-w-7xl mx-auto px-6">
-            <div class="text-center mb-16" data-aos="fade-up">
-                <span class="section-label text-sm font-medium tracking-[0.2em] uppercase text-gold block mb-3">Приглашение</span>
-                <h2 class="section-title font-heading text-4xl md:text-6xl font-normal text-primary">Дорогой гость!</h2>
+            <div class="text-center mb-12 md:mb-16" data-aos="fade-up">
+                <span class="text-sm font-medium tracking-[0.2em] uppercase text-gold block mb-3">Приглашение</span>
+                <h2 class="font-heading text-3xl sm:text-4xl md:text-6xl font-normal text-primary">Дорогой гость!</h2>
             </div>
             
-            <div class="grid md:grid-cols-2 gap-12 items-center">
-                <div class="about-text" data-aos="fade-right">
-                    <p class="lead text-xl leading-relaxed mb-6 text-gray-800">
+            <div class="grid md:grid-cols-2 gap-8 md:gap-12 items-center">
+                <div data-aos="fade-right">
+                    <p class="text-lg sm:text-xl leading-relaxed mb-6 text-gray-800">
                         Если в твои руки попало это приглашение, значит ты будешь в первых рядах главной премьеры нашей жизни — <em class="font-heading italic text-primary">рождение семьи!</em>
                     </p>
                     <p class="mb-6 text-gray-600 leading-relaxed">
                         Мы официально женимся и очень хотим видеть тебя на нашей свадьбе.
                     </p>
-                    <div class="quote-block bg-ivory border-l-4 border-gold p-8 mt-8">
-                        <p class="font-heading text-xl italic leading-relaxed text-primary m-0">
+                    <div class="bg-ivory border-l-4 border-gold p-6 sm:p-8 mt-8">
+                        <p class="font-heading text-lg sm:text-xl italic leading-relaxed text-primary m-0">
                             Словно в самом романтичном фильме мы будем отмечать торжество под звуки уходящего лета, тёплого ветерка, шепчущего ноты августовской свежести и природной свободы.
                         </p>
                     </div>
                 </div>
-                <div class="about-image flex justify-center" data-aos="fade-left">
+                <div class="flex justify-center" data-aos="fade-left">
                     <div class="relative bg-white p-4 shadow-xl">
                         <div class="absolute -top-3 -left-3 right-6 bottom-6 border border-gold -z-10"></div>
-                        <img src="images/card_crop.png" alt="Фёдор и Полин" class="max-w-md w-full">
+                        <img src="images/card_crop.png" alt="Фёдор и Полин" class="max-w-full sm:max-w-md w-full">
                     </div>
                 </div>
             </div>
@@ -371,17 +349,17 @@
     </section>
 
     <!-- Календарь -->
-    <section id="calendar" class="section py-20 md:py-32 bg-white reveal-section">
+    <section id="calendar" class="py-16 sm:py-20 md:py-32 bg-white">
         <div class="max-w-7xl mx-auto px-6">
-            <div class="text-center mb-16" data-aos="fade-up">
-                <span class="section-label text-sm font-medium tracking-[0.2em] uppercase text-gold block mb-3">Дата</span>
-                <h2 class="section-title font-heading text-4xl md:text-6xl font-normal text-primary">Август 2026</h2>
+            <div class="text-center mb-12 md:mb-16" data-aos="fade-up">
+                <span class="text-sm font-medium tracking-[0.2em] uppercase text-gold block mb-3">Дата</span>
+                <h2 class="font-heading text-3xl sm:text-4xl md:text-6xl font-normal text-primary">Август 2026</h2>
             </div>
             
-            <div class="max-w-2xl mx-auto" data-aos="zoom-in">
-                <div class="bg-ivory rounded-2xl p-6 md:p-10 shadow-lg">
+            <div class="flex justify-center" data-aos="zoom-in">
+                <div class="bg-ivory rounded-2xl p-4 sm:p-6 md:p-10 shadow-lg w-full max-w-2xl">
                     <!-- Дни недели -->
-                    <div class="grid grid-cols-7 gap-2 mb-4">
+                    <div class="grid grid-cols-7 gap-1 sm:gap-2 mb-3 sm:mb-4">
                         <div class="text-center text-xs font-medium text-gold uppercase tracking-wide">Пн</div>
                         <div class="text-center text-xs font-medium text-gold uppercase tracking-wide">Вт</div>
                         <div class="text-center text-xs font-medium text-gold uppercase tracking-wide">Ср</div>
@@ -392,42 +370,12 @@
                     </div>
                     
                     <!-- Дни месяца -->
-                    <div class="grid grid-cols-7 gap-2" id="calendarGrid">
-                        <!-- Пустые ячейки до 1 августа (суббота) -->
-                        <div class="calendar-day"></div>
-                        <div class="calendar-day"></div>
-                        <div class="calendar-day"></div>
-                        <div class="calendar-day"></div>
-                        <div class="calendar-day"></div>
-                        
-                        <!-- Дни августа 2026 -->
-                        <script>
-                            const calendarGrid = document.getElementById('calendarGrid');
-                            // 1 августа 2026 - суббота
-                            for (let i = 1; i <= 31; i++) {
-                                const dayDiv = document.createElement('div');
-                                dayDiv.className = 'calendar-day aspect-square flex items-center justify-center text-sm md:text-base font-medium rounded-lg bg-white text-gray-700 shadow-sm';
-                                dayDiv.textContent = i;
-                                
-                                // Выделение выходных
-                                const dayOfWeek = new Date(2026, 7, i).getDay();
-                                if (dayOfWeek === 0 || dayOfWeek === 6) {
-                                    dayDiv.classList.add('text-red-500');
-                                }
-                                
-                                // Выделение даты свадьбы
-                                if (i === 10) {
-                                    dayDiv.classList.add('highlighted', 'text-white');
-                                    dayDiv.innerHTML = `${i}<span class="text-[8px] block">💍</span>`;
-                                }
-                                
-                                calendarGrid.appendChild(dayDiv);
-                            }
-                        </script>
+                    <div class="grid grid-cols-7 gap-1 sm:gap-2" id="calendarGrid">
+                        <!-- Генерируется JavaScript -->
                     </div>
                     
-                    <div class="text-center mt-8">
-                        <p class="font-heading text-2xl text-primary italic">Воскресенье, 10 августа 2026</p>
+                    <div class="text-center mt-6 sm:mt-8">
+                        <p class="font-heading text-xl sm:text-2xl text-primary italic">Воскресенье, 10 августа 2026</p>
                     </div>
                 </div>
             </div>
@@ -435,65 +383,68 @@
     </section>
 
     <!-- Программа дня -->
-    <section id="program" class="section py-20 md:py-32 bg-ivory reveal-section">
+    <section id="program" class="py-16 sm:py-20 md:py-32 bg-ivory">
         <div class="max-w-7xl mx-auto px-6">
-            <div class="text-center mb-16" data-aos="fade-up">
-                <span class="section-label text-sm font-medium tracking-[0.2em] uppercase text-gold block mb-3">Расписание</span>
-                <h2 class="section-title font-heading text-4xl md:text-6xl font-normal text-primary">Программа дня</h2>
+            <div class="text-center mb-12 md:mb-16" data-aos="fade-up">
+                <span class="text-sm font-medium tracking-[0.2em] uppercase text-gold block mb-3">Расписание</span>
+                <h2 class="font-heading text-3xl sm:text-4xl md:text-6xl font-normal text-primary">Программа дня</h2>
             </div>
             
-            <div class="timeline-line relative max-w-3xl mx-auto">
+            <div class="relative max-w-3xl mx-auto">
+                <!-- Линия таймлайна (только desktop) -->
+                <div class="hidden md:block absolute left-1/2 top-0 bottom-0 w-px bg-gold -translate-x-1/2"></div>
+                
                 <!-- 15:00 -->
-                <div class="timeline-item flex items-start mb-12 md:mb-16 relative" data-aos="fade-right">
-                    <div class="hidden md:block md:w-1/2 md:pr-12 md:text-right">
-                        <div class="timeline-time inline-block bg-gold text-white px-4 py-2 rounded font-heading text-lg font-semibold mb-4">15:00</div>
+                <div class="flex items-start mb-8 md:mb-16 relative" data-aos="fade-right">
+                    <div class="md:w-1/2 md:pr-12 md:text-right">
+                        <div class="inline-block bg-gold text-white px-4 py-2 rounded font-heading text-lg font-semibold mb-3 md:mb-4">15:00</div>
                     </div>
+                    <div class="hidden md:flex absolute left-1/2 top-6 w-4 h-4 bg-primary rounded-full -translate-x-1/2 z-10"></div>
                     <div class="md:w-1/2 md:pl-12">
-                        <div class="md:hidden timeline-time inline-block bg-gold text-white px-4 py-2 rounded font-heading text-lg font-semibold mb-4 ml-16">15:00</div>
                         <div class="bg-white p-6 rounded-xl shadow-lg">
-                            <div class="w-14 h-14 bg-ivory rounded-full flex items-center justify-center mb-4">
-                                <svg class="w-7 h-7 text-primary" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                            <div class="w-12 h-12 sm:w-14 sm:h-14 bg-ivory rounded-full flex items-center justify-center mb-4">
+                                <svg class="w-6 h-6 sm:w-7 sm:h-7 text-primary" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
                                     <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
                                     <circle cx="9" cy="7" r="4"/>
                                     <path d="M23 21v-2a4 4 0 0 0-3-3.87"/>
                                     <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
                                 </svg>
                             </div>
-                            <h3 class="font-heading text-2xl font-semibold text-primary mb-2">Сбор гостей</h3>
-                            <p class="text-gray-600">Интерактивы на Welcome-зоне, фуршет, новые знакомства</p>
+                            <h3 class="font-heading text-xl sm:text-2xl font-semibold text-primary mb-2">Сбор гостей</h3>
+                            <p class="text-gray-600 text-sm sm:text-base">Интерактивы на Welcome-зоне, фуршет, новые знакомства</p>
                         </div>
                     </div>
                 </div>
                 
                 <!-- 16:00 -->
-                <div class="timeline-item flex items-start mb-12 md:mb-16 relative" data-aos="fade-left">
-                    <div class="hidden md:block md:w-1/2 md:pr-12 md:text-right">
-                        <div class="timeline-time inline-block bg-gold text-white px-4 py-2 rounded font-heading text-lg font-semibold mb-4">16:00</div>
+                <div class="flex items-start mb-8 md:mb-16 relative" data-aos="fade-left">
+                    <div class="md:w-1/2 md:pr-12 md:text-right">
+                        <div class="inline-block bg-gold text-white px-4 py-2 rounded font-heading text-lg font-semibold mb-3 md:mb-4">16:00</div>
                     </div>
+                    <div class="hidden md:flex absolute left-1/2 top-6 w-4 h-4 bg-primary rounded-full -translate-x-1/2 z-10"></div>
                     <div class="md:w-1/2 md:pl-12">
-                        <div class="md:hidden timeline-time inline-block bg-gold text-white px-4 py-2 rounded font-heading text-lg font-semibold mb-4 ml-16">16:00</div>
                         <div class="bg-white p-6 rounded-xl shadow-lg">
-                            <div class="w-14 h-14 bg-ivory rounded-full flex items-center justify-center mb-4">
-                                <svg class="w-7 h-7 text-primary" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                            <div class="w-12 h-12 sm:w-14 sm:h-14 bg-ivory rounded-full flex items-center justify-center mb-4">
+                                <svg class="w-6 h-6 sm:w-7 sm:h-7 text-primary" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
                                     <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
                                 </svg>
                             </div>
-                            <h3 class="font-heading text-2xl font-semibold text-primary mb-2">Торжественная церемония</h3>
-                            <p class="text-gray-600">Клятвы, обмен кольцами, фотосессия и много любви</p>
+                            <h3 class="font-heading text-xl sm:text-2xl font-semibold text-primary mb-2">Торжественная церемония</h3>
+                            <p class="text-gray-600 text-sm sm:text-base">Клятвы, обмен кольцами, фотосессия и много любви</p>
                         </div>
                     </div>
                 </div>
                 
                 <!-- 17:00 -->
-                <div class="timeline-item flex items-start mb-12 md:mb-16 relative" data-aos="fade-right">
-                    <div class="hidden md:block md:w-1/2 md:pr-12 md:text-right">
-                        <div class="timeline-time inline-block bg-gold text-white px-4 py-2 rounded font-heading text-lg font-semibold mb-4">17:00</div>
+                <div class="flex items-start mb-8 md:mb-16 relative" data-aos="fade-right">
+                    <div class="md:w-1/2 md:pr-12 md:text-right">
+                        <div class="inline-block bg-gold text-white px-4 py-2 rounded font-heading text-lg font-semibold mb-3 md:mb-4">17:00</div>
                     </div>
+                    <div class="hidden md:flex absolute left-1/2 top-6 w-4 h-4 bg-primary rounded-full -translate-x-1/2 z-10"></div>
                     <div class="md:w-1/2 md:pl-12">
-                        <div class="md:hidden timeline-time inline-block bg-gold text-white px-4 py-2 rounded font-heading text-lg font-semibold mb-4 ml-16">17:00</div>
                         <div class="bg-white p-6 rounded-xl shadow-lg">
-                            <div class="w-14 h-14 bg-ivory rounded-full flex items-center justify-center mb-4">
-                                <svg class="w-7 h-7 text-primary" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                            <div class="w-12 h-12 sm:w-14 sm:h-14 bg-ivory rounded-full flex items-center justify-center mb-4">
+                                <svg class="w-6 h-6 sm:w-7 sm:h-7 text-primary" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
                                     <path d="M18 8h1a4 4 0 0 1 0 8h-1"/>
                                     <path d="M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8z"/>
                                     <line x1="6" y1="1" x2="6" y2="4"/>
@@ -501,27 +452,27 @@
                                     <line x1="14" y1="1" x2="14" y2="4"/>
                                 </svg>
                             </div>
-                            <h3 class="font-heading text-2xl font-semibold text-primary mb-2">Банкет</h3>
-                            <p class="text-gray-600">Банкетная часть, основная программа, вечеринка и after-party</p>
+                            <h3 class="font-heading text-xl sm:text-2xl font-semibold text-primary mb-2">Банкет</h3>
+                            <p class="text-gray-600 text-sm sm:text-base">Банкетная часть, основная программа, вечеринка и after-party</p>
                         </div>
                     </div>
                 </div>
                 
                 <!-- 23:00 -->
-                <div class="timeline-item flex items-start relative" data-aos="fade-left">
-                    <div class="hidden md:block md:w-1/2 md:pr-12 md:text-right">
-                        <div class="timeline-time inline-block bg-gold text-white px-4 py-2 rounded font-heading text-lg font-semibold mb-4">23:00</div>
+                <div class="flex items-start relative" data-aos="fade-left">
+                    <div class="md:w-1/2 md:pr-12 md:text-right">
+                        <div class="inline-block bg-gold text-white px-4 py-2 rounded font-heading text-lg font-semibold mb-3 md:mb-4">23:00</div>
                     </div>
+                    <div class="hidden md:flex absolute left-1/2 top-6 w-4 h-4 bg-primary rounded-full -translate-x-1/2 z-10"></div>
                     <div class="md:w-1/2 md:pl-12">
-                        <div class="md:hidden timeline-time inline-block bg-gold text-white px-4 py-2 rounded font-heading text-lg font-semibold mb-4 ml-16">23:00</div>
                         <div class="bg-white p-6 rounded-xl shadow-lg">
-                            <div class="w-14 h-14 bg-ivory rounded-full flex items-center justify-center mb-4">
-                                <svg class="w-7 h-7 text-primary" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                            <div class="w-12 h-12 sm:w-14 sm:h-14 bg-ivory rounded-full flex items-center justify-center mb-4">
+                                <svg class="w-6 h-6 sm:w-7 sm:h-7 text-primary" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
                                     <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
                                 </svg>
                             </div>
-                            <h3 class="font-heading text-2xl font-semibold text-primary mb-2">Завершение вечера</h3>
-                            <p class="text-gray-600">Живой коридор и тёплые слова на прощание</p>
+                            <h3 class="font-heading text-xl sm:text-2xl font-semibold text-primary mb-2">Завершение вечера</h3>
+                            <p class="text-gray-600 text-sm sm:text-base">Живой коридор и тёплые слова на прощание</p>
                         </div>
                     </div>
                 </div>
@@ -530,29 +481,29 @@
     </section>
 
     <!-- Дресс-код -->
-    <section id="dresscode" class="section py-20 md:py-32 bg-white reveal-section">
+    <section id="dresscode" class="py-16 sm:py-20 md:py-32 bg-white">
         <div class="max-w-7xl mx-auto px-6">
-            <div class="text-center mb-16" data-aos="fade-up">
-                <span class="section-label text-sm font-medium tracking-[0.2em] uppercase text-gold block mb-3">Стиль</span>
-                <h2 class="section-title font-heading text-4xl md:text-6xl font-normal text-primary">Дресс-код</h2>
+            <div class="text-center mb-12 md:mb-16" data-aos="fade-up">
+                <span class="text-sm font-medium tracking-[0.2em] uppercase text-gold block mb-3">Стиль</span>
+                <h2 class="font-heading text-3xl sm:text-4xl md:text-6xl font-normal text-primary">Дресс-код</h2>
             </div>
             
             <div class="max-w-3xl mx-auto text-center">
-                <div class="inline-block bg-black px-10 py-4 mb-8" data-aos="zoom-in">
-                    <span class="font-heading text-2xl font-medium text-white tracking-[0.15em] uppercase">Black Tie</span>
+                <div class="inline-block bg-black px-8 sm:px-10 py-3 sm:py-4 mb-6 sm:mb-8" data-aos="zoom-in">
+                    <span class="font-heading text-xl sm:text-2xl font-medium text-white tracking-[0.15em] uppercase">Black Tie</span>
                 </div>
                 
-                <p class="text-lg leading-relaxed text-gray-700 mb-12" data-aos="fade-up">
+                <p class="text-base sm:text-lg leading-relaxed text-gray-700 mb-8 sm:mb-12" data-aos="fade-up">
                     Мы долго готовились к этому дню и будем благодарны вам, если при выборе нарядов вы учтёте цветовую гамму нашего торжества.
                 </p>
                 
                 <!-- Цветовая палитра -->
-                <div class="flex flex-wrap justify-center gap-4 mb-12" data-aos="zoom-in" data-aos-delay="200">
-                    <div class="color-swatch w-16 h-16 rounded-full shadow-md cursor-pointer" style="background: #2D4739;" title="Тёмно-зелёный"></div>
-                    <div class="color-swatch w-16 h-16 rounded-full shadow-md cursor-pointer" style="background: #1a1a1a;" title="Чёрный"></div>
-                    <div class="color-swatch w-16 h-16 rounded-full shadow-md cursor-pointer" style="background: #C9A962;" title="Золотой"></div>
-                    <div class="color-swatch w-16 h-16 rounded-full shadow-md cursor-pointer" style="background: #F5F0E8;" title="Айвори"></div>
-                    <div class="color-swatch w-16 h-16 rounded-full shadow-md cursor-pointer" style="background: #8B7355;" title="Шоколадный"></div>
+                <div class="flex flex-wrap justify-center gap-3 sm:gap-4 mb-8 sm:mb-12" data-aos="zoom-in" data-aos-delay="200">
+                    <div class="color-swatch w-12 h-12 sm:w-16 sm:h-16 rounded-full shadow-md cursor-pointer" style="background: #2D4739;" title="Тёмно-зелёный"></div>
+                    <div class="color-swatch w-12 h-12 sm:w-16 sm:h-16 rounded-full shadow-md cursor-pointer" style="background: #1a1a1a;" title="Чёрный"></div>
+                    <div class="color-swatch w-12 h-12 sm:w-16 sm:h-16 rounded-full shadow-md cursor-pointer" style="background: #C9A962;" title="Золотой"></div>
+                    <div class="color-swatch w-12 h-12 sm:w-16 sm:h-16 rounded-full shadow-md cursor-pointer" style="background: #F5F0E8;" title="Айвори"></div>
+                    <div class="color-swatch w-12 h-12 sm:w-16 sm:h-16 rounded-full shadow-md cursor-pointer" style="background: #8B7355;" title="Шоколадный"></div>
                 </div>
                 
                 <p class="text-gray-600 leading-relaxed" data-aos="fade-up">
@@ -563,32 +514,32 @@
     </section>
 
     <!-- Пожелания и детали -->
-    <section id="details" class="section py-20 md:py-32 bg-ivory reveal-section">
+    <section id="details" class="py-16 sm:py-20 md:py-32 bg-ivory">
         <div class="max-w-7xl mx-auto px-6">
-            <div class="text-center mb-16" data-aos="fade-up">
-                <span class="section-label text-sm font-medium tracking-[0.2em] uppercase text-gold block mb-3">Важно</span>
-                <h2 class="section-title font-heading text-4xl md:text-6xl font-normal text-primary">Пожелания</h2>
+            <div class="text-center mb-12 md:mb-16" data-aos="fade-up">
+                <span class="text-sm font-medium tracking-[0.2em] uppercase text-gold block mb-3">Важно</span>
+                <h2 class="font-heading text-3xl sm:text-4xl md:text-6xl font-normal text-primary">Пожелания</h2>
             </div>
             
-            <div class="grid md:grid-cols-3 gap-8">
+            <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
                 <!-- Без Горько -->
-                <div class="detail-card bg-white p-10 rounded-xl shadow-lg text-center hover:-translate-y-2 transition-transform duration-300" data-aos="fade-up" data-aos-delay="0">
-                    <div class="w-20 h-20 bg-ivory rounded-full flex items-center justify-center mx-auto mb-6">
-                        <svg class="w-10 h-10 text-primary" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                <div class="bg-white p-6 sm:p-8 md:p-10 rounded-xl shadow-lg text-center hover:-translate-y-2 transition-transform duration-300" data-aos="fade-up" data-aos-delay="0">
+                    <div class="w-16 h-16 sm:w-20 sm:h-20 bg-ivory rounded-full flex items-center justify-center mx-auto mb-4 sm:mb-6">
+                        <svg class="w-8 h-8 sm:w-10 sm:h-10 text-primary" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
                             <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
                             <line x1="4" y1="4" x2="20" y2="20" stroke-width="2"/>
                         </svg>
                     </div>
-                    <h3 class="font-heading text-2xl font-semibold text-primary mb-4">Без «Горько»</h3>
-                    <p class="text-gray-600 leading-relaxed">
+                    <h3 class="font-heading text-xl sm:text-2xl font-semibold text-primary mb-3 sm:mb-4">Без «Горько»</h3>
+                    <p class="text-gray-600 text-sm sm:text-base leading-relaxed">
                         Будем благодарны, если вы воздержитесь от криков «Горько» на празднике, ведь поцелуй — это знак выражения чувств, он не может быть по заказу.
                     </p>
                 </div>
                 
                 <!-- Меню -->
-                <div class="detail-card bg-white p-10 rounded-xl shadow-lg text-center hover:-translate-y-2 transition-transform duration-300" data-aos="fade-up" data-aos-delay="100">
-                    <div class="w-20 h-20 bg-ivory rounded-full flex items-center justify-center mx-auto mb-6">
-                        <svg class="w-10 h-10 text-primary" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                <div class="bg-white p-6 sm:p-8 md:p-10 rounded-xl shadow-lg text-center hover:-translate-y-2 transition-transform duration-300" data-aos="fade-up" data-aos-delay="100">
+                    <div class="w-16 h-16 sm:w-20 sm:h-20 bg-ivory rounded-full flex items-center justify-center mx-auto mb-4 sm:mb-6">
+                        <svg class="w-8 h-8 sm:w-10 sm:h-10 text-primary" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
                             <path d="M18 8h1a4 4 0 0 1 0 8h-1"/>
                             <path d="M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8z"/>
                             <line x1="6" y1="1" x2="6" y2="4"/>
@@ -596,22 +547,22 @@
                             <line x1="14" y1="1" x2="14" y2="4"/>
                         </svg>
                     </div>
-                    <h3 class="font-heading text-2xl font-semibold text-primary mb-4">Меню</h3>
-                    <p class="text-gray-600 leading-relaxed">
+                    <h3 class="font-heading text-xl sm:text-2xl font-semibold text-primary mb-3 sm:mb-4">Меню</h3>
+                    <p class="text-gray-600 text-sm sm:text-base leading-relaxed">
                         Меню будет разнообразное и вкусное. Во избежание неприятных ситуаций, просим заранее уведомить нас о наличии аллергии на определённые продукты.
                     </p>
                 </div>
                 
                 <!-- Подарки -->
-                <div class="detail-card bg-white p-10 rounded-xl shadow-lg text-center hover:-translate-y-2 transition-transform duration-300" data-aos="fade-up" data-aos-delay="200">
-                    <div class="w-20 h-20 bg-ivory rounded-full flex items-center justify-center mx-auto mb-6">
-                        <svg class="w-10 h-10 text-primary" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                <div class="bg-white p-6 sm:p-8 md:p-10 rounded-xl shadow-lg text-center hover:-translate-y-2 transition-transform duration-300 sm:col-span-2 lg:col-span-1" data-aos="fade-up" data-aos-delay="200">
+                    <div class="w-16 h-16 sm:w-20 sm:h-20 bg-ivory rounded-full flex items-center justify-center mx-auto mb-4 sm:mb-6">
+                        <svg class="w-8 h-8 sm:w-10 sm:h-10 text-primary" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
                             <rect x="2" y="7" width="20" height="14" rx="2" ry="2"/>
                             <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/>
                         </svg>
                     </div>
-                    <h3 class="font-heading text-2xl font-semibold text-primary mb-4">Подарки</h3>
-                    <p class="text-gray-600 leading-relaxed">
+                    <h3 class="font-heading text-xl sm:text-2xl font-semibold text-primary mb-3 sm:mb-4">Подарки</h3>
+                    <p class="text-gray-600 text-sm sm:text-base leading-relaxed">
                         Мы решили отказаться от материальных подарков в пользу денежных взносов. Это поможет нам реализовать наши совместные мечты: от путешествия до обустройства дома.
                     </p>
                 </div>
@@ -620,66 +571,66 @@
     </section>
 
     <!-- Таймер (отдельный блок) -->
-    <section class="section py-20 md:py-32 bg-gradient-to-br from-primary to-primary-light reveal-section">
+    <section class="py-16 sm:py-20 md:py-32 bg-gradient-to-br from-primary to-primary-light">
         <div class="max-w-7xl mx-auto px-6 text-center">
-            <h2 class="font-heading text-4xl md:text-6xl font-normal text-white mb-12" data-aos="fade-up">До свадьбы осталось</h2>
+            <h2 class="font-heading text-3xl sm:text-4xl md:text-6xl font-normal text-white mb-8 sm:mb-12" data-aos="fade-up">До свадьбы осталось</h2>
             
-            <div class="flex flex-wrap justify-center gap-8 md:gap-16" data-aos="zoom-in">
+            <div class="flex flex-wrap justify-center gap-6 sm:gap-10 md:gap-16" data-aos="zoom-in">
                 <div class="text-center">
-                    <span class="countdown-digit block font-heading text-6xl md:text-8xl font-semibold text-gold" id="days2">00</span>
-                    <span class="text-sm md:text-base font-light tracking-[0.15em] uppercase text-white/80 mt-4 block">дней</span>
+                    <span class="countdown-digit block font-heading text-5xl sm:text-6xl md:text-8xl font-semibold text-gold" id="days2">00</span>
+                    <span class="text-xs sm:text-sm md:text-base font-light tracking-[0.15em] uppercase text-white/80 mt-3 sm:mt-4 block">дней</span>
                 </div>
                 <div class="text-center">
-                    <span class="countdown-digit block font-heading text-6xl md:text-8xl font-semibold text-gold" id="hours2">00</span>
-                    <span class="text-sm md:text-base font-light tracking-[0.15em] uppercase text-white/80 mt-4 block">часов</span>
+                    <span class="countdown-digit block font-heading text-5xl sm:text-6xl md:text-8xl font-semibold text-gold" id="hours2">00</span>
+                    <span class="text-xs sm:text-sm md:text-base font-light tracking-[0.15em] uppercase text-white/80 mt-3 sm:mt-4 block">часов</span>
                 </div>
                 <div class="text-center">
-                    <span class="countdown-digit block font-heading text-6xl md:text-8xl font-semibold text-gold" id="minutes2">00</span>
-                    <span class="text-sm md:text-base font-light tracking-[0.15em] uppercase text-white/80 mt-4 block">минут</span>
+                    <span class="countdown-digit block font-heading text-5xl sm:text-6xl md:text-8xl font-semibold text-gold" id="minutes2">00</span>
+                    <span class="text-xs sm:text-sm md:text-base font-light tracking-[0.15em] uppercase text-white/80 mt-3 sm:mt-4 block">минут</span>
                 </div>
                 <div class="text-center">
-                    <span class="countdown-digit block font-heading text-6xl md:text-8xl font-semibold text-gold" id="seconds2">00</span>
-                    <span class="text-sm md:text-base font-light tracking-[0.15em] uppercase text-white/80 mt-4 block">секунд</span>
+                    <span class="countdown-digit block font-heading text-5xl sm:text-6xl md:text-8xl font-semibold text-gold" id="seconds2">00</span>
+                    <span class="text-xs sm:text-sm md:text-base font-light tracking-[0.15em] uppercase text-white/80 mt-3 sm:mt-4 block">секунд</span>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- Локация и контакты -->
-    <section id="location" class="section py-20 md:py-32 bg-white reveal-section">
+    <section id="location" class="py-16 sm:py-20 md:py-32 bg-white">
         <div class="max-w-7xl mx-auto px-6">
-            <div class="text-center mb-16" data-aos="fade-up">
-                <span class="section-label text-sm font-medium tracking-[0.2em] uppercase text-gold block mb-3">Место</span>
-                <h2 class="section-title font-heading text-4xl md:text-6xl font-normal text-primary">Локация</h2>
+            <div class="text-center mb-12 md:mb-16" data-aos="fade-up">
+                <span class="text-sm font-medium tracking-[0.2em] uppercase text-gold block mb-3">Место</span>
+                <h2 class="font-heading text-3xl sm:text-4xl md:text-6xl font-normal text-primary">Локация</h2>
             </div>
             
-            <div class="grid lg:grid-cols-2 gap-12 items-start">
-                <div class="space-y-8" data-aos="fade-right">
+            <div class="grid lg:grid-cols-2 gap-8 lg:gap-12 items-start">
+                <div class="space-y-6 sm:space-y-8" data-aos="fade-right">
                     <!-- Площадка -->
-                    <div class="bg-ivory p-8 rounded-xl">
-                        <h3 class="font-heading text-4xl font-semibold text-primary mb-3">Urman House</h3>
-                        <p class="text-gray-600">Вводите в Яндекс.Картах именно так, ближе к дате свадьбы мы скинем вам схему проезда.</p>
+                    <div class="bg-ivory p-6 sm:p-8 rounded-xl">
+                        <h3 class="font-heading text-3xl sm:text-4xl font-semibold text-primary mb-3">Urman House</h3>
+                        <p class="text-gray-600 text-sm sm:text-base">Вводите в Яндекс.Картах именно так, ближе к дате свадьбы мы скинем вам схему проезда.</p>
                     </div>
                     
                     <!-- Контакты -->
-                    <div class="bg-ivory p-8 rounded-xl">
-                        <h4 class="font-heading text-xl font-semibold text-primary mb-6">Контакты организатора</h4>
-                        <div class="space-y-4">
-                            <p class="text-lg">
+                    <div class="bg-ivory p-6 sm:p-8 rounded-xl">
+                        <h4 class="font-heading text-lg sm:text-xl font-semibold text-primary mb-4 sm:mb-6">Контакты организатора</h4>
+                        <div class="space-y-3 sm:space-y-4">
+                            <p class="text-base sm:text-lg">
                                 <span class="text-gray-600">Организатор:</span>
                                 <span class="font-medium text-primary ml-2">Динара</span>
                             </p>
-                            <a href="tel:+79393658420" class="block text-xl font-medium text-gold hover:text-gold-light transition">+7 (939) 365-84-20</a>
+                            <a href="tel:+79393658420" class="block text-lg sm:text-xl font-medium text-gold hover:text-gold-light transition">+7 (939) 365-84-20</a>
                             
                             <!-- Кнопки связи -->
-                            <div class="flex flex-wrap gap-4 mt-6">
-                                <a href="https://wa.me/79393658420?text=Здравствуйте!%20У%20меня%20вопрос%20по%20свадьбе%20Фёдора%20и%20Полин" target="_blank" class="contact-btn text-white px-6 py-3 rounded-lg font-medium flex items-center gap-2">
+                            <div class="flex flex-wrap gap-3 sm:gap-4 mt-4 sm:mt-6">
+                                <a href="https://wa.me/79393658420?text=Здравствуйте!%20У%20меня%20вопрос%20по%20свадьбе%20Фёдора%20и%20Полин" target="_blank" rel="noopener" class="contact-btn whatsapp text-white px-5 sm:px-6 py-2.5 sm:py-3 rounded-lg font-medium flex items-center gap-2 text-sm sm:text-base">
                                     <svg class="w-5 h-5" viewBox="0 0 24 24" fill="currentColor">
                                         <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/>
                                     </svg>
                                     WhatsApp
                                 </a>
-                                <a href="https://t.me/+79393658420" target="_blank" class="contact-btn telegram text-white px-6 py-3 rounded-lg font-medium flex items-center gap-2">
+                                <a href="https://t.me/+79393658420" target="_blank" rel="noopener" class="contact-btn telegram text-white px-5 sm:px-6 py-2.5 sm:py-3 rounded-lg font-medium flex items-center gap-2 text-sm sm:text-base">
                                     <svg class="w-5 h-5" viewBox="0 0 24 24" fill="currentColor">
                                         <path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/>
                                     </svg>
@@ -691,10 +642,10 @@
                 </div>
                 
                 <!-- Яндекс Карта -->
-                <div class="h-[500px]" data-aos="fade-left">
+                <div class="h-96 sm:h-[500px]" data-aos="fade-left">
                     <iframe 
                         src="https://yandex.ru/map-widget/v1/?ll=55.971353%2C55.720632&z=10"
-                        class="yandex-map border-0"
+                        class="w-full h-full border-0"
                         frameborder="0"
                         allowfullscreen="true">
                     </iframe>
@@ -704,14 +655,14 @@
     </section>
 
     <!-- Анкета гостя (RSVP) -->
-    <section id="rsvp" class="section py-20 md:py-32 bg-ivory reveal-section">
+    <section id="rsvp" class="py-16 sm:py-20 md:py-32 bg-ivory">
         <div class="max-w-3xl mx-auto px-6">
-            <div class="text-center mb-16" data-aos="fade-up">
-                <span class="section-label text-sm font-medium tracking-[0.2em] uppercase text-gold block mb-3">RSVP</span>
-                <h2 class="section-title font-heading text-4xl md:text-6xl font-normal text-primary">Анкета гостя</h2>
+            <div class="text-center mb-12 md:mb-16" data-aos="fade-up">
+                <span class="text-sm font-medium tracking-[0.2em] uppercase text-gold block mb-3">RSVP</span>
+                <h2 class="font-heading text-3xl sm:text-4xl md:text-6xl font-normal text-primary">Анкета гостя</h2>
             </div>
             
-            <div class="bg-white p-8 md:p-12 rounded-2xl shadow-xl" data-aos="fade-up">
+            <div class="bg-white p-6 sm:p-8 md:p-12 rounded-2xl shadow-xl" data-aos="fade-up">
                 <!-- Форма -->
                 <form id="rsvpForm" class="space-y-6">
                     <div>
@@ -764,7 +715,7 @@
                         </svg>
                     </div>
                     <h3 class="font-heading text-3xl font-semibold text-primary mb-4">Спасибо!</h3>
-                    <p class="text-gray-600 mb-6">Ваш ответ успешно отправлен. Мы свяжемся с вами в ближайшее время.</p>
+                    <p class="text-gray-600 mb-6">Ваш ответ отправлен. Мы свяжемся с вами в ближайшее время.</p>
                     <button onclick="resetForm()" class="text-gold hover:text-gold-light font-medium underline">Отправить ещё один ответ</button>
                 </div>
             </div>
@@ -772,29 +723,28 @@
     </section>
 
     <!-- CTA секция -->
-    <section class="py-20 bg-gradient-to-br from-primary to-primary-light">
+    <section class="py-16 sm:py-20 bg-gradient-to-br from-primary to-primary-light">
         <div class="max-w-4xl mx-auto px-6 text-center">
-            <h2 class="font-heading text-4xl md:text-6xl font-normal text-white mb-6" data-aos="fade-up">Ждём тебя!</h2>
-            <p class="text-lg text-white/90 mb-8" data-aos="fade-up" data-aos-delay="100">
+            <h2 class="font-heading text-3xl sm:text-4xl md:text-6xl font-normal text-white mb-4 sm:mb-6" data-aos="fade-up">Ждём тебя!</h2>
+            <p class="text-base sm:text-lg text-white/90 mb-6 sm:mb-8" data-aos="fade-up" data-aos-delay="100">
                 Пожалуйста, заполни анкету гостя до 1 июля 2026 года, чтобы мы могли всё подготовить.
             </p>
-            <a href="#rsvp" class="inline-block bg-gold text-white px-10 py-4 rounded-lg font-medium uppercase tracking-wide hover:bg-gold-light transition transform hover:-translate-y-1" data-aos="zoom-in">
+            <a href="#rsvp" class="inline-block bg-gold text-white px-8 sm:px-10 py-3 sm:py-4 rounded-lg font-medium uppercase tracking-wide hover:bg-gold-light transition transform hover:-translate-y-1" data-aos="zoom-in">
                 Заполнить анкету
             </a>
         </div>
     </section>
 
     <!-- Футер -->
-    <footer class="bg-black py-12">
+    <footer class="bg-black py-8 sm:py-12">
         <div class="max-w-7xl mx-auto px-6 text-center">
-            <p class="font-heading text-3xl md:text-4xl font-normal italic text-white mb-2">Фёдор & Полин</p>
-            <p class="text-sm font-light tracking-[0.15em] uppercase text-white/70">10 августа 2026</p>
+            <p class="font-heading text-2xl sm:text-3xl md:text-4xl font-normal italic text-white mb-2">Фёдор & Полин</p>
+            <p class="text-xs sm:text-sm font-light tracking-[0.15em] uppercase text-white/70">10 августа 2026</p>
         </div>
     </footer>
 
     <!-- Скрипты -->
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
     
     <script>
         // Инициализация AOS
@@ -814,14 +764,53 @@
                 handContainer.classList.add('visible');
             }, 500);
             
-            // Убираем руку через 2.5 секунды
+            // Убираем руку через 3 секунды
             setTimeout(() => {
                 handContainer.classList.remove('visible');
                 setTimeout(() => {
                     handContainer.style.display = 'none';
                 }, 1500);
-            }, 3000);
+            }, 3500);
         });
+        
+        // Генерация календаря
+        function generateCalendar() {
+            const calendarGrid = document.getElementById('calendarGrid');
+            const firstDay = new Date(2026, 7, 1).getDay(); // День недели 1 августа
+            const daysInMonth = 31;
+            
+            // Пустые ячейки до 1 августа (суббота = 6)
+            const emptyCells = firstDay === 0 ? 6 : firstDay - 1;
+            for (let i = 0; i < emptyCells; i++) {
+                const emptyDiv = document.createElement('div');
+                calendarGrid.appendChild(emptyDiv);
+            }
+            
+            // Дни августа
+            for (let day = 1; day <= daysInMonth; day++) {
+                const dayDiv = document.createElement('div');
+                dayDiv.className = 'aspect-square flex items-center justify-center text-sm sm:text-base font-medium rounded-lg bg-white text-gray-700 shadow-sm';
+                dayDiv.textContent = day;
+                
+                const date = new Date(2026, 7, day);
+                const dayOfWeek = date.getDay();
+                
+                // Выделение выходных
+                if (dayOfWeek === 0 || dayOfWeek === 6) {
+                    dayDiv.classList.add('text-red-500');
+                }
+                
+                // Выделение даты свадьбы
+                if (day === 10) {
+                    dayDiv.classList.add('bg-gold', 'text-white', 'date-pulse', 'font-semibold');
+                    dayDiv.innerHTML = `${day}<span class="text-[10px] sm:text-xs block">💍</span>`;
+                }
+                
+                calendarGrid.appendChild(dayDiv);
+            }
+        }
+        
+        generateCalendar();
         
         // Таймер обратного отсчёта
         function updateCountdown() {
@@ -855,12 +844,19 @@
         const navToggle = document.querySelector('.nav-toggle');
         const mobileMenu = document.querySelector('.mobile-menu');
         const mobileLinks = document.querySelectorAll('.mobile-link');
+        const mobileClose = document.querySelector('.mobile-close');
         
-        navToggle.addEventListener('click', () => {
+        function toggleMenu() {
             mobileMenu.classList.toggle('opacity-0');
             mobileMenu.classList.toggle('invisible');
             navToggle.classList.toggle('active');
-        });
+        }
+        
+        navToggle.addEventListener('click', toggleMenu);
+        
+        if (mobileClose) {
+            mobileClose.addEventListener('click', toggleMenu);
+        }
         
         mobileLinks.forEach(link => {
             link.addEventListener('click', () => {
@@ -903,10 +899,10 @@
             const formData = new FormData(this);
             const name = formData.get('name');
             const attendance = formData.get('attendance');
-            const allergies = formData.get('allergies');
+            const allergies = formData.get('allergies') || 'Нет';
             
-            // Формируем сообщение для отправки
-            const message = `Здравствуйте! Это анкета гостя на свадьбу Фёдора и Полин.%0A%0AИмя: ${name}%0AПрисутствие: ${attendance === 'yes' ? 'Да' : 'Нет'}%0AАллергии/предпочтения: ${allergies || 'Нет'}`;
+            // Формируем сообщение для WhatsApp
+            const message = `Здравствуйте! Анкета гостя на свадьбу Фёдора и Полин.%0A%0A👤 Имя: ${name}%0A✅ Присутствие: ${attendance === 'yes' ? 'Да, приду' : 'Не смогу'}%0A🍽 Алергии/предпочтения: ${allergies}`;
             
             // Открываем WhatsApp с предзаполненным сообщением
             window.open(`https://wa.me/79393658420?text=${message}`, '_blank');
@@ -922,24 +918,6 @@
             rsvpForm.style.display = 'block';
             successMessage.style.display = 'none';
         }
-        
-        // Анимация появления секций при скролле
-        const revealSections = document.querySelectorAll('.reveal-section');
-        
-        const revealObserver = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('visible');
-                }
-            });
-        }, {
-            threshold: 0.1,
-            rootMargin: '0px 0px -50px 0px'
-        });
-        
-        revealSections.forEach(section => {
-            revealObserver.observe(section);
-        });
     </script>
 </body>
 </html>
